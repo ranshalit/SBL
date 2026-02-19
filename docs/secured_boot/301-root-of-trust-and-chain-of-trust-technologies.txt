@@ -1,0 +1,1235 @@
+DS09SBL: Dasharo TrustRoot Training
+Root of Trust and Chain of
+Trust Technologies (part 1)
+       Introductory Root of Trust and Chain of Trust
+Where we are in the course
+
+
+
+
+             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   3/32
+Goals of the Presentation
+In this presentation, we aim to:
+
+   Understand Root of Trust and Chain of Trust Taxonomy and how it applies to Slim Bootloader running on
+   Hardkernel Odroid-H4.
+
+
+
+
+                                   © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.               4/32
+Recap
+
+
+
+
+        © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                    Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+ Security Mechanisms,
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+ Security Mechanisms,
+ Strength of Mechanism,
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+ Security Mechanisms,
+ Strength of Mechanism,
+ Software loading into memory,
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+ Security Mechanisms,
+ Strength of Mechanism,
+ Software loading into memory,
+ Software execution on hardware,
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+ Security Mechanisms,
+ Strength of Mechanism,
+ Software loading into memory,
+ Software execution on hardware,
+ Load time integrity assessment (aka transitive trust aka chain of trust),
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.             5/32
+Recap
+ Trust is assured reliance on the character, ability, strength, or truth of someone or something.
+                     Trust ∝ Assurance of Strength ∝ 1 / Skepticism
+ System Integrity,
+ Security Mechanisms,
+ Strength of Mechanism,
+ Software loading into memory,
+ Software execution on hardware,
+ Load time integrity assessment (aka transitive trust aka chain of trust),
+ Root of Trust.
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.             5/32
+Training Materials
+In VM $HOME/training_materials/hardware/intel , you will find a couple of interesting documents that
+are publicly available but not always easy to find.
+
+  Intel® Trusted Execution Technology (Intel® TXT)
+       315168_TXT_MLE_DG_rev_017_4-5.pdf
+  Intel ® Converged Security and Management Engine (Intel® CSME) Security
+       intel-csme-security-white-paper.pdf
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                  6/32
+Root of Trust Taxonomies
+ Roots of Trust by purpose
+ Roots of Trust by establishment time
+ Chains of Trust: verified boot and measured boot differences
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   7/32
+Root of Trust Taxonomies
+ Roots of Trust by purpose
+ Roots of Trust by establishment time
+ Chains of Trust: verified boot and measured boot differences
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   7/32
+Root of Trust Taxonomies
+ Roots of Trust by purpose
+ Roots of Trust by establishment time
+ Chains of Trust: verified boot and measured boot differences
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   7/32
+Root of Trust Taxonomies
+ Roots of Trust by purpose
+ Roots of Trust by establishment time
+ Chains of Trust: verified boot and measured boot differences
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   7/32
+Root of Trust Taxonomies
+ Roots of Trust by purpose
+ Roots of Trust by establishment time
+ Chains of Trust: verified boot and measured boot differences
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   7/32
+Roots of Trust by purpose
+                                                        Root of Trust (RoT)
+                                   RoT for Measurement (RTM)                          RoT for Reporting (RTR)
+
+
+
+
+                    Static RTM (S-RTM)               Dynamic RTM (D-RTM)               RoT for Storage (RTS)
+
+                 Static Hardware RTM (S-HRTM)      Dynamic Hardware RTM (D-HRTM)
+                                                                                     RoT for Confidentiality (RTC)
+
+
+
+                 Static Code RTM (S-CRTM)
+                                                                                        RoT for Integrity (RTI)
+
+
+
+
+                    Code RTM (CRTM)                  Hardware RTM (HRTM)                RoT for Update (RTU)
+
+
+
+
+                                                                                     RoT for Verification (RTV)
+
+
+
+
+TCG Specification Architecture Overview rev. 1.4, Section 4.2, Trusted Computing Group,
+Guidelines on hardware-rooted security in mobile devices (Draft), NIST Special Publication 800-164.
+GlobalPlatform Technology Root of Trust Definitions and Requirements Version 1.1
+
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                           9/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              10/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              10/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              10/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              10/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              10/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              10/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              11/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              11/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              11/32
+                                           Root of Trust (RoT)
+                  RoT for Measurement (RTM)                                      RoT for Reporting (RTR)
+
+
+
+
+   Static RTM (S-RTM)                   Dynamic RTM (D-RTM)                       RoT for Storage (RTS)
+
+Static Hardware RTM (S-HRTM)         Dynamic Hardware RTM (D-HRTM)
+                                                                            RoT for Confidentiality (RTC)
+
+
+
+Static Code RTM (S-CRTM)
+                                                                                  RoT for Integrity (RTI)
+
+
+
+
+   Code RTM (CRTM)                      Hardware RTM (HRTM)                       RoT for Update (RTU)
+
+
+
+
+                                                                             RoT for Verification (RTV)
+
+
+
+
+                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                              11/32
+                                                        SoC/CPU
+                                                                    BootROM
+                                                    ME/CSE/
+                                                                                           User
+                                                 CSME/PSP/ASP
+                                                                     Key Store
+
+
+
+
+                                                    ME/CSE/
+                                                 CSME/PSP/ASP
+                                                                   Key Store               Adnin
+                            Adversary
+
+
+
+
+    Quote
+   It executes the signature verification algorithm and has access to a key store that includes the public key
+   needed to verify a signature. This key store may be stored internally by the RTV, or it may rely on an RTS
+   to protect and maintain the key store.
+
+
+source: NIST SP800-164         © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                         12/32
+   OpenTitan is an open-source project creating reference designs and integration guidelines for RoT chips
+   Partners include Google, lowRISC, ETH Zurich, G+D Mobile Security, Nuvoton and Western Digital
+   It aims to make silicon RoT technology more possible and more secure by creating open-source designs.
+   Derived from Google Titan technology.
+   BYORoT (Bring Your Own Root of Trust) approach.
+
+source: OpenTitan - open sourcing transparent, trustworthy, and secure silicon
+
+
+
+
+                                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                13/32
+© Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   14/32
+Caliptra consists of IP and firmware for an integrated Root of Trust block.
+Caliptra targets datacenter-class SoCs like CPUs, GPUs, DPUs, and TPUs. It is the specification, silicon logic,
+ROM, and firmware for implementing a Root of Trust for Measurement (RTM) block inside an SoC. A
+Caliptra integration provides the SoC with Identity, Measured Boot and Attestation capabilities.
+Caliptra’s source code is available on GitHub under the CHIPS Alliance Project, which is under the wings of
+Linux Foundation.
+     It is Apache-2.0 licensed.
+Founded by Microsoft, Google and AMD.
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                             15/32
+Caliptra consists of IP and firmware for an integrated Root of Trust block.
+Caliptra targets datacenter-class SoCs like CPUs, GPUs, DPUs, and TPUs. It is the specification, silicon logic,
+ROM, and firmware for implementing a Root of Trust for Measurement (RTM) block inside an SoC. A
+Caliptra integration provides the SoC with Identity, Measured Boot and Attestation capabilities.
+Caliptra’s source code is available on GitHub under the CHIPS Alliance Project, which is under the wings of
+Linux Foundation.
+     It is Apache-2.0 licensed.
+Founded by Microsoft, Google and AMD.
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                             15/32
+Caliptra consists of IP and firmware for an integrated Root of Trust block.
+Caliptra targets datacenter-class SoCs like CPUs, GPUs, DPUs, and TPUs. It is the specification, silicon logic,
+ROM, and firmware for implementing a Root of Trust for Measurement (RTM) block inside an SoC. A
+Caliptra integration provides the SoC with Identity, Measured Boot and Attestation capabilities.
+Caliptra’s source code is available on GitHub under the CHIPS Alliance Project, which is under the wings of
+Linux Foundation.
+     It is Apache-2.0 licensed.
+Founded by Microsoft, Google and AMD.
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                             15/32
+Caliptra consists of IP and firmware for an integrated Root of Trust block.
+Caliptra targets datacenter-class SoCs like CPUs, GPUs, DPUs, and TPUs. It is the specification, silicon logic,
+ROM, and firmware for implementing a Root of Trust for Measurement (RTM) block inside an SoC. A
+Caliptra integration provides the SoC with Identity, Measured Boot and Attestation capabilities.
+Caliptra’s source code is available on GitHub under the CHIPS Alliance Project, which is under the wings of
+Linux Foundation.
+     It is Apache-2.0 licensed.
+Founded by Microsoft, Google and AMD.
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                             15/32
+Caliptra consists of IP and firmware for an integrated Root of Trust block.
+Caliptra targets datacenter-class SoCs like CPUs, GPUs, DPUs, and TPUs. It is the specification, silicon logic,
+ROM, and firmware for implementing a Root of Trust for Measurement (RTM) block inside an SoC. A
+Caliptra integration provides the SoC with Identity, Measured Boot and Attestation capabilities.
+Caliptra’s source code is available on GitHub under the CHIPS Alliance Project, which is under the wings of
+Linux Foundation.
+     It is Apache-2.0 licensed.
+Founded by Microsoft, Google and AMD.
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                             15/32
+Root of Trust for Measurement
+     The open-source implementation of Caliptra drives transparency into the RTM and measurement
+     mechanism that anchors hardware attestation.
+     Exposes a "TCG DICE-as-a-Service".
+Root of Trust for Identity
+     Responsibility:
+          boot the SoC,
+          measure the mutable code it loads,
+          measure and control mutation of non-volatile configuration bits,
+          report measurements with signed attestations rooted in unique per-asset cryptographic entropy,
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                     16/32
+ Quote
+Often we see[…] great security[…] compromised by other great ideas for mgmt and other things[…] starts
+to weaken its security posture[…] want to keep Caliptra very clean via OSS firmware transparency
+
+Bryan Kelly
+
+source: Caliptra: A Datacenter System on a Chip (SOC) Root of Trust (RoT)
+
+
+
+
+                                © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                17/32
+Quiz
+
+
+
+
+       © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+
+
+
+                      © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+
+
+
+                           © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+What does RTV mean?
+
+
+
+
+                           © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+What does RTV mean?
+
+  Root of Trust for Verification
+
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+What does RTV mean?
+
+  Root of Trust for Verification
+
+What root of trust Intel Boot Guard implements?
+
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+What does RTV mean?
+
+  Root of Trust for Verification
+
+What root of trust Intel Boot Guard implements?
+
+  Root of Trust for Verification and Static Code Root of Trust for Measurement.
+
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+What does RTV mean?
+
+  Root of Trust for Verification
+
+What root of trust Intel Boot Guard implements?
+
+  Root of Trust for Verification and Static Code Root of Trust for Measurement.
+
+What are the benefits of RoT implementation like OpenTitan or OCP Caliptra?
+
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   18/32
+Quiz
+
+What does RTM mean?
+
+  Root of Trust for Measurement
+
+What does RTV mean?
+
+  Root of Trust for Verification
+
+What root of trust Intel Boot Guard implements?
+
+  Root of Trust for Verification and Static Code Root of Trust for Measurement.
+
+What are the benefits of RoT implementation like OpenTitan or OCP Caliptra?
+
+  Openness, state of the art modern design, pave path for industry standardization of RoT.
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.     18/32
+  Roots of Trust by
+establishment time
+S-RTM
+ Static Root of Trust for Measurement - established at a fixed point in time typically, platform reset
+      it can be implemented as code or as hardware
+      is the mechanism mutable or immutable?
+ S-RTM is as good as code/hardware making initial measurement
+ Initial measurement protection (Silicon Vendor Security Technologies):
+      Intel Boot Guard, AMD HVB/PSB, NXP HAB, Rockchip Secure Boot etc.
+ Local attestation: coreboot+TrustedGRUB2, Dasharo+LUKS2, Microsoft BitLocker
+ Problems
+      requires a reboot to re-establish trust
+      requires NDA with SV and skilled personnel to protect initial measurement
+      most hardware vendors do not implement it correctly
+      not standardized measurement information (event log)
+      complexity: over 20 keys involved (~5 just for Intel Boot Guard)
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                   20/32
+                                     Mainboard
+
+
+               SPI flash                              CPU/SoC
+
+
+    Read-only firmware boot block       TM
+                                      CR
+                                    S-
+
+         Read-write firmware
+
+
+                                                    ROM
+                                                               TM
+                                                          CR
+                                                       S-
+
+
+
+                                                          PCH
+
+
+
+
+      TPM
+     M                                              ROM        TM
+   RT PCR0                                               CR
+S-                                                     S-
+    PCR1..15
+
+
+
+
+   © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.        21/32
+Dynamic Root of Trust for Measurement
+ Dynamic Root of Trust for Measurement - established at an arbitrary point in time through a dedicated mechanism (e.g.
+ CPU instruction)
+      it can be implemented as code or as hardware
+ It was standardized according to the TCG D-RTM Architecture specification.
+ Currently, most active development related to the implementation of D-RTM technology in FOSS is TrenchBoot.
+      TrenchBoot goal is to upstream support for D-RTM for all FOSS relevant projects, starting with Linux kernel,
+      GRUB2 bootloader, Xen, there is even some preliminary work on coreboot.
+ Microsoft leverage D-RTM technology under System Guard.
+ There are multiple hardware specific standards discussing and publications discussing D-RTM:
+      Intel® Trusted Execution Technology (Intel® TXT)
+      Intel Software Developers Manual - chapter 7
+      AMD Architecture Programmer’s Manual - chapter 15.27
+      DRTM Architecture for Arm
+
+
+
+
+                                © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                22/32
+source: TCG D-RTM Architecture
+
+
+
+
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   23/32
+How that applies to our use case?
+ We should always start analysis from CPU microarchitecture we trying to secure.
+ Microarchitecture documentation should define platform on which it can be integrated, what defines
+ security properties and potential mechanisms which can be used.
+ Our target platform is Intel Alder Lake N, but following applies to all modern Intel-based platforms.
+      Intel Boot Guard serves as Root of Trust for Verification (RTV) as well as Static Code Root of Trust for
+      Measurement (S-CRTM).
+      Intel Boot Guard is not related or dependent on firmware stack, but its properties may align better of
+      worse with some implementations.
+      Intel Boot Guard implementations differ slightly between microarchitectures (number eFuse slots,
+      ability to transfer ownership, tooling).
+      Intel Boot Guard is responsible for validation of Initial Boot Block (IBB), further chain of trust
+      (transitive trust) continuation depends on firmware stack.
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                           24/32
+Chain of Trust
+Chain of Trust Taxonomy
+ Based on function:
+      Chain of Trust for Detection (CTD)
+      Chain of Trust for Recovery (CTRec)
+      Chain of Trust for Update (CTU)
+ Based on method of transitive trust:
+      Measured Boot (integrity)
+      Verified Boot (authenticity, integrity)
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/32
+Chain of Trust Taxonomy
+ Based on function:
+      Chain of Trust for Detection (CTD)
+      Chain of Trust for Recovery (CTRec)
+      Chain of Trust for Update (CTU)
+ Based on method of transitive trust:
+      Measured Boot (integrity)
+      Verified Boot (authenticity, integrity)
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/32
+Chain of Trust Taxonomy
+ Based on function:
+      Chain of Trust for Detection (CTD)
+      Chain of Trust for Recovery (CTRec)
+      Chain of Trust for Update (CTU)
+ Based on method of transitive trust:
+      Measured Boot (integrity)
+      Verified Boot (authenticity, integrity)
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/32
+Chain of Trust Taxonomy
+ Based on function:
+      Chain of Trust for Detection (CTD)
+      Chain of Trust for Recovery (CTRec)
+      Chain of Trust for Update (CTU)
+ Based on method of transitive trust:
+      Measured Boot (integrity)
+      Verified Boot (authenticity, integrity)
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/32
+Chain of Trust Taxonomy
+ Based on function:
+      Chain of Trust for Detection (CTD)
+      Chain of Trust for Recovery (CTRec)
+      Chain of Trust for Update (CTU)
+ Based on method of transitive trust:
+      Measured Boot (integrity)
+      Verified Boot (authenticity, integrity)
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/32
+Chain of Trust Taxonomy
+ Based on function:
+      Chain of Trust for Detection (CTD)
+      Chain of Trust for Recovery (CTRec)
+      Chain of Trust for Update (CTU)
+ Based on method of transitive trust:
+      Measured Boot (integrity)
+      Verified Boot (authenticity, integrity)
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/32
+How Measured Boot works?
+    Reset
+
+
+               Measure,
+    S-RTM                                                Boot Firmware
+                Extend
+                 and
+  S-CRTM or    eXecute        Phase 1               Phase 2           Phase 3            Phase 4        Bootloader      OS
+   S-HRTM
+
+
+
+
+                                  PCR[0-7]: ?     PCR[0-7]: ?
+                                                                         PCR[0-7]: ?
+                    PCR[0-7]: ?                                                           PCR[0-7]: ?
+                                            TPM                                                           PCR[0-7]: ?
+
+
+ Measured Boot - is boot process during which transitive trust was performed and chain of trust (chain of
+ integrity measurements) was established.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                  27/32
+How Measured Boot works?
+    Reset
+
+
+               Measure,
+    S-RTM                                                Boot Firmware
+                Extend
+                 and
+  S-CRTM or    eXecute        Phase 1               Phase 2           Phase 3            Phase 4        Bootloader      OS
+   S-HRTM
+
+
+
+
+                                  PCR[0-7]: ?     PCR[0-7]: ?
+                                                                         PCR[0-7]: ?
+                    PCR[0-7]: ?                                                           PCR[0-7]: ?
+                                            TPM                                                           PCR[0-7]: ?
+
+
+ Measured Boot - is boot process during which transitive trust was performed and chain of trust (chain of
+ integrity measurements) was established.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                  27/32
+How Measured Boot works?
+    Reset
+
+
+               Measure,
+    S-RTM                                                Boot Firmware
+                Extend
+                 and
+  S-CRTM or    eXecute        Phase 1               Phase 2           Phase 3            Phase 4        Bootloader      OS
+   S-HRTM
+
+
+
+
+                                  PCR[0-7]: ?     PCR[0-7]: ?
+                                                                         PCR[0-7]: ?
+                    PCR[0-7]: ?                                                           PCR[0-7]: ?
+                                            TPM                                                           PCR[0-7]: ?
+
+
+ Measured Boot - is boot process during which transitive trust was performed and chain of trust (chain of
+ integrity measurements) was established.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                  27/32
+How Measured Boot works?
+    Reset
+
+
+               Measure,
+    S-RTM                                                Boot Firmware
+                Extend
+                 and
+  S-CRTM or    eXecute        Phase 1               Phase 2           Phase 3            Phase 4        Bootloader      OS
+   S-HRTM
+
+
+
+
+                                  PCR[0-7]: ?     PCR[0-7]: ?
+                                                                         PCR[0-7]: ?
+                    PCR[0-7]: ?                                                           PCR[0-7]: ?
+                                            TPM                                                           PCR[0-7]: ?
+
+
+ Measured Boot - is boot process during which transitive trust was performed and chain of trust (chain of
+ integrity measurements) was established.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                  27/32
+How Measured Boot works?
+    Reset
+
+
+               Measure,
+    S-RTM                                                Boot Firmware
+                Extend
+                 and
+  S-CRTM or    eXecute        Phase 1               Phase 2           Phase 3            Phase 4        Bootloader      OS
+   S-HRTM
+
+
+
+
+                                  PCR[0-7]: ?     PCR[0-7]: ?
+                                                                         PCR[0-7]: ?
+                    PCR[0-7]: ?                                                           PCR[0-7]: ?
+                                            TPM                                                           PCR[0-7]: ?
+
+
+ Measured Boot - is boot process during which transitive trust was performed and chain of trust (chain of
+ integrity measurements) was established.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                  27/32
+How to protect S-RTM?
+ It depends on the mechanism delivered by the platform and/or silicon vendor.
+ Verified Boot-like technologies with strong RoT (Intel Boot Guard, AMD Hardware Validated Boot, NXP
+ High Assurance Boot, etc.)
+ How hard is it to sign firmware and fuse/provision platform?
+      it really depends on the vendor,
+ What we can do with all those measurements in TPM?
+      local attestation - secret unsealing,
+      remote attestation,
+ Maybe Measured Boot and S-RTM don’t make sense, and Verified Boot is the one to rely on?
+      ownership transfer,
+      vendor lock-in,
+      closed, centralized authority vs open, decentralized community,
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                28/32
+Quiz
+
+
+
+
+       © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+What are the 5 types of Chain of Trust?
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+What are the 5 types of Chain of Trust?
+
+  CTD
+  CTRec
+  CTU
+  Measured Boot
+  Verified Boot
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+What are the 5 types of Chain of Trust?
+
+  CTD
+  CTRec
+  CTU
+  Measured Boot
+  Verified Boot
+
+Where are the measurements typically stored?
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+What are the 5 types of Chain of Trust?
+
+  CTD
+  CTRec
+  CTU
+  Measured Boot
+  Verified Boot
+
+Where are the measurements typically stored?
+
+  In TPM PCR registers
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+What are the 5 types of Chain of Trust?
+
+  CTD
+  CTRec
+  CTU
+  Measured Boot
+  Verified Boot
+
+Where are the measurements typically stored?
+
+  In TPM PCR registers
+
+Which measurement is the most important and why?
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+What are the 5 types of Chain of Trust?
+
+  CTD
+  CTRec
+  CTU
+  Measured Boot
+  Verified Boot
+
+Where are the measurements typically stored?
+
+  In TPM PCR registers
+
+Which measurement is the most important and why?
+
+  First, because based on it the whole chain is formed.
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/32
+Quiz
+
+
+
+
+       © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   30/32
+Quiz
+
+What are the technologies to protect the first measurement?
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   30/32
+Quiz
+
+What are the technologies to protect the first measurement?
+
+  Intel Boot Guard, AMD Hardware Validated Boot, NXP High Assured Boot, SPI read-only protection.
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              30/32
+Conclusion
+In this lecture, we learned about the following:
+
+  What are the taxonomies of Root of Trust and Chain of Trust technologies.
+  Where in those taxonomies Intel Alder Lake (e.g. Intel N97) and other modern Intel hardware is placed
+  with its security properties.
+  Basics of Measured Boot works and for what it can be used.
+
+This information will provide us with a solid foundation for understanding:
+
+  Root of Trust Assessment, Integration and Provisioning.
+  Deep diver into Slim Bootloader implementation of Verified Boot and Measured Boot.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.               31/32
+Q&A
+

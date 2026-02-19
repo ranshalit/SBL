@@ -49,3 +49,11 @@
 - Keep signing/keys and hash algorithm choices aligned with existing board fields (`_RSA_SIGN_TYPE`, `_SIGN_HASH`, key IDs) instead of ad-hoc scripts.
 - Keep stage/region size edits coherent: BoardConfig has guard checks for redundant/non-redundant region overflow; adjust related sizes together.
 - Use QEMU scripts for behavior checks when possible before touching hardware-specific stitch flows.
+
+## Device defaults used by automation
+- `target_ip`: `192.168.55.1`
+- `target_user`: `ubuntu`
+- `target_password`: `ubuntu`
+- `target_prompt_regex`: `(?:<username>@<username>:.*[$#]|[$#]) ?$`
+- `target_serial_device`: `/dev/ttyUSB0`
+- `target_mac`: `3c:6d:66:62:a2:11`

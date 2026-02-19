@@ -1,0 +1,858 @@
+DS09SBL: Dasharo TrustRoot Training
+Assessing Root of Trust
+  Implementations
+       Dasharo Trust Root Training
+Where we are in the course
+
+
+
+
+             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   3/40
+Goals of the Presentation
+ Techniques for assessing Root of Trust mechanisms
+ Tools and methodologies for evaluating Root of Trust effectiveness
+ Hands-On Lab: Assessing and validating Root of Trust in provided hardware
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   4/40
+Tooling
+ MEInfo
+ FPT
+ Linux sysfs
+ firmware debug log (if applicable)
+ UEFITool
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   5/40
+Managenent Engines role in platform security
+
+
+
+
+Source: Intel: Key usage in integrated firmware images
+                                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   6/40
+Slim Bootloader boot flow with Boot Guard
+
+
+
+
+             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   7/40
+Management Engine boot flow and RoT
+establishment
+
+
+
+
+Source: Intel: Key usage in integrated firmware images
+                                     © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   8/40
+Management Engine toolkit
+ Set of tools to:
+      Build Intel firmware images
+      Configure Management Engine and flash descriptor straps
+      Generate manifests and sign Management Engine components
+ Set of binary components for multiple IP blocks
+      During the image build process, these are glued together into a single binary and put into the
+      Management Engine region in flash
+ Can be legally obtained under NDA only through Intel’s Resource and Documentation Center (R&DC)
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                 9/40
+Management Engine toolkit license
+ Licenses are available in the day2/licenses directory in the shared link to the training materials:
+      PV Intel OBL Software License Agreement_11.2.2017_1.pdf - license accompanying the
+      toolkit when downloading from R&DC
+      SLA_TOOLS.pdf - license accompanying the tools inside the ME toolkit package
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                  10/40
+Practice #302 Exercise #1
+
+Finding the right Management Engine toolkit
+
+First we have to find out what ME version we are using/running.
+
+   Checking version on Linux: cat /sys/class/mei/mei0/fw_ver
+
+ 0:16.50.5.1303
+ 0:16.50.5.1303
+ 0:16.50.5.1308
+
+
+
+
+   Note
+
+   This method requires Management Engine to be enabled and running normally. May not be the most
+   reliable method. There are three versions listed here: main, recovery, fitc.
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              11/40
+Checking version with UEFITool
+    Open a full image, e.g. Slim Bootloader in the UEFITool: UEFITool Outputs/odroid_h4/ifwi-
+    release.bin or UEFITool Outputs/odroid_h4/ifwi-debug.bin
+    Expand the Intel Image
+    Click on ME Region
+
+
+
+
+                         © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.              12/40
+The Management Engine toolkit should match the running ME major and minor version at minimum
+
+
+   Note
+
+  Sometimes if the patch version and build number are too far from the toolkit’s version, certain tools may
+  have problems in operating on the image
+
+
+  Login to Intel R&DC portal
+  Search for CSE 16.50 firmware
+  Important: Look at links with Content Type: Software Kits
+
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                      13/40
+© Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   14/40
+tip
+
+If you know the Content ID beforehand, just log in to the R&DC portal and type the URL in the browser
+to start downloading directly: https://cdrdv2.intel.com/v1/dl/getContent/<content_id>
+replacing the <content_id> with the desired ID. But it only works for single-file content. ME toolkits
+consist of ZIP, license, SBOM and SBOM signature. In such case, searching for the ID gives good results
+quicker.                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                     15/40
+Management Engine toolkit structure
+├── ADP-P Consumer Bring Up Guide.pdf
+├── ADP-P MFIT Consumer Bring Up Guide.pdf
+├── Alderlake-N Client SPI Programming Guide.pdf
+├── Image Components
+│   ├── 3rd party Licenses in Security FW
+│   ├── CSME
+│   ├── NPHY
+│   ├── PCHC
+│   ├── PMC
+│   ├── PRESTITCHED
+│   └── TCSS
+└── Tools
+    ├── 3rd party Licenses in Security Tools
+    ├── DnX_Tools
+    └── System_Tools
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   16/40
+Management Engine toolkit structure
+├── ADP-P Consumer Bring Up Guide.pdf
+├── ADP-P MFIT Consumer Bring Up Guide.pdf
+├── Alderlake-N Client SPI Programming Guide.pdf
+├── Image Components
+│   ├── 3rd party Licenses in Security FW
+│   ├── CSME
+│   ├── NPHY
+│   ├── PCHC
+│   ├── PMC
+│   ├── PRESTITCHED
+│   └── TCSS
+└── Tools
+    ├── 3rd party Licenses in Security Tools
+    ├── DnX_Tools
+    └── System_Tools
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   16/40
+Management Engine toolkit structure
+├── ADP-P Consumer Bring Up Guide.pdf
+├── ADP-P MFIT Consumer Bring Up Guide.pdf
+├── Alderlake-N Client SPI Programming Guide.pdf
+├── Image Components
+│   ├── 3rd party Licenses in Security FW
+│   ├── CSME
+│   ├── NPHY
+│   ├── PCHC
+│   ├── PMC
+│   ├── PRESTITCHED
+│   └── TCSS
+└── Tools
+    ├── 3rd party Licenses in Security Tools
+    ├── DnX_Tools
+    └── System_Tools
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   16/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Management Engine System Tools
+└── System_Tools
+    ├── DNX
+    ├── FPT
+    ├── FWUpdate
+    ├── FWUpdate_RS
+    ├── ICC Tools
+    ├── MEInfo
+    ├── MEManuf
+    ├── MEU
+    ├── MFIT
+    ├── SLA_TOOLS.PDF
+    ├── System Tools User Guide.pdf
+    └── Tools Errors User Guide.pdf
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   17/40
+Before we begin, let’s make sure we have two binaries:
+
+   Dasharo (Slim Bootloader+UEFI) v0.9.0 debug build (if we don’t have one yet).
+  Original vendor firmware on second flash (should be there if we haven’t written anything to it yet)
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                  18/40
+Practice #302 Exercise #2
+
+Let’s build and flash debug version Dasharo (Slim Bootloader+UEFI) v0.9.0.
+
+Building:
+
+ user@OST2-VM:~$ cd training_materials/src/slimbootloader
+ user@OST2-VM:~$ DEBUG=1 ./build.sh odroid_h4
+
+
+Resulting image in training_materials/src/slimbootloader/Outputs/Odroid_h4/ifwi-debug.bin .
+
+Copy the image on the DTS USB stick and plug it to ODROID H4.
+
+Boot to DTS and flash it on ODROID H4. Verify that Slim Bootloader prints debug messages on serial port.
+
+
+
+
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                 19/40
+Practice #302 Exercise #3
+
+We will attempt to run Intel ME tools to read the FPF state to confirm that fuses are not locked and assess
+feasibility of Intel Boot Guard provisioning.
+
+FPF assessment will let us determine whether the platform is unlocked and capable of provisioning Intel Boot
+Guard. FPF values are an absolute indicator of the ME configuration state.
+
+For that, we will use the MEInfo tool, which you can find in ME firmware toolkit.
+
+Transfer the tool to the USB stick with DTS and plug it in Odroid-H4. Boot the DTS and run the tool. Dump
+output to file. It would be useful for further comparison.
+
+ root@ODROID-DTS# chmod +x MEInfo
+ root@ODROID-DTS# ./MEInfo -VERBOSE > meinfo_sbl.log
+
+
+
+
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                     20/40
+Intel (R) ME Info Version: 16.50.15.1519                                           Factory Defaults Recovery Status          Enabled
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.                 Firmware Update OEM ID                    00000000-0000-0000-0000-000000000000
+                                                                                   Intel(R) ICPS SW SKUing Eligible          Disabled
+   FW Status Register1                          0x90000255                         Intel(R) ICM Entitlement                  Disabled
+   FW Status Register2                          0x69000506                         Camera privacy feature control disabled   True
+   FW Status Register3                          0x00000020                         Crypto HW Support                         Enabled
+   FW Status Register4                          0x00004004                         Intel(R) ISH Power State                  Disabled
+   FW Status Register5                          0x00000000                         OEM Tag                                   0x00
+   FW Status Register6                          0x00400002                         FW Update State                           Enabled
+                                                                                   TLS State                                 Enabled
+General FW Information                                                             CSME Measured Boot to TPM                 Disabled
+    Current FW State                            Normal                             BIOS Recovery State                       Disabled
+    Flash Partition Table                       Valid
+    FW Memory State                             CM0 with UMA                    Intel(R) ME Code Versions
+    FW Initialization                           Complete                            BIOS Version                             Dasharo (Slim Bootloader+UEFI) v0.9.0
+    BUP Loading state                           Success                             FW Version                               16.50.10.1351 LP Consumer
+    FW Error Code                               No Error
+    FW Mode Of Operation                        Normal                          Extended Platform Services
+    SPI Flash Log                               Present                             License Installed                        False
+    FW Loading Phase                            HOSTCOMM Module                     License Period                           0 Periods
+    FW Loading Phase Status                     UNKNOWN
+    ME File System Corrupted                    No                              IUPs Information
+    RPMC status                                 OK                                  PMC FW Version                           160.50.0.1009
+                                                                                    OEM FW Version                           0.0.0.0000
+                                                                                    IUNT FW Version                          0.10.1.7051
+   Platform Type                                Mobile                              IOM FW Version                           35.8.0.0000
+   FW Image Type                                Production                          NPHY FW Version                          14.14.508.4007
+   Last ME Reset Reason                         Other                               PCHC FW Version                          16.50.0.1013
+   BIOS Boot State (EOP)                        Pre Boot
+   BIOS Boot State (CBD)                        Pre Boot                        PCH Information
+   Boot Critical Code Redundancy                Disabled                            PCH Name                                 ADL
+   Current Boot Partition                       1                                   PCH Device ID                            5481
+   Factory Defaults Restoration Status          Disabled                            PCH Revision ID                          A0
+   CPUID                                        0xB06E0                             PCH SKU Type                             Production PRQ Revenue
+                                                                                    PCH Replacement State                    Disabled
+                                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                                             21/40
+Transactional FW Information                                                Intel(R) Protected Audio Video Path
+    Original image type                     Consumer                            PAVP State                            Yes
+    Current sku type                        Consumer
+                                                                            Security Version Numbers
+Flash Information                                                               Trusted Computing Base SVN            1
+    Storage Device Type                     SPI
+    SPI Flash ID 1                          EF7018                             Firmware Version Control SVNs
+    RPMC                                    Unsupported                            PMC                                0     [minimum allowed: 0]
+    RPMC Bind Counter                       0                                      CSE                                1     [minimum allowed: 0]
+    RPMC Bind Status                        Pre-bind                               ROT KM                             0     [minimum allowed: 0]
+    RPMC Rebind                             Supported                              IDLM                               0     [minimum allowed: 0]
+    RPMC Replay Protection Max Rebind       15                                     CSME bootstrap                     0     [minimum allowed: 0]
+    BIOS Read Access                        0xFFFF                                 OEM KM                             0     [minimum allowed: 0]
+    BIOS Write Access                       0xFFFF
+    GBE Read Access                         0xFFFF                          HW Glitch Detection                       0x1749
+    GBE Write Access                        0xFFFF                              TRC Polarity                          Rising Trans
+    ME Read Access                          0xFFFF                              TRC Mode                              Full-cycle polarity trans
+    ME Write Access                         0xFFFF                              TRC State                             Enabled
+    EC Read Access                          0xFFFF
+    EC Write Access                         0xFFFF                          Intel(R) Platform Trust Technology
+                                                                                Intel(R) PTT initial power-up state   Enabled
+FW Capabilities                             0x31309200                          Intel(R) PTT State                    Enabled
+    Intel(R) Protected Audio Video Path     Present/Enabled                     SMx State                             Enabled
+    Intel(R) Dynamic Application Loader     Present/Enabled                     RSA1K Support                         Disabled
+    Intel(R) Platform Trust Technology      Present/Enabled
+    Persistent RTC and Memory               Present/Enabled                 Debug Information
+                                                                                Token Present                         No
+End Of Manufacturing                                                            Token Handling Status                 Not Available
+    NVAR Configuration State                Unlocked                            Invalid Knob Detected                 Not Available
+    EOM Settings                            Lock(Flash,Config)                  Consent                               Unknown
+    EOM Flow                                Not set                             DFx Policy                            Unprivileged Public Debug Enabled
+    HW Binding State                        Enabled
+    Flash Protection Mode                   Unprotected
+    FPF Committed                           No
+
+                                          © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                                       22/40
+FW Supported FPFs                           FPF         UEP                 OEM key Hash RSA key size                       Not set    Enabled
+                                                      *In Use               PID Refurbish Counter                           Not set    0x00
+                                            ---         ---                 PMC Firmware Version Control                    Not set    Enabled
+1st OEM Key Hash Revoked                    Not set     Disabled            PTT Lockout Override Counter                    Not set    0x00
+1st OEM Key Hash size                       Not set     Enabled             Persistent PRTC Backup Power                    Not set    Enabled
+1st OEM RSA Key size                        Not set     Enabled             ROT Firmware Version Control                    Not set    Enabled
+2nd OEM Key Hash Revoked                    Not set     Disabled            RPMB Monotonic Counters                         Not set    0x00
+2nd OEM Key Hash size                       Not set     Enabled             RPMC Rebinding                                  Not set    Enabled
+2nd OEM RSA Key size                        Not set     Enabled             RPMC Support                                    Not set    Enabled
+BSMM Firmware Version Control               Not set     Enabled             SOC Config Lock State                           Not set    Disabled
+CSE FW Firmware Version Control             Not set     Enabled             SPI Boot Source                                 Not set    Enabled
+CSME Bootstrap Firmware Version Control     Not set     Enabled             SPIRAL CPU                                      Not set    Disabled
+DNX Firmware Version Control                Not set     Enabled             Secure boot KM Firmware Version Control         Not set    Enabled
+Error Enforcement Policy 0                  Not set     Disabled            TXT Supported                                   Not set    Disabled
+Error Enforcement Policy 1                  Not set     Disabled            UFS Boot Source                                 Not set    Disabled
+Flash Descriptor Verification               Not set     Disabled            uCode Firmware Version Control                  Not set    Enabled
+Glitch Detection Disabled                   Not set     Enabled
+IDLM Firmware Version Control               Not set     Enabled             DNX SVN                                         Not set    0x00
+Intel PTT Encryption Key                    Not set     Not Revoked         IDLM SVN                                        Not set    0x00
+Intel(R) Manageability HW Fuse Status       Not set     Enabled             OEM KM SVN                                      Not set    0x00
+Intel(R) PTT                                Not set     Enabled             PMC SVN                                         Not set    0x00
+OEM ID                                      Not set     0x00                ROT KM SVN                                      Not set    0x00
+OEM KM Firmware Version Control             Not set     Enabled             Secure boot ACM SVN                             Not set    0x00
+OEM Key Manifest                            Not set     Enabled             Secure boot BSMM SVN                            Not set    0x00
+OEM Key Revocation State                    Not set     Disabled            Secure boot KM SVN                              Not set    0x00
+OEM Platform ID                             Not set     0x00                Ucode SVN                                       Not set    0x00
+OEM Secure Boot Policy                      Not set     0x42
+CPU Debugging                               Not set     Disabled            1st OEM Public Key Hash FPF                      Not set
+BSP Initialization                          Not set     Enabled             1st OEM Public Key Hash UEP
+Protect BIOS Environment                    Not set     Disabled                  0638EFCBB322E655C912D984070450BD22151A6BA96E53E8
+Measured Boot                               Not set     Disabled                  6DDBAD48273EEE2BAB15DBE819696D989ABDC5EB9EB68A11
+Verified Boot                               Not set     Disabled            2nd OEM Public Key Hash FPF                      Not set
+Key Manifest ID                             Not set     0x01                2nd OEM Public Key Hash UEP
+Force Boot Guard ACM                        Not set     Disabled                  000000000000000000000000000000000000000000000000
+                                                                                  000000000000000000000000000000000000000000000000
+                                          © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                                               23/40
+© Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+1st/2nd OEM Public Key Hash FPF
+
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+1st/2nd OEM Public Key Hash FPF
+1st/2nd OEM Public Key Hash ME/UEP
+
+
+
+
+                    © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+1st/2nd OEM Public Key Hash FPF
+1st/2nd OEM Public Key Hash ME/UEP
+Secure boot ACM SVN
+
+
+
+
+                      © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+1st/2nd OEM Public Key Hash FPF
+1st/2nd OEM Public Key Hash ME/UEP
+Secure boot ACM SVN
+Secure boot KM SVN FPF
+
+
+
+
+                      © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+1st/2nd OEM Public Key Hash FPF
+1st/2nd OEM Public Key Hash ME/UEP
+Secure boot ACM SVN
+Secure boot KM SVN FPF
+Secure boot BSMM SVN FPF
+
+
+
+
+                      © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+1st/2nd OEM Public Key Hash FPF
+1st/2nd OEM Public Key Hash ME/UEP
+Secure boot ACM SVN
+Secure boot KM SVN FPF
+Secure boot BSMM SVN FPF
+FPF Committed No
+
+
+
+
+                      © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   24/40
+Practice #302 Exercise #4
+
+Run the MEInfo tool, but this time on original vendor firmware.
+
+  Swap the BIOS2 jumper position
+  Boot with vendor firmware
+  Run the tool and save output ./MEINFO -VERBOSE meinfo_ami.log
+  Compare the output with MEInfo output from Slim Bootloader
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   25/40
+root@ODROID-DTS# diff meinfo_ami.log meinfo_sbl.log
+29,30c29,30
+<     BIOS Boot State (EOP)                        Post Boot
+<     BIOS Boot State (CBD)                        Post Boot
+---
+>     BIOS Boot State (EOP)                        Pre Boot
+>     BIOS Boot State (CBD)                        Pre Boot
+49,50c49,50
+<     BIOS Version                                 1.0
+<     FW Version                                   16.50.5.1303 LP Consumer
+---
+>     BIOS Version                                 Dasharo (Slim Bootloader+UEFI) v0.9.0
+>     FW Version                                   16.50.10.1351 LP Consumer
+
+
+
+
+                                © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   26/40
+Practice #302 Exercise #5
+
+Evaluation of FPF emulation capability
+
+FPF emulation capability is crucial feature when developing and testing Root of Trust. FPF emulation allows to
+use SPI flash-backed configuration values (aka emulated FPFs) to be used in place of real hardware FPFs. In
+short it avoids accidental burning of fuses with undesired value and wasting the hardware.
+
+For this exercise, we will use Intel FPT tool from the ME toolkit to modify the emulated FPFs. Then we will
+confirm the changes with MEInfo.
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                          27/40
+Flash Programming Tool - FPT
+  FPT can:
+       Program the flash chip on Intel paltform
+       Read and manipulate OEM FPF values
+       Change ME configuration variables
+  Useful commands:
+        ./FPT -FPFS - lists settable OEM FPFs
+        ./FPT -R <VAR_NAMNE> - read a variable, e.g. OEM FPFs from the above list
+        ./FPT -U -N <VAR_NAMNE> -V <NEW_VALUE> - updates variable <VAR_NAME> value
+
+Let’s try to run FPT and then run MEInfo to realize what was changed in the output.
+
+
+
+
+                             © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   28/40
+Now we will test our binary
+
+1. Copy FPT to USB stick with DTS.
+
+2. Plug the stick to ODROID and boot into DTS
+
+3. Enter shell
+
+4. Run
+
+    root@ODROID-DTS# chmod +x FPT
+    root@ODROID-DTS# ./FPT -R "BSP Initialization"
+    root@ODROID-DTS# ./FPT -U -N "BSP Initialization" -V Disabled
+    root@ODROID-DTS# ./MEInfo |grep "BSP Initialization"
+
+
+5. Power off the board, unplug the power cord.
+
+6. Plug the power cord again and boot to DTS shell.
+
+7. Run ./MEInfo |grep "BSP Initialization" to check if changes persisted.
+
+
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   29/40
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Enabled / 00
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -U -N "BSP Initialization" -V Disabled
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Disabled / 01
+
+FPT Operation Successful.
+
+bash-5.2# ./MEInfo |grep "BSP Initialization"
+BSP Initialization                                 Not set        Disabled
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   30/40
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Enabled / 00
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -U -N "BSP Initialization" -V Disabled
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Disabled / 01
+
+FPT Operation Successful.
+
+bash-5.2# ./MEInfo |grep "BSP Initialization"
+BSP Initialization                                 Not set        Disabled
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   30/40
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Enabled / 00
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -U -N "BSP Initialization" -V Disabled
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Disabled / 01
+
+FPT Operation Successful.
+
+bash-5.2# ./MEInfo |grep "BSP Initialization"
+BSP Initialization                                 Not set        Disabled
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   30/40
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Enabled / 00
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -U -N "BSP Initialization" -V Disabled
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+FPT Operation Successful.
+
+bash-5.2# ./FPT -R "BSP Initialization"
+Intel (R) Flash Programming Tool Version: 16.50.15.1519
+Copyright (C) 2005 - 2024, Intel Corporation. All rights reserved.
+
+Variable: "BSP Initialization"
+Value: Disabled / 01
+
+FPT Operation Successful.
+
+bash-5.2# ./MEInfo |grep "BSP Initialization"
+BSP Initialization                                 Not set        Disabled
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   30/40
+Evaluation based on firmware logs
+ When running open-source firmware like coreboot or Slim Bootloader, the firmware may print information
+ about Boot Guard state
+ May be useful when not having utilities at hand or need to debug whether the Boot Guard configuration
+ has been applied properly after provisioning
+ Disadvantages:
+      Often requires NDA knowledge and documents how to interpret register values
+      Firmware often prints raw hex values, which are not human-readable
+      May not always give the most important information needed
+
+
+
+
+                            © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                     31/40
+Practice #302 Exercise #6
+
+Run the debug version of Slim Bootlaoder and capture the output to a file:
+
+ user@OST2-VM:~$ minicom -D /dev/ttyUSB0 -b 115200 -C /tmp/output.log
+
+
+Grep the output for Boot Guard :
+
+ user@OST2-VM:~$ cat /tmp/output.log |grep "Boot Guard"
+
+
+
+
+                                 © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   32/40
+user@OST2-VM:~$ cat /tmp/output.log |grep "Boot Guard"
+[Boot Guard] AcmStatus : 0x00000000
+[Boot Guard] BootStatus: 0x00000000
+[Boot Guard] Boot Guard Failed or is Disabled!
+[Boot Guard] Acm Info: 0x7000000000
+[Boot Guard] Verified Boot Status: Disabled
+[Boot Guard] Measured Boot Status: Disabled
+Processor does not support Boot Guard.
+Boot Guard Support status: 0
+
+
+
+
+                                © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   33/40
+Evaluation based on firmware logs
+  Slim Bootloader logs lack information about FPF fuse state.
+  Fuse state can be checked in ME firmware status registers on Linux:
+root@ODROID-DTS# cat /sys/class/mei/mei0/fw_status
+90000255
+02F10506
+00000020
+00004004
+00000000
+00400002
+
+
+  The bit 30 of the 6th value indicates the fuse state, aka Field Programmable Fuses (FPF) SoC Configuration
+  Lock. If the bit is set, it means the fuses are blown and Boot Guard would not be possible to be disabled or
+  enabled.
+
+  Decoding all the bits is possible with (CS)ME BIOS specification for given ME version
+
+       For ODROID it will be CSE 16.50 BIOS specification available under document number 730719.
+       For Kontron COMe TGL it will be CSME 15.0 BIOS specification available under document number
+       612229.                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                        34/40
+Evaluation using UEFITool
+  UEFITool is able to parse the Boot Guard Manifests in the UEFI images.
+       Boot Guard protected regions are highlighted with red color
+       Yellow highlight indicates partially protected parts
+  It can only tell us if the BIOS region of the image has been properly prepared to run with Boot Guard
+  configured ME. It doesn’t give 100% confidence Boot Guard is enabled, just a hint.
+
+Sample view of Intel’s Tiger Lake Reference Validation Platform BIOS image:
+
+
+
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                   35/40
+Intel Platform Trust Technology assessment
+
+
+
+
+ Intel Platform Trust Technology is Intel’s implementation of TPM 2.0 running in the ME firmware
+      Also referred to as fTPM (Firmware TPM)
+ Integration with PCH allows for smaller board size and lower power consumption
+ Better isolated due to lack of an exposed connection
+      dTPM with session encryption can provide adequate protection
+
+                              © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.            36/40
+   Not TCG certified, unlike most discrete TPMs
+
+Practice
+source:    #302 Exercise #7
+        nasunoblog.blogspot.com
+
+
+Assessment of fTPM application in CSME.
+
+Analyze MEInfo output to check whether the fTPM enablement is possible on ODROID-H4+.
+
+
+
+
+                                  © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   37/40
+Practice #302 Exercise #8
+
+Analysis of the binary blobs.
+
+Based on information gained so far, what binary blobs and proprietary tools do you think have to go into
+firmware to provision Intel Boot Guard.
+
+
+
+
+                                © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.                  38/40
+Conclusion
+Let’s discuss the results of the assessment.
+
+   Did we asses the whole boot chain?
+
+
+
+
+                               © Copyright 2025. All Rights Reserved by 3mdeb Sp. z o.o.   39/40
+Q&A
+

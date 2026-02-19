@@ -1,0 +1,726 @@
+-------------------------------------------------------------------------------
+# Version 0.0.0 #
+------------------
+COMMON:
+- Added support for new command line switches /bldrenable and /bldrdisable.
+- Added MAC address recovery and "Keep LAN area" function for Icelake modules.
+
+CGUTLCMD:
+- Build number updated for 0.0.0
+- Updated copyright year to 2023.
+
+==============
+Updated Files:
+==============
+.\cgutlcmd\bcprgcmd.c MOD015
+.\cgutlcmn\bcprg.h    MOD013
+.\cgutlcmn\bcprgcmn.c MOD025
+.\cgutlcmd\cgutlcmd.c
+.\cgutlcmn\biosflsh.c MOD020
+.\cgutlcmn\biosflsh.h MOD010
+
+-------------------------------------------------------------------------------
+# Version 1.6.1 #
+------------------
+COMMON:
+- Version updated to 1.6.1.
+- cgbc.h: Revised the definition and usage of standard data types to support
+  64-bit environments properly.
+- Added / extended support for various congatec Board Controller functions
+  (see cgbc.h MOD063-MOD070)
+- Added support for all MEC170x variants in the 144 pin WFBGA package
+
+==============
+Updated Files:
+==============
+/cgutlcmn/bcprg.h MOD012
+/cgutlcmn/bcprgcmn.c MOD024
+/cgutlcmn/cgbc.h MOD063-MOD070
+/cgutlcmn/mc17avr.h MOD002
+
+-------------------------------------------------------------------------------
+# Version 1.6.0 #
+------------------
+COMMON:
+- Version updated to 1.6.0.
+- Added support for Elkhart Lake MAC address recovery also when running a
+  normal (non-extended) BIOS update.
+- Fixed an issue when the Elkhart Lake BIOS update process got terminated 
+  when the GbE region could not be found. The BIOS update now continues with
+  an empty GbE region (for example when using an empty external SPI flash).
+- Changed return values for DSAC GbE region recovery so that in case of
+  no GbE region present or recovery error bios update continues without
+  GbE region recovery
+- Update to the latest CGBC API
+- Update of some copyright notes
+- Improved the performance of firmware updates on the GEN5 cBC
+- Added support for cBC based on MEC1706
+- Added support for the /!cidoverride switch
+
+==============
+Updated Files:
+==============
+/cgutlcmn/biosflsh.c MOD0018
+/cgutlcmn/bcprgcmn.c MOD022, MOD023
+/cgutlcmn/bcprg.h MOD010, MOD011
+/cgutlcmn/cgbc.h MOD062
+/cgutlcmn/cginfo.c MOD001
+/cgutlcmn/cgospriv.h MOD005
+/cgutlcmn/mc17avr.h MOD001
+
+-------------------------------------------------------------------------------
+# Version 1.5.9 #
+------------------
+COMMON:
+- Version updated to 1.5.9.
+- Implemented MAC address recovery for Elkhart Lake when running an extended update.
+- fix for DSAC MAC address recovery
+
+==============
+Updated Files:
+==============
+/cgutlcmn/biosflsh.c MOD0016, MOD017
+/cgutlcmn/biosflsh.h MOD009
+
+-------------------------------------------------------------------------------
+# Version 1.5.8 #
+------------------
+COMMON:
+- Version updated to 1.5.8.
+- BIOS update speed improvements
+- DSAC mac address recovery and optional LAN area recovery (/LAN flag) when running an extended update
+- Preserve BIOS password (/P flag)
+- Renamed "CMOS Backup Map" to "Default Setup Settings"
+
+CGUTLCMD:
+- Fixed issue: When using bcprog with the silent flag (/s) output was still generated. 
+
+==============
+Updated Files:
+==============
+/cgutlcmn/biosflsh.c MOD0013, MOD014
+/cgutlcmn/biosflsh.h MOD007, MOD008
+/cgutlcmn/cgmpfa.c MOD009
+
+/cgutlcmd/biosupdate.c MOD017, MOD008, MOD009
+/cgutlcmd/bcprgcmn.c MOD020
+
+
+-------------------------------------------------------------------------------
+# Version 1.5.7 #
+------------------
+COMMON:
+- Version updated to 1.5.7. Updated copyright year to 2018.
+- Added support for MEC1705QSZ (CGBC Gen5)
+
+CGUTLCMD:
+- Fixed issue: When using bcprog with the silent flag (/s) output was still generated. 
+
+==============
+Updated Files:
+==============
+/cgutlcmn/bcprg.h MOD009
+/cgutlcmn/bcprgcmn.h MOD019
+/cgutlcmn/cginfo.c MOD001
+/cgutlcmn/cgbc.h MOD042
+
+/cgutlcmd/bcprgcmd.h MOD010, MOD011
+
+============
+Added Files:
+============
+
+/cgutlcmn/mc17avr.h
+
+-------------------------------------------------------------------------------
+# Version 1.5.6 #
+------------------
+COMMON:
+- Version updated to 1.5.6. Updated copyright year to 2016.
+- Again modified the MAC address recovery mechanism for full SPI flash update. 
+  Make sure htat the recovered area / data really is the active area, i.e.
+  really contains the currently used MAC address. 
+- Do not try clear to clear CMOS memory any longer after BIOS update. 
+  This is not supported anymore on most new boards and lead to an confusing 
+  ‘error’ message after BIOS update although nothing was wrong with the BIOS 
+  update itself.
+- Removed 'Save Current BIOS To File' button from BIOS update dialog.
+  Reading back BIOS files is no longer supported as the resulting file
+  is not safe to be reused.  
+- Added support for 'OEM SMBIOS Data' MPFA module.
+- Added support for new 'OEM Setup Menu Control' OEM BIOS setup control module 
+  MPFA type which is supported by latest congatec AptioV based boards. 
+  This module type allows OEM setup menu visibility / layout and string modification.
+- Removed never used 'OEM String Table' module support.
+- Make sure that MPFA padding module (PAD) cannot be created or deleted manually. 
+  Module used for internal purposes only. 
+- Replaced 'BIOS ROM file' strings and message parts with 'BIOS file' at all locations.
+- Corrected handling of OEM Firmware Volume modules. Required module data (Firmware Volume)
+  alignment is now ensured correctly and for FV alignments from 64byte to 32kByte.
+- Ensure that the flash is locked again correctly after full SPI update. 
+- Removed special handling and display of BIOS 'bootblock', which 
+  since long is not supported anymore in this form by any congatec BIOS.  
+
+ 
+CGUTLGUI:
+- Replaced congatec right corner main dialog logo.
+- Ensured that BIOS file copy gets a file extension attached when created.
+  Defined *.BIN as default extension.
+- For AMI Aptio projects call external CgMlfEditor tool when 'BIOS Setup Configuration' 
+  sub dialog is clicked. This external tool allows to modifiy the setup for new AMI AptioV
+  based projects.
+  
+
+CGUTLCMD:
+- Return dedicated exit codes for different error cases from BFLASH BIOS update module.
+  Up to now only exit code 0 = OK and exit code 1 = ERROR had been returned.
+  Now the following exit codes may be returned by the BIOS update module:
+	0x00    // Success
+	0x01    // General error
+	0x02    // Interface access/init. error
+	0x03    // BIOS incompatibility error
+	0x04    // The specified file is not a valid BIOS file.
+	0x05    // BIOS size mismatch
+	0x06    // Error processing file
+	0x07    // Extended flash update not possible			
+	0x08    // This platform/BIOS requires an extended/full flash update. 
+			// Use parameter /E to update.
+	0x09	// Failed to unlock flash for extended update
+	0x0A	// Failed to lock flash after extended update
+	0x0B	// Extended update initiated but not (yet) completed. 
+			// Perform manual soft off-on cycle and relaunch the process to complete the update.
+- Added options to BFLASH module allowing to control the automatic off-on handling for full SPI 
+  update unlock for each operating system. 
+  DOS and now also UEFI versions of the utility by default perform automatic off-on handling to 
+  unlock the flash if required. For all other operating systems (Linux, Windows, ...) the
+  automatic off-on unlock handling is deactivated by default (as before).
+- Restructured, corrected and extended the usage description of the BFLASH module.
+- BFLASH module commands EIL, EU, EUM, EL, ELM now do not longer require a BIOS file 
+  to be passed as parameter. As these commands only meant to change or get the SPI flash
+  lock state of a board, the BIOS file was never used and thus a useless 'dummy' anyway.
+- Corrected usage description of MODULE sub-module (especially for module creation).
+- When cresting a new MPFa module in MODULE sub-module, display information what type of 
+  module has been created and actively confirm success as well, not only report error in case
+  of failure.  
+- Added option to CGINFO module that allows to compare a given BC firmware file 
+  with the currently programmed BC firmware off a module and thus e.g. simplify
+  the check whether a BC firmware update is required or not.
+
+==============
+Updated Files:
+==============
+
+
+
+-------------------------------------------------------------------------------
+# Version 1.5.5 #
+------------------
+COMMON:
+- Version updated to 1.5.5
+- Changed MAC address recovery mechanism for full SPI flash update. 
+  Now a check for the existence and the location of an ethernet configuration 
+  area is done instead of simply assuming, that this area exists at a certain offset. 
+  Baytrail and Braswell based products e.g. do not contain an ethernet configuration 
+  area in the flash. Simply recovering flash data from a fixed location 
+  (under the assumption that this might be the old MAC address) 
+  might result in invalid flash contents and unpredictable behaviour for these products.
+- Ensure 8 byte alignment of OEM UEFI Firmware Volume MPFA modules. 
+  Otherwise the OEM UEFI FV cannot be detected and processed by the UEFI FV 
+  handler.   
+  
+CGUTLGUI:
+- congatec branding update.   
+
+
+==============
+Updated Files:
+==============
+.\cgutlcmn\cgutlcmn.h
+.\cgutlcmn\biosflsh.c
+.\cgutlcmn\biosflsh.h
+.\cgutlcmn\cgmpfa.c
+.\cgutlcmn\cgmpfa.h
+
+
+.\cgutlcmd\history.txt
+.\cgutlcmd\cgutlcmd.c
+
+.\cgutlgui\history.txt	
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\biosmodules.cpp
+.\cgutlgui\res\congatec_banner.bmp
+.\cgutlgui\res\cgutlgui.ico
+
+
+-------------------------------------------------------------------------------
+# Version 1.5.4 #
+------------------
+COMMON:
+- Version updated to 1.5.4
+- Added support for new MPFA modules: 
+	POST Logo Left			(standard small POST logo in uper left corner)
+	POST Logo Right			(addon small POST logo in upper right corner)
+	UEFI FW Volume			(UEFI Firmware Volume with UEFI DXE drivers and or UEFI bootloaders)
+	OA 3.0 Module			(OEM activation 3.0 module)   
+
+==============
+Updated Files:
+==============
+.\cgutlcmn\cgmpfa.c
+.\cgutlcmn\cgmpfa.h
+
+.\cgutlcmd\history.txt
+.\cgutlcmd\cgutlcmd.c
+
+.\cgutlgui\history.txt	
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\biosupdate.cpp
+
+
+
+-------------------------------------------------------------------------------
+# Version 1.5.3 #
+------------------
+COMMON:
+- Version updated to 1.5.3
+- Extended maximum BIOS protection password length to 256 characters.
+- Added separate extended flash lock check, unlock and lock commands.
+- Improved BIOS update progress reporting to ensure that respective outputs
+  are displayed correctly by the Linux command line version and the Windows
+  GUI version as well.
+
+==============
+Updated Files:
+==============
+.\cgutlcmn\biosflsh.c
+.\cgutlcmn\biosflsh.h
+.\cgutlcmn\cgutlcmn.h
+.\cgutlcmn\tivaavr.h
+.\cgutlcmn\cgbc.h
+
+.\cgutlcmd\history.txt
+.\cgutlcmd\biosupdate.c
+.\cgutlcmd\cgutlcmd.c
+
+.\cgutlgui\history.txt	
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\buphandler.cpp
+
+
+-------------------------------------------------------------------------------
+# Version 1.5.2 #
+------------------
+COMMON:
+- Version updated to 1.5.2
+- Fixed bug that with version 1.5.1 firmware updates on congatec boards
+  using the STM32 board controller type did not work anymore. 
+ 
+==============
+Updated Files:
+==============
+.\cgutlcmd\cgutlcmd.c
+.\cgutlcmd\history.txt
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\history.txt	
+.\cgutlcmn\bcprgcmn.c
+
+-------------------------------------------------------------------------------
+# Version 1.5.1 #
+------------------
+COMMON:
+- Version updated to 1.5.1
+- Added support for TM4E1231H6ZRB congatec board controller type.
+ 
+==============
+Updated Files:
+==============
+.\cgutlcmd\bcprgcmd.c
+.\cgutlcmd\cgutlcmd.suo
+.\cgutlcmd\cgutlcmd.vcproj
+.\cgutlcmd\history.txt
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\firmwareupdate.cpp
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\history.txt	
+.\cgutlcmn\cgospriv.h
+.\cgutlcmn\atmelavr.h
+.\cgutlcmn\bcprg.h
+.\cgutlcmn\bcprgcmn.c
+.\cgutlcmn\cgbc.h
+.\cgutlcmn\tivaavr.h
+-------------------------------------------------------------------------------
+# Version 1.5.0 #
+------------------
+COMMON:
+- Version updated to 1.5.0
+
+CGUTLCMD
+- Updated copyright year to 2013.
+- Further extended memory/heap pre-allocation to be able to handle 16MB BIOS files as well
+  (e.g. conga-TS87). Previous heap extension was not sufficient.
+- Allow the INTERN congatec utility version to replace the standard Video BIOS
+  module type as well. (internal only)  
+      	
+==============
+Updated Files:
+==============
+.\cgutlcmd\cgutlcmd.c
+.\cgutlcmn\cgmpfa.c	
+.\cgutlcmn\cgutlcmn.h
+.\cgutlcmd\cgutlcmd.suo
+.\cgutlcmd\cgutlcmd.vcproj
+.\cgutlcmd\history.txt
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\biosmodules.cpp
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\history.txt	
+
+-------------------------------------------------------------------------------
+# Version 1.4.9 #
+------------------
+COMMON:
+- Data type conversion and code cleanup to create a common source base for 
+  32bit and 64bit Windows and Linux versions. 
+- Extend MAC address recovery which is required when performing a full/extended
+  BIOS update in order to avoid loss of existing MAC address data.
+  Now all major Intel based projects should be supported by default.
+  New projects only have to be checked for compatibility and only if the 
+  MAC location differs, a special handling has to be added for this new project.
+
+
+CGUTLCMD
+- Adapted module comparison algorithm for CMOS backup / setup settings modules.
+  New UEFI based BIOSes dynamically modify a parameter in the header of these 
+  modules, so exclude this part from comparison to avoid false error messages
+  especially on congatec tester where this feature is used to check whether 
+  the required board settings have already been applied to the BIOS of the DUT. 
+    	
+==============
+Updated Files:
+==============
+Almost all
+
+-------------------------------------------------------------------------------
+# Version 1.4.8 #
+------------------
+Skipped as official congatec version. Used as intermediate B&R version.
+
+-------------------------------------------------------------------------------
+# Version 1.4.7 #
+------------------
+COMMON:
+- Extend MAC address recovery which is required when performing a full/extended
+  BIOS update in order to avoid loss of existing MAC address data.
+  Now new special BIOS project names for conga-BM67 and conga-BM77 are also covered
+  (i.e. BQ67Rxxx, BH67Rxxx, BQ77Rxxx, BH67Rxxx).
+    	
+==============
+Updated Files:
+==============
+.\cgutlcmd\cgutlcmd.c	
+.\cgutlcmd\cgutlcmd.ncb	
+.\cgutlcmd\cgutlcmd.suo
+.\cgutlcmd\cgutlcmd.vcproj
+.\cgutlcmd\history.txt
+.\cgutlcmn\biosflsh.c
+.\cgutlcmn\cgutlcmn.h
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\history.txt	
+
+-------------------------------------------------------------------------------
+# Version 1.4.6 #
+------------------
+COMMON:
+- Fixed a firmware verification error which showed up when flashing
+  a board controller firmware containing a bootblock only but no application section.
+  In this case the detection of an existing EEEP section failed. 
+- Do not allow to add a Standard Video BIOS module anymore. These are exclusively added 
+  during BIOS build. OEM Video BIOS modules still can be added.
+- Extended flash verification and retry handling to module area updates as well.
+  In former utility versions automatic retries in case of flash update problems were
+  only peformed when updating the whole BIOS.  
+  For module area updates the utility only returned an error code in case something went wrong
+  but did not try to fix the problem automatically.  
+- Extend MAC address recovery which is required when performing a full/extended
+  BIOS update in order to avoid loss of existing MAC address data.
+  Now upcoming projects conga-BM67 and conga-BM77 are also covered.
+    
+CGUTLCMD:
+- Further extended memory/heap pre-allocation to be able to handle 8MB BIOS files as well
+  (e.g. conga-BM67). Previous heap extension was not sufficient.
+- Added new parameters for extended flash update (/EM & /EFM) that instruct the extended
+  flash update procedure to NOT perform an automatic restart after successful flash update.
+- DOSX version only: Output progreess indication on port 80h during board controller firmware
+  update. Requested by manufacturing engineering.   
+
+
+CGUTLGUI:
+- Do not show Standard Video BIOS modules anymore in module overview list.
+- The BIOS update module now implicitely selects the extended flash update mode.
+  Thus handling of BIOSes requiring an extended flash update is now possible with
+  the GUI version as well.
+
+		
+==============
+Updated Files:
+==============
+.\cgutlcmd\biosupdate.c	
+.\cgutlcmd\cgostest.c	
+.\cgutlcmd\cgutlcmd.c	
+.\cgutlcmd\cgutlcmd.ncb	
+.\cgutlcmd\cgutlcmd.suo
+.\cgutlcmd\cgutlcmd.vcproj
+.\cgutlcmd\history.txt
+.\cgutlcmn\bcprgcmn.c
+.\cgutlcmn\biosflsh.c
+.\cgutlcmn\biosflsh.h	
+.\cgutlcmn\cgmpfa.c	
+.\cgutlgui\biosmodules.cpp
+.\cgutlgui\biosupdate.cpp
+.\cgutlgui\cgutil.rc
+.\cgutlgui\cgutildlg.cpp
+.\cgutlgui\cgutlgui.ncb	
+.\cgutlgui\cgutlgui.suo	
+.\cgutlgui\history.txt	
+
+-------------------------------------------------------------------------------
+# Version 1.4.5 #
+------------------
+COMMON:
+- Do not force JPEG OEM logo check for UEFI and XPressROM based products,
+  but only for AMI BIOS based products.
+ 
+ 
+CGUTLCMD:
+
+CGUTLGUI:
+- Offer *.BIN extension by default for BIOS file handling.
+		
+==============
+Updated Files:
+==============
+
+
+-------------------------------------------------------------------------------
+# Version 1.4.4 #
+------------------
+COMMON:
+- Further optimized patch possibility of full SPI BIN files.
+- Added support for OEM SLP 1.0 string modules.
+- Added support for OEM and standard video BIOS modules 
+  (required for conga-CTOP and conga-QTOP graphics support).
+- Added firmware update support for STM32F100R8 board controller type.  
+- Added support for BIOS file sizes of 4MB and more
+  (required for conga-BAF, ...)
+- Added possibility to update BIOS ROM content extracted from a 
+  full flash BIN file. Handling of two types of BIOS files ('ROM' files
+  with BIOS content only and full flash 'BIN' files) is no longer necessary.
+  Now one BIOS file for each project can be used for CGUTIL BIOS updates as well
+  as for manufacturing. 
+- Added extended/full flash content update capability, including update of SPI descriptor
+  area, ethernet configuration area, ME firmware area and BIOS area.
+  Combined with a supporting BIOS the utility also automatically handles
+  the required flash unlock mechanism for ME firmware update.
+- Check whether a standard (BIOS content only) update is sufficient or whether
+  an extended/full flash update is required.  
+  
+NOTE: The extended/full flash update is only supported by the command line version
+      of the congatec System Utility. The GUI version includes the check whether an
+      extended/full flash update is required and if so, displays the respective 
+      information. The exteneded/full flash update itself has to be performed
+      using the command line version.
+ 
+CGUTLCMD:
+
+CGUTLGUI:
+		
+==============
+Updated Files:
+==============
+.\w32dosx\cgutlcmd\biosupdate.c
+.\w32dosx\cgutlcmd\cgutlcmd.c
+.\w32dosx\cgutlcmd\cgutlcmd.ncb
+.\w32dosx\cgutlcmd\cgutlcmd.suo
+.\w32dosx\cgutlcmd\cgutlcmd.vcproj
+.\w32dosx\cgutlcmd\history.txt
+
+.\w32dosx\cgutlcmn\bcprg.h
+.\w32dosx\cgutlcmn\bcprgcmn.c
+.\w32dosx\cgutlcmn\biosflsh.c
+.\w32dosx\cgutlcmn\biosflsh.h
+.\w32dosx\cgutlcmn\cgbinfo.h
+.\w32dosx\cgutlcmn\cgmpfa.c	
+.\w32dosx\cgutlcmn\cgmpfa.h	
+.\w32dosx\cgutlcmn\cgospriv.h
+.\w32dosx\cgutlcmn\stm32avr.h
+.\w32dosx\cgutlgui\biosupdate.cpp
+
+.\w32dosx\cgutlgui\cgutil.aps	
+.\w32dosx\cgutlgui\cgutil.rc	
+.\w32dosx\cgutlgui\cgutildlg.cpp
+.\w32dosx\cgutlgui\cgutlgui.ncb	
+.\w32dosx\cgutlgui\cgutlgui.suo	
+.\w32dosx\cgutlgui\cgutlgui.vcproj
+.\w32dosx\cgutlgui\history.txt	
+
+
+-------------------------------------------------------------------------------
+# Version 1.4.3 #
+------------------
+COMMON:
+- Allow to patch full SPI BIN file as well not only ROM file.
+- Added support for OEM SLIC table modules.
+- Added support for EFI Setup Backup and Setup Default Map modules.
+
+CGUTLCMD:
+- Changed B&R version title.
+
+CGUTLGUI:
+- Changed B&R version title caption.
+- Changed B&R version logo and icon.
+- Changed B&R version executable name to XCPBSVCGUI.
+		
+==============
+Updated Files:
+==============
+.\w32dosx\cgutlcmd\cgutlcmd.c
+.\w32dosx\cgutlcmd\cgutlcmd.ncb
+.\w32dosx\cgutlcmd\cgutlcmd.suo
+.\w32dosx\cgutlcmd\history.txt
+.\w32dosx\cgutlcmn\cgmpfa.c
+.\w32dosx\cgutlcmn\cgmpfa.h
+.\w32dosx\cgutlcmn\cgutlcmn.h
+
+
+.\w32dosx\cgutlgui\cgutil.aps
+.\w32dosx\cgutlgui\cgutil.h
+.\w32dosx\cgutlgui\cgutil.rc
+.\w32dosx\cgutlgui\cgutil.rc_congatec
+.\w32dosx\cgutlgui\cgutil.rc_BuR
+.\w32dosx\cgutlgui\cgutildlg.cpp
+.\w32dosx\cgutlgui\cgutlgui.ncb
+.\w32dosx\cgutlgui\cgutlgui.sln
+.\w32dosx\cgutlgui\cgutlgui.suo
+.\w32dosx\cgutlgui\cgutlgui.vcproj
+.\w32dosx\cgutlgui\res\bandr_banner.bmp
+
+
+
+
+-------------------------------------------------------------------------------
+# Version 1.4.2 #
+------------------
+COMMON:
+- Improved recovery handling on BIOS update error. Now in case of a write failure, 
+  the whole block is erased again before the block write is retried. This increases
+  the probability to recover a BIOS update error.
+  Retry efforts are displayed on screen to avoid 'problem hiding'.
+- The internal utility version XCGUCMD now does no longer perform size or BIOS 
+  validity check. Any data will be flashed. File size is assumed to equal flash size.
+  STRICTLY INTERNAL USAGE !
+
+CGUTLCMD:
+
+CGUTLGUI:
+		
+==============
+Updated Files:
+==============
+.\w32dosx\cgutlcmn\biosflsh.c
+
+.\w32dosx\cgutlcmd\cgutlcmd.c
+.\w32dosx\cgutlcmd\cgutlcmd.ncb
+.\w32dosx\cgutlcmd\cgutlcmd.suo
+.\w32dosx\cgutlcmd\cgutlcmd.vcproj
+.\w32dosx\cgutlcmd\history.txt
+
+.\w32dosx\cgutlgui\cgutil.aps
+.\w32dosx\cgutlgui\cgutil.rc
+.\w32dosx\cgutlgui\cgutildlg.cpp
+.\w32dosx\cgutlgui\cgutlgui.ncb
+.\w32dosx\cgutlgui\cgutlgui.suo
+.\w32dosx\cgutlgui\history.txt
+
+
+
+# Version 1.4.1 #
+------------------
+COMMON:
+- Added support for ATmega48PA/88PA/168PA/328P.
+- Added new BIOS/firmware type identifying AMI EFI. 
+
+CGUTLCMD:
+- Updated copyright year to 2010.
+- Increased linker system option heap size to support processing of larger ROM/EFI files.
+
+CGUTLGUI:
+
+==============
+Updated Files:
+==============
+.\w32dosx\cgutlcmd\bcprgcmd.c
+.\w32dosx\cgutlcmd\cgutlcmd.c
+.\w32dosx\cgutlcmd\cgutlcmd.ncb
+.\w32dosx\cgutlcmd\cgutlcmd.suo
+.\w32dosx\cgutlcmd\cgutlcmd.vcproj
+.\w32dosx\cgutlcmd\history.txt
+.\w32dosx\cgutlcmn\atmelavr.h
+.\w32dosx\cgutlcmn\bcprg.h
+.\w32dosx\cgutlcmn\bcprgcmn.c
+.\w32dosx\cgutlcmn\cgbc.h
+.\w32dosx\cgutlcmn\cgbinfo.h
+.\w32dosx\cgutlgui\cgutil.aps
+.\w32dosx\cgutlgui\cgutil.rc
+.\w32dosx\cgutlgui\cgutildlg.cpp
+.\w32dosx\cgutlgui\cgutlgui.ncb
+.\w32dosx\cgutlgui\cgutlgui.suo
+.\w32dosx\cgutlgui\history.txt
+.\w32dosx\cgutlgui\firmwareupdate.cpp
+
+
+
+-------------------------------------------------------------------------------
+# Version 1.4.0 #
+------------------
+COMMON:
+- Added support for firmware update of ATmega325P and ATmega165P including 
+  bootblock update. (=> Support for CMEN, QMEN and CMEX boardcontroller 
+  firmware update).
+- Added support for new module type OEM HDA Verb Table.
+- Added retries in case of BIOS update errors.
+
+CGUTLCMD:
+- Updated copyright year to 2009.
+- Fixed error handling for programming of ATmega325P.
+
+CGUTLGUI:
+- Fixed bug in setup module generation (could not be added to BIOS) that occurred
+  with BIOSes with non-DWORD aligned setup map.
+- Do not allow zero for horizontal and vertical synchronisation width or offset.
+  (does not make sense and causes Intel based boards with respective datasets
+  to crasg during POST).
+- Updated B&R version logo and icon.  
+- EPI file generator now creates an additional output file format that can be 
+  used to directly integrate the generated dataset to the BIOS EPI module source
+  file. 
+  !!! ONLY IN CONGATEC INTERNAL VERSION XCGUGUI !!! File ending:   *.bin.cgt 
+-------------------------------------------------------------------------------

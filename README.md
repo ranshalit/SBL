@@ -40,3 +40,5 @@ https://wiki.congatec.com/wiki/External_BIOS_Update_(AN07)#Onboard_BIOS_Flash_Up
 https://dri.freedesktop.org/docs/drm/driver-api/mtd/intel-spi.html 
 
 https://github.com/CE1CECL/IntelCSTools 
+
+https://wiki.congatec.com/wiki/Congatec_System_Utility_-_CGUTILis the cgutil embedded in the bios

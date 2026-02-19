@@ -1,0 +1,51 @@
+#############################################################################
+#
+# SMBIOS DMI table changes
+# Filename: sample.dms
+# 
+#############################################################################
+
+[BIOS]
+Vendor=NewBiosVendor
+Version=NewBiosVersion
+ReleaseDate=12/31/2016
+
+[System]
+Manufacturer=NewSystemManufacturer
+Product=NewSystemProduct
+Version=NewSystemVersion
+SerialNum=NewSystemSerialNum
+UUID=33221100554477668899aabbccddeeff
+SKU=NewSystemSKU
+Family=NewSystemFamily
+
+[BaseBoard]
+Manufacturer=NewBaseBoardManufacturer
+Product=NewBaseBoardProduct
+Version=NewBaseBoardVersion
+SerialNum=NewBaseBoardSerialNum
+TagNum=NewBaseBoardAssetTag
+
+[Chassis]
+Manufacturer=NewChassisManufacturer
+ChassisType=01
+Version=NewChassisVersion
+SerialNum=NewChassisSerialNum
+TagNum=NewChassisAssetTag
+ChassisOEM=00c0de00
+
+[OemString]
+String=congatec AG
+String=http://www.congatec.de
+String=We simplify 
+String=the use 
+String=of embedded technology
+
+[SysConfigOptions]
+String=There are no jumpers
+String=or any other system controls
+String=on the module
+String=There are some jumpers
+String=on the baseboard
+
+#############################################################################

@@ -1,0 +1,1642 @@
+congatec System Utility
+Installation and usage of the congatec System Utility
+
+
+
+
+User’s Guide
+
+Revision 1.5
+   Copyright © 2017 congatec AG 							CGUTILm15 							   1/63
+Revision History
+      Revision   Date (yyyy.mm.dd)   Author   Changes
+      0.1        2006.01.30          GWE      •• Official release
+      1.1        2006.02.02          GWE      •• Changed installation description 2.1
+      1.2        2006.12.14          GWE      •• Updated for version 1.3.x of the congatec System Utility
+      1.3        2007.06.29          GWE      •• Updated for version 1.3.2 of the congatec System Utility
+      1.4        2009.05.29          GWE      •• Updated for version 1.4.0 of the congatec System Utility
+      1.5        2017.07.19          GWE      •• Major rework and refresh based on update for version 1.5.6 of the congatec System Utility
+
+
+
+
+      Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                  2/63
+Preface
+          This user’s guide provides information about the installation and usage of the congatec System Utility.
+
+
+Disclaimer
+          The information contained within this user’s guide, including but not limited to any product specification, is subject to change without notice.
+
+          congatec AG provides no warranty with regard to this user’s guide or any other information contained herein and hereby expressly disclaims
+          any implied warranties of merchantability or fitness for any particular purpose with regard to any of the foregoing. congatec AG assumes
+          no liability for any damages incurred directly or indirectly from any technical or typographical errors or omissions contained herein or for
+          discrepancies between the product and the user’s guide. In no event shall congatec AG be liable for any incidental, consequential, special, or
+          exemplary damages, whether based on tort, contract or otherwise, arising out of or in connection with this user’s guide or any other information
+          contained herein or the use thereof.
+
+
+Intended Audience
+          This user’s guide is intended for technically qualified personnel. It is not intended for general audiences.
+
+
+Lead-Free Designs (RoHS)
+          All congatec AG designs are created from lead‑free components and are completely RoHS compliant.
+
+
+Electrostatic Sensitive Device
+          All congatec AG products are electrostatic sensitive devices and are packaged accordingly. Do not open or handle a congatec AG product
+          except at an electrostatic‑free workstation. Additionally, do not ship or store congatec AG products near strong electrostatic, electromagnetic,
+          magnetic, or radioactive fields unless the device is contained within its original manufacturer’s packaging. Be aware that failure to comply with
+          these guidelines will void the congatec AG Limited Warranty.
+
+
+
+
+         Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                         3/63
+Symbols
+          The following symbols are used in this user’s guide:
+
+          Warning
+
+
+          Warnings indicate conditions that, if not observed, can cause personal injury.
+
+          Caution
+
+
+          Cautions warn the user about how to prevent damage to hardware or loss of data.
+          Note
+
+          Notes call attention to important information that should be observed.
+
+
+Copyright Notice
+          Copyright © 2017, congatec AG. All rights reserved. All text, pictures and graphics are protected by copyrights. No copying is permitted
+          without written permission from congatec AG.
+
+          congatec AG has made every attempt to ensure that the information in this document is accurate yet the information contained within is
+          supplied “as-is”.
+
+
+
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                               4/63
+Trademarks
+           Product names, logos, brands, and other trademarks featured or referred to within this user’s guide, or the congatec website, are the property
+           of their respective trademark holders. These trademark holders are not affiliated with congatec AG, our products, or our website.
+
+
+Warranty
+           congatec AG makes no representation, warranty or guaranty, express or implied regarding the products except its standard form of limited
+           warranty (“Limited Warranty”) per the terms and conditions of the congatec entity, which the product is delivered from. These terms and
+           conditions can be downloaded from www.congatec.com. congatec AG may in its sole discretion modify its Limited Warranty at any time and
+           from time to time.
+
+           The products may include software. Use of the software is subject to the terms and conditions set out in the respective owner’s license
+           agreements, which are available at www.congatec.com and/or upon request.
+
+           Beginning on the date of shipment to its direct customer and continuing for the published warranty period, congatec AG represents that the
+           products are new and warrants that each product failing to function properly under normal use, due to a defect in materials or workmanship or
+           due to non conformance to the agreed upon specifications, will be repaired or exchanged, at congatec’s option and expense.
+
+           Customer will obtain a Return Material Authorization (“RMA”) number from congatec AG prior to returning the non conforming product freight
+           prepaid. congatec AG will pay for transporting the repaired or exchanged product to the customer.
+
+           Repaired, replaced or exchanged product will be warranted for the repair warranty period in effect as of the date the repaired, exchanged
+           or replaced product is shipped by congatec, or the remainder of the original warranty, whichever is longer. This Limited Warranty extends to
+           congatec’s direct customer only and is not assignable or transferable.
+
+           Except as set forth in writing in the Limited Warranty, congatec makes no performance representations, warranties, or guarantees, either
+           express or implied, oral or written, with respect to the products, including without limitation any implied warranty (a) of merchantability, (b) of
+           fitness for a particular purpose, or (c) arising from course of performance, course of dealing, or usage of trade.
+
+           congatec AG shall in no event be liable to the end user for collateral or consequential damages of any kind. congatec shall not otherwise be
+           liable for loss, damage or expense directly or indirectly arising from the use of the product or from any other cause. The sole and exclusive
+           remedy against congatec, whether a claim sound in contract, warranty, tort or any other legal theory, shall be repair or replacement of the
+           product only.
+
+
+Certification                                                                                         ISO 9001
+
+
+
+
+                                                                                                 C                           N
+                                                                                                     ER
+                                                                                                          T I F I C AT I O       TM
+
+
+
+
+           congatec AG is certified to DIN EN ISO 9001 standard.
+
+           Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                          5/63
+Technical Support
+         congatec AG technicians and engineers are committed to providing the best possible technical support for our customers so that our products
+         can be easily used and implemented. We request that you first visit our website at www.congatec.com for the latest documentation, utilities
+         and drivers, which have been made available to assist you. If you still require assistance after visiting our website then contact our technical
+         support department by email at support@congatec.com
+
+
+Terminology
+
+          Term                Description
+          GUI                 Graphical user interface
+          CGBC                congatec board controller
+          EPI                 Embedded panel interface
+          EPI EEPROM          External EEPROM connected to the dedicated EPI I2C bus
+          COM                 Computer on module
+          CGOS API            congatec operating system programming interface
+          POST                BIOS power on self test
+          N.A.                Not available
+          T.B.D.              To be determined
+
+
+
+
+         Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                       6/63
+Contents
+1         Introduction................................................................................ 8     3.5.2.6    BIOS Boot Logo Module.......................................................... 32
+                                                                                                             3.5.2.7    POST Logo Left Module........................................................... 33
+2         Installation................................................................................. 10   3.5.2.8    POST Logo Right Module......................................................... 34
+2.1       Windows Command Line and GUI Version............................... 10                             3.5.2.9    OEM Setup BIOS Module ............................................................
+2.2       DOS Command Line Version.................................................... 10                               (Core8 BIOS only; obsolete otherwise).................................... 34
+2.3       Linux Command Line Version................................................... 11                   3.5.2.10   OEM Video Mode Module....................................................... 34
+2.4       UEFI Shell Version..................................................................... 11         3.5.2.11   OEM HDA Verb Table Module.................................................. 35
+                                                                                                             3.5.2.12   OEM SLP 1.0 Module / OEM SLIC Table Module / .....................
+3         Usage........................................................................................ 12              OA 3.0 Module......................................................................... 36
+3.1       congatec System Utility Main Module...................................... 13                       3.5.2.13   Standard VBIOS Module........................................................... 36
+3.1.1     Windows GUI Version............................................................... 13              3.5.2.14   OEM VBIOS Module ................................................................ 36
+3.1.2     Command Line Versions........................................................... 14                3.5.2.15   UEFI FW Volume Module.......................................................... 36
+3.2       BIOS Update Module............................................................... 15               3.5.2.16   OEM Setup Menu Control Module........................................... 36
+3.2.1     Windows GUI Version............................................................... 15              3.5.2.17   OEM SMBIOS Data Module..................................................... 37
+3.2.2     Command Line Versions........................................................... 16                3.5.3      Windows GUI Version............................................................... 38
+3.3       Firmware Update Module......................................................... 19                 3.5.4      Command Line Versions........................................................... 44
+3.3.1     General Description.................................................................. 19           3.6        Board and BIOS Information Module....................................... 47
+3.3.2     Windows GUI Version............................................................... 20              3.6.1      General Description.................................................................. 47
+3.3.3     Command Line Versions........................................................... 21                3.6.2      Windows GUI Version............................................................... 48
+3.4       Panel Configuration Module..................................................... 22                 3.6.3      Command Line Versions........................................................... 48
+3.4.1     General Description.................................................................. 22           3.7        BIOS Setup Configuration Module........................................... 50
+3.4.2     Windows GUI Version............................................................... 23              3.7.1      General Description.................................................................. 50
+3.4.2.1   Panel Configuration Main Window........................................... 23                      3.7.2      Creating a Menu Layout File (MLF) .......................................... 51
+3.4.2.2   EPI Data Set Generator............................................................. 25             3.7.3      Using congatec Menu Layout File Editor.................................. 54
+3.4.3     Command Line Versions........................................................... 26
+3.5       BIOS Module Modification Module.......................................... 27
+3.5.1     General Description.................................................................. 27
+3.5.2     BIOS Module Types.................................................................. 28
+3.5.2.1   Current Setup Settings Module (old: CMOS Backup Map)...... 28
+3.5.2.2   Default Setup Settings Module (old: CMOS Default Map)....... 28
+3.5.2.3   Fixed Setup Settings Module ......................................................
+          (old: Fixed CMOS Settings Map).............................................. 29
+3.5.2.4   OEM Code / Data Module ..........................................................
+          (obsolete / deprecated for UEFI based systems)...................... 29
+3.5.2.5   EPI Panel Data Module............................................................. 32
+
+
+           Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                                                         7/63
+1   Introduction
+    The congatec System Utility provides a common tool for all congatec COM (Computer on Module) and SBC (Single Board Computer) products.
+
+    The utility consists of six modules:
+
+    BIOS Update Module                   Offers functions to update the system BIOS of a congatec board.
+    Firmware Update Module               Offers functions to update the firmware of the congatec board controller.
+    Panel Configuration Module           Offers functions to support or ease local flat panel configuration.
+    BIOS Module Modification Module      Offers functions to customize a standard congatec system BIOS by adding OEM defined BIOS modules such as boot
+                                         logos, BIOS setup default or settings modules and OEM code or data modules.
+    BIOS/Board Information Module        Offers functions to easily gather congatec specific BIOS and hardware information.
+    BIOS Setup Configuration Module      Offers functions to modify the standard BIOS setup menu (only supported for recent AMI AptioV based products).
+
+    The utility supports two different operating modes:
+
+    Board mode       The utility must be executed on a congatec target system. Using the congatec operating system API and driver set (CGOS API), that is
+                     common for all congatec boards, the utility is able to directly access the underlying hardware. Functions that perform BIOS modifications
+                     will directly access and modify the contents of the onboard BIOS Flash Memory chip.
+    BIOS File mode All operations are performed on a BIOS file only, which in turn can be flashed onto the respective target boards later on.
+                   In this mode, the congatec System Utility can also be executed on a standard host PC. However, functionality is limited to BIOS module
+                   modifications and those parts of the panel configuration functions that also modify the BIOS.
+
+
+    Caution
+
+
+    It is possible to corrupt the BIOS by modifying it with the congatec System Utility. Use a congatec evaluation baseboard to test the desired
+    modifications. Ensure you have a copy of the original system BIOS stored in the external Flash Memory chip (located on the baseboard). In
+    case the onboard BIOS is corrupted, the BIOS in the external flash can be used to boot the board and write back the original BIOS to the
+    onboard Flash Memory chip. Please contact the congatec support team to get a copy of the respective BIOS file to store it into the Flash
+    Memory chip on your baseboard.
+
+
+
+
+    Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                        8/63
+Related Documentation
+        This user’s guide is one of several documents that should be read to fully understand and make best use of the features offered by the congatec
+        System Utility. At the time this user’s guide was written, several related congatec application note documents were available and should be
+        referred to as well.
+
+        The links to these documents can be found in the support section of the congatec AG website at www.congatec.com. congatec recommends
+        that you check the website regularly for updates to these documents as well as additional documentation that may pertain to the congatec
+        System Utility.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                      9/63
+2     Installation
+      The congatec System Utility package is available on the congatec website at www.congatec.com. The package includes the following utility
+      versions in a single ZIP file:
+      • Windows command line and GUI
+      • DOS command line
+      • UEFI Shell
+      The Linux command line version is available as a separate, open source package.
+      Note
+
+      The Windows and Linux versions require the CGOS driver set, which can be found in the driver section of each product on the congatec website.
+
+
+2.1   Windows Command Line and GUI Version
+      The folder CGUTIL\WIN32 of the utility package contains the Windows command line (CGUTLCMD.EXE) and GUI version (CGUTLGUI.EXE)
+      of the congatec System Utility. The executables may be placed in any directory. However, both versions need additional files from the CGOS
+      driver package.
+
+      In order to use the utility in ‘BIOS File’ mode (modification of congatec BIOS file only) on a host or target system, extract the Windows version
+      of the file CGOS.DLL from the CGOS driver package. Copy this file into the same directory as the utility executable or into the WINDOWS\
+      SYSTEM32 folder. Installation is not required.
+
+      In order to use the utility in ‘Board’ mode (direct target system modification) on a congatec board, install the complete CGOS driver package
+      on the system. Ensure that you have ‘Administrative Rights’ on the system and follow the installation instructions in the CGOS driver package.
+
+
+2.2   DOS Command Line Version
+      The file CGUTLCMD.EXE in the CGUTIL\DOSX folder of the ZIP package is the DOS command line version of the congatec System Utility. This
+      version does not require additional files or installation.
+      Note
+
+      The DOS version of the utility can only be run on a real DOS system. Windows command window execution is not supported.
+
+
+      Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                        10/63
+2.3   Linux Command Line Version
+      In order to build the Linux command line version of the congatec System Utility (cgutlcmd), run ‘make’ in the folder cgutillx/cgutlcmd. Installation
+      is not required. It may be placed in any directory. However, additional files from the CGOS driver package for Linux are required.
+
+      In order to use the utility in ‘BIOS File’ mode (modification of congatec BIOS file only) on a host or target system, extract the Linux version of
+      the CGOS interface library (libcgos.so) from the CGOS driver package. Copy this file into the same directory as the utility executable or into
+      the standard system library directory. Installation is not required.
+
+      In order to use the utility in ‘Board’ mode (direct target system modification) on a congatec board, install the CGOS interface library and
+      kernel driver on the system. For detailed information about CGOS driver setup on a Linux system, refer to the documentation included in the
+      respective CGOS driver package.
+
+
+2.4   UEFI Shell Version
+      The UEFI Shell version of the congatec System Utility is located in the folder cgutil/uefi/X64 of the package. In order to use cgutlcmd from the
+      UEFI Shell, copy the file cgutlcmd.efi to an UEFI Shell accessible medium. Installation and additional files are not required.
+
+
+
+
+      Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                           11/63
+3   Usage
+    This section provides a detailed description of the functions offered by the congatec System Utility.
+
+    Because the command line versions and the Windows GUI version basically offer the same functionality, this description is structured by
+    function modules with subsections for command line and GUI versions. Additionally, given that the available DOS, Linux, Windows and UEFI
+    Shell command line versions of the congatec System Utility share the same syntax, they are commonly referred to as command line versions
+    of the utility.
+
+    The individual module sections may also include a short overview of the related congatec BIOS features. A detailed description of the congatec
+    BIOS features is beyond the scope of this document. Refer to further congatec documentation or contact the congatec technical support team
+    for detailed information if required.
+
+    The congatec System Utility supports two main operating modes and consists of several function modules. Certain sub-functions or whole
+    function modules are only available in ‘Board’ mode on a target system because they require a real system to operate on. They will not be
+    available in ‘BIOS File’ mode.
+
+    In addition to the two main operating modes that are supported by both the GUI and the command line applications, the GUI version
+    also supports the special ‘EPI File Only’ mode option. In this mode, neither a congatec target board nor a congatec BIOS file is required.
+    Functionality of the tool is limited to generating and modifying EPI panel data set files.
+
+    When using the Windows GUI version (CGUTLGUI), the main window allows you to select the desired operating target and provides access
+    to the single function modules. Functions not available in ‘BIOS File’ or ‘EPI File Only’ mode are grayed out and not selectable. When ‘BIOS
+    File’ is chosen as the operating target, the ‘Select Input BIOS File’ button allows you to load a congatec system BIOS that will be used as a
+    base for all following operations. After selecting the input BIOS file, you will be asked to specify an output file that should be used to store any
+    modifications that might be performed later on. If you select the original input BIOS file again, all modifications will be automatically stored
+    in this original file without any further notification. If you want to keep the original input BIOS file, it is recommended to specify a new file as
+    output target for modifications. In case you do not plan to modify the BIOS at all, you can also work with the original input BIOS file in read
+    only mode. To do this, cancel the output file selection.
+
+
+
+
+    Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                           12/63
+3.1     congatec System Utility Main Module
+
+3.1.1   Windows GUI Version
+
+
+
+
+        After selecting the input BIOS file, the following dialog appears:
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                13/63
+3.1.2    Command Line Versions
+         When using the command line versions of the congatec System Utility (CGUTLCMD), the desired function module must be selected by passing
+         a module selection parameter. If a module can be used in ‘Board’ and ‘BIOS File’ mode, the operating target must also be selected by passing
+         the respective parameter.
+
+         Calling CGUTLCMD without any parameters provides an overview of the available function module selection parameters. Invoking CGUTLCMD
+         with a function module selector as the only parameter displays the module’s usage description. All parameters are accepted in lower and upper
+         case letters, although all descriptions use upper case.
+
+         To support batch file operations, CGUTLCMD sets an error level of one or higher, to indicate an execution error. Error level zero indicates success.
+
+         Example:
+            c:\> CGUTLCMD
+
+         Output:
+            BCPROG		      Board Controller Firmware Update Module
+            BFLASH		      System BIOS Update Module
+            CPANEL        Panel Configuration Module
+            MODULE        BIOS Module Modification  Module
+            CGINFO		      Board/BIOS Information Module
+            c:\> CGUTLCMD BFLASH
+
+         Output:
+            Usage description for the BIOS update module.
+
+
+
+BIOS Update And Write Protection
+         Most congatec boards support the ‘BIOS Update And Write Protection’ feature. If this feature is enabled in the BIOS setup menu, all write and
+         erase accesses to the target system’s Flash Memory chip are blocked. This would also block all functions of the congatec System Utility that
+         require flash write or erase accesses (e.g. BIOS update or any BIOS modifications in ‘Board’ mode). In order to allow BIOS updates or BIOS
+         modifications in ‘Board’ mode even if the protection is enabled, the utility includes functions to temporarily deactivate the ‘BIOS Update And
+         Write Protection’ by passing the correct deactivation password to the system.
+
+         For more information about the ‘BIOS Update And Write Protection’ feature and the handling of the protection by the congatec System Utility,
+         refer to the congatec application note AN5_BIOS_Update_And_Write_Protection.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                            14/63
+3.2     BIOS Update Module
+        This module allows you to update the BIOS of a congatec board. The respective BIOS file is checked for consistency and compatibility (i.e.
+        whether it may or may not be used with the respective target board). The BIOS will not be programmed if the BIOS file is not a valid BIOS or it
+        has not been created for the target system.
+        Note
+
+        The BIOS Update Module is only supported when the congatec System Utility is in ‘Board’ mode.
+
+
+3.2.1   Windows GUI Version
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                      15/63
+        Available functions:
+
+        [Select BIOS File]                      Select the BIOS file that should be programmed.
+
+        [Update BIOS]                           Start flash programming (can only be selected after the BIOS file has been chosen).
+
+        [Deactivate BIOS Update Protection]     This function is only available and required if the ‘BIOS Update And Write
+                                                Protection’ feature is available and activated in the current BIOS. In this case,
+                                                write and erase accesses to the target’s Flash Memory chip are only possible after
+                                                temporarily deactivating the protection. This can be done by passing the correct
+                                                deactivation password using the dialog started with this button.
+
+        Additional control flags:
+
+        [Invalidate CMOS]                       Invalidate the contents of the CMOS RAM in the Real Time Clock after BIOS
+                                                programming (usually not necessary anymore).
+
+        During the BIOS update process, the central display section shows progress or error messages.
+        Note
+
+        The ‘Current Standard BIOS Version’ and ‘Current OEM BIOS Version’ displayed on the window always refer to the BIOS currently stored in
+        the flash part. After a BIOS update, the new BIOS in the flash part will become active only after rebooting the board.
+
+
+3.2.2   Command Line Versions
+        Function module selector:
+          BFLASH
+
+        Syntax:
+          CGUTLCMD BFLASH <BIOS file> [options / commands]
+
+        Syntax description:
+
+        <BIOS file>     Name of the BIOS file to be programmed.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                              16/63
+Options:
+
+/E            Perform extended/full flash update instead of BIOS content only (standard) flash update.
+/EF           Force extended/full flash update instead of BIOS content only (standard) flash update.
+/EM           Perform extended/full flash update instead of BIOS content only (standard) flash update.
+              Manufacturing mode. No automatic reboot after BIOS update.
+/EFM          Force extended/full flash update instead of BIOS content only (standard) flash update. Manufacturing mode. No automatic reboot after BIOS update.
+/D            Defer BIOS update. If this parameter is passed, the BIOS update process will stop after preprocessing and allow you to switch to a different Flash Memory
+              chip.
+/C            Invalidate the contents of the CMOS RAM in the Real Time Clock after BIOS programming. This option is obsolete and only maintained for backwards
+              compatibility.
+/NOC          Do not invalidate the contents of the CMOS RAM in the Real Time Clock after BIOS programming. This option is obsolete and only maintained for
+              backwards compatibility.
+/AOO          Perform immediate/automatic off-on cycle to unlock extended BIOS Flash Memory area if necessary. Default for DOS and UEFI Shell versions. Use to
+              override OS dependent default unlock behavior of /E, /EM, /EF, /EFM BIOS update options.
+/NAOO         Do NOT perform immediate/automatic off-on cycle to unlock extended BIOS Flash Memory area. Requires manual off-on cycle to make unlock effective.
+              Default for all other OS versions. Use to override OS dependent default unlock behavior of /E, /EM, /EF, /EFM BIOS update options.
+BP:xxx        Specify password to deactivate the ‘BIOS Update And Write Protection’. This option can also be used without the ‘BIOS File’ parameter (i.e. CGUTLCMD
+              BFLASH /BP:password) to deactivate the ‘BIOS Update & Write Protection’ without updating the BIOS. This is required in order to allow other functions of
+              the utility to perform necessary flash write accesses.		
+
+Commands:			
+
+The commands /EIL, /EU, /EUM, /EL, /ELM do not require a <BIOS file> parameter, as none of them start an actual BIOS update.
+
+/EIL          Check whether extended BIOS area is locked.
+/EU           Unlock extended BIOS area for update and execute automatic off-on cycle to make unlock effective.
+/EUM          Unlock extended BIOS area for update without automatic off-on. Requires manual off-on cycle to make unlock effective.
+/EL           Lock extended BIOS area and execute automatic off-on cycle to make lock effective.
+/ELM          Lock extended BIOS area without automatic off-on cycle. Requires manual off-on cycle to make lock effective.
+
+The extended/full flash update is necessary to perform an update of the complete flash contents on systems that contain additional data in the
+BIOS Flash Memory chip besides the actual system BIOS. This is the case for most newer congatec products based on Intel technology. The
+BIOS Flash Memory chip areas that contain this additional data are write-locked by default and have to be unlocked before being updated.
+This unlock typically requires an automatic or manual board off-on cycle, which is (if necessary) initiated by the first call of the BIOS update
+command. After the automatic or manual off-on cycle the board should start in unlocked mode. The BIOS update command has to be called
+again then, this time resulting in an actual BIOS update.
+
+All /E… options and commands as well as /AOO and /NAOO options are related to this extended/full flash update and lock/unlock handling.
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                             17/63
+With options /E and /EM the extended flash update is only performed if the extended flash content has changed. If not, the utility automatically
+switches to the standard, faster BIOS content-only update. With options /EF and /EFM the extended update is performed, even if not mandatory.
+For systems that do not support or require an extended flash update at all, the options /E and /EF are simply ignored. A standard BIOS content
+only update is performed instead.
+
+When starting a BIOS update with /E, /EM, /EF and /EFM options, the DOS and UEFI Shell versions of CGUTLCMD by default perform an
+immediate (forced) off-on cycle to unlock extended BIOS Flash Memory areas if necessary. For other OSes, CGUTLCMD does not perform
+such an automatic (forced) off-on cycle to avoid OS / file system corruption. The necessary off-on cycle has to be initiated by other means
+(software controlled or manually). The options /AOO and /NAOO may be used to override the default unlock off-on cycle behaviour for each
+CGUTLCMD version. The standalone commands /EIL, /EU, /EUM, /EL, /ELM can be used to check and control the extended BIOS Flash
+Memory area lock state without actually starting a BIOS update.
+
+Recommended usage:
+  CGUTLCMD BFLASH BIOSFILE.BIN /E
+
+The following exit codes may be returned by the BIOS update module:
+
+0x00     Success.
+0x01     General error.
+0x02     Interface access or initialisation error.
+0x03     BIOS incompatibility error.
+0x04     The specified file is not a valid BIOS file.
+0x05     BIOS size mismatch.
+0x06     Error processing file.
+0x07     Extended flash update not possible.
+0x08     This platform/BIOS requires an extended/full flash update. Use parameter /E to update.
+0x09     Failed to unlock flash for extended update.
+0x0A     Failed to lock flash after extended update.
+0x0B     Extended update initiated but not (yet) completed. Perform manual soft off-on cycle and relaunch the process to complete the update.
+
+Booting from one Flash Memory chip and flashing the other:
+
+If you have two BIOS Flash Memory chips (one on the module and one on the baseboard) you can boot from either and flash the other. This
+feature is most helpful if one BIOS becomes corrupted and unable to boot the system. You can restore it using the other BIOS. The procedure
+for GUI and command line versions is explained below.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                           18/63
+        GUI Version:
+
+        After booting from the current Flash Memory chip, the BIOS Update Module of the congatec System Utility must be launched before switching
+        to a different flash part. Once the BIOS Update Module window is started, it is safe to switch to another flash part and the BIOS update process
+        can be performed as usual.
+
+        Command Line Versions:
+
+        Before switching to another flash part, launch the utility with the following parameters:
+           CGUTLCMD BFLASH BIOSFILE /D
+
+        The utility will start as usual, perform the required preprocessing and will then stop and inform you that it is now safe to switch to another flash
+        part. After doing this and pressing a key to confirm, the BIOS update process will be performed as usual.
+        Note
+
+        Keep in mind that an extended / full flash update (initiated using /EF option) is mandatory when writing a BIOS to a Flash Memory chip that
+        has not been programmed before with a BIOS valid for the board in use. This option can be combined with the /D option:
+           CGUTLCMD BFLASH BIOSFILE /EF /D
+
+
+
+3.3     Firmware Update Module
+
+3.3.1   General Description
+        All congatec boards are equipped with an onboard microcontroller. Together with the respective firmware, this microcontroller provides a
+        common set of dedicated add-on functions found on all congatec boards.
+
+        Use the Firmware Update Module of the congatec System Utility to update the firmware of the congatec board controller. Integrated check
+        and validation routines ensure that only valid and compatible firmware files are programmed.
+
+        Although the board controller performs an internal restart after firmware updates, it is recommended to shut down and restart the system once
+        a new firmware has been programmed.
+        Note
+
+        The Firmware Update Module is only supported when the congatec System Utility is in ‘Board’ mode.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                           19/63
+3.3.2   Windows GUI Version
+
+
+
+
+        Available functions:
+
+        [Select Firmware File]   Select the board controller firmware file that should be programmed.
+        [Program Firmware]       Start programming of the board controller (can only be selected after the firmware file has been chosen).
+
+        During the firmware update process, the central display section of the window will show progress or error messages.
+
+        The ‘Current Firmware Version’ displayed on the window always refers to the firmware that is currently used by the board controller. As the board
+        controller performs an internal restart after programming, this information is immediately updated when the firmware has been programmed.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                        20/63
+3.3.3   Command Line Versions
+        Function module selector:
+             BCPROG
+
+        Syntax:
+             CGUTLCMD BCPROG <firmware file> [options]
+
+        Syntax description:
+
+        <Firmware file>        Name of the firmware file to be programmed.
+
+        Options:
+
+        /B      Batch mode. No user queries are performed.
+        /F      Fast mode. Verification of the update process is skipped.
+        /Q      Quick mode. Verification of unused space is skipped.
+        /S      Silent mode. All screen outputs except for error messages are suppressed.
+        /V      Verbose mode. Enables additional diagnostic output.
+
+        Recommended usage:
+             CGUTLCMD BCPROG FIRMWARE.DAT
+
+
+        Caution
+
+
+        Do not update the board controller unless it is explicitly recommended by congatec.
+
+        The additional parameters offered by the command line versions are meant for congatec internal purposes only. They are listed here for
+        completeness but should not be used by congatec customers.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                             21/63
+3.4     Panel Configuration Module
+
+3.4.1   General Description
+        All congatec boards support the EDID™ 1.3 based EPI (Embedded Panel Interface) specification for configuration of local flat panels.
+
+        The congatec system BIOS includes a table of predefined and validated EPI data sets for standard panels (called the EPI Panel Data module
+        or simply the EPI module) as well as placeholders for up to three (depends on the actual BIOS) OEM EPI data sets for custom panels within
+        the standard EPI module. The standard and OEM panel data sets of this module can be selected via the BIOS setup menu and will be used for
+        panel configuration during startup. Furthermore, an auto panel detection mechanism can be selected in the setup. In this case, the BIOS tries
+        to find and use an EPI or EDID™ 1.3 data set in an off-board EEPROM connected to the EPI I2C bus (referred to as EPI EEPROM from now on).
+
+        The congatec System Utility allows you to save and update the whole EPI module, save and update the OEM specific EPI data sets within the
+        standard EPI module, as well as reading, writing and clearing the EPI EEPROM. Standard EPI data sets included in the EPI module can be extracted
+        and saved to a file. This file can then be programmed to an EPI EEPROM or used as a base to create a new EPI data set for an OEM panel.
+
+        The utility verifies the validity of all data written to any of the locations. The standard EPI BIOS module can only be replaced by a valid congatec
+        EPI BIOS module. The OEM panel data set must be a valid EPI or standard EDID™ 1.3 data set. The EPI EEPROM can be programmed with
+        EPI or EDID™ 1.3 data sets.
+
+        In addition to panel data set handling, the command line versions of the ‘Panel Configuration Module’ also include functions to block and
+        unblock the backlight enable signal of the video controller as well as functions to control the backlight intensity using the method or device
+        selected in BIOS setup. The GUI version also offers a sub module to check, create or modify EPI data sets.
+
+        Refer to the EPI specification and further congatec documentation for detailed information about the EPI standard and the congatec EPI
+        implementation, as well as for detailed information about the panel configuration data set formats mentioned above.
+        Note
+
+        EPI BIOS module handling and OEM EPI data set handling are supported in ‘Board’ and BIOS File’ mode. Access to the EPI EEPROM requires
+        the respective hardware and is therefore supported in ‘Board’ mode only. EPI data set creation and modification is supported in all modes,
+        including the special ‘EPI File Only’ mode but only by the GUI version of the utility.
+
+        Since the EPI BIOS module is part of the system BIOS, updating this module or updating the OEM EPI data set within this module means
+        that the original system BIOS must be modified and therefore obviously is no longer the exact same BIOS. This fact is tracked and indicated
+        later on when using the modified BIOS. To do this in a defined way, it is recommended to assign an OEM version to the BIOS when updating
+        the EPI module or the OEM EPI data set. Please refer to the description of the BIOS Module Modification Module in section 3.4 of this user’s
+        guide for more information about how to do this.
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                           22/63
+3.4.2     Windows GUI Version
+
+3.4.2.1   Panel Configuration Main Window
+
+
+
+
+          The ‘Data Set Entries In BIOS EPI Module’ window shows a list of all EPI panel data sets included in the EPI module of the current BIOS. Entries
+          marked as ‘OEM’ represent the placeholders for OEM panel data sets that can be ‘filled’ with own data sets. The other data set entries are
+          standard congatec data sets that can only be read but not updated.
+
+          The output window below the function buttons is used to display additional information, error and operation progress messages.
+
+
+
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                       23/63
+Available functions:
+
+[Save Selected Data Set]             Save the data set selected in the ‘Data Set Entries In BIOS EPI Module’ window to a file.
+[Update Selected Data Set]           This function becomes available if you select one of the OEM entries in the ‘Data Set Entries In BIOS EPI Module’ window.
+                                     It allows the addition of an OEM defined EPI or standard EDID™ 1.3 panel data set to the standard EPI module of the
+                                     system BIOS or replace an already existing OEM panel data set entry. Standard congatec EPI data sets cannot be updated.
+[Delete Selected Data Set]           This function becomes available if you select one of the OEM entries in the ‘Data Set Entries In BIOS EPI Module’ window.
+                                     It allows the deletion of OEM defined EPI or standard EDID™ 1.3 panel data sets from the standard EPI module. Standard
+                                     congatec EPI data sets cannot be deleted.
+[Update/Add Complete EPI Module]     Add or replace the complete congatec EPI BIOS module. This module can only be provided by congatec and includes
+                                     the OEM panel data sets.
+[Save Complete EPI Module To File]   Save the complete congatec EPI module included in the BIOS to a file.
+[Deactivate BIOS Write Protection]   This function is only available and required in ‘Board’ mode and only if the ‘BIOS Update And Write Protection’ feature is
+                                     available and activated in the current BIOS. In this case write and erase accesses to the target’s Flash Memory chip and
+                                     therefore all BIOS modifications in ‘Board’ mode are only possible after temporarily deactivating the protection. This can
+                                     be done by passing the correct deactivation password using the dialog started with this button.
+[Edit/Create EPI Data Set File]      Opens the ‘EPI Data Set Generator’ sub module, which allows the creation of a new EPI data set file. If a data set entry
+                                     has been selected from the BIOS data set list the corresponding data will be used as a base for further modifications. If no
+                                     entry has been selected then data set creation must be done from scratch.
+[Update/Add EPI EEPROM Data]         Write one of the above described panel data sets to the EPI EEPROM. This function is only available in ‘Board’ mode.
+[Save EPI EEPROM Data To File]       Read a panel data set from the EPI EEPROM and save it to a file. This function is only available in ‘Board’ mode.
+[Clear EPI EEPROM]                   Clear the EEPROM connected to the EPI I2C bus. This function is only available in ‘Board’ mode.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                               24/63
+3.4.2.2   EPI Data Set Generator
+
+
+
+             1                        2                                            3
+
+
+
+
+            4                         5                                   6
+
+
+
+
+          The ‘EPI Data Set Generator’ module allows the creation of new EPI panel data sets for OEM panels either from scratch or based on one of the
+          congatec standard EPI data sets.
+          1• Define the product data as desired (format and field size limitations apply). Helps to organize and identify different data sets. congatec uses
+             the ‘Product/Data Set ID’ field to identify a certain released EPI data set. Use IDs above 0FFh to avoid confusion with data set IDs defined
+             by congatec.
+          2• Define the resolution and the timing parameters for a certain panel. These values can be derived from the respective panel datasheet.
+          3• Define the synchronization signal polarities. The respective values are either defined in the panel’s datasheet or must be selected according
+             to the actual hardware design.
+          4• Define basic technology parameters of the selected panel.
+          5• Define backlight and contrast control values within the EPI data set as well as the desired image orientation.
+          6• Define power on/off sequencing delay values in the EPI data set. For more information on this module, refer to congatec application note
+             AN12_Modify_EPI_Files.
+
+
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                         25/63
+3.4.3   Command Line Versions
+        Function module selector:
+          CPANEL
+
+        Syntax:
+          CGUTLCMD CPANEL  /OT:[target]  /[command]  [parm]
+
+        Syntax description:
+
+        /OT:        Specify the operating target.
+                    BOARD: All actions result in direct hardware accesses to the respective congatec board. All other strings are interpreted as name of the BIOS file to be modified.
+        parm        Command parameter, if required (e.g. filename of data file).
+
+        Commands:
+
+        /SEPI           Find congatec EPI module and save it to a file specified by PARM.
+        /LEPI           Add or replace the complete congatec EPI module. PARM must specify the name of a valid congatec EPI module file.
+        /SSTD:xxx       Find standard EPI data set number xxx (hexadecimal) in the BIOS and save it to a file specified by PARM.
+        /SOEM:xxx       Find OEM EPI data set number xxx (hexadecimal) in the BIOS and save it to a file specified by PARM.
+        /LOEM:xxx       Add or replace OEM EPI or EDID™ 1.3 panel data set number xxx (hexadecimal). PARM must be set to the name of a valid EPI or EDID™ 1.3 panel data file.
+        /DOEM:xxx       Delete OEM EPI or 1.3 panel data set number xxx (hexadecimal).
+        /SEEP           Read panel data set stored in the EPI EEPROM and save it to a            file specified by PARM. This function is only available in ‘Board’ mode.
+        /LEEP           Write data to congatec EPI EEPROM. PARM must be set to the name of a valid panel data set file. This function is only available in ‘Board’ mode.
+        /CEEP           Clear the EPI EEPROM. This function is only available in ‘Board’ mode.
+        /SBLV           Set control value of a backlight intensity control device. (PARM: 0-100; value in percent of maximum value). This function is only available in ‘Board’ mode.
+        /GBLV           Get current value of backlight intensity control device. (Value returned in percent of maximum value). This function is only available in ‘Board’ mode.
+        /SBLS           Set backlight enable state (PARM:0=OFF 1=ON). This function is only available in ‘Board’ mode.
+        /GBLS           Get backlight enable state (0: OFF 1: ON). This function is only available in ‘Board’ mode.
+        /DPL            Display list of EPI data sets included in the BIOS.
+
+        Note
+
+        When the ‘BIOS Update And Write Protection’ feature is enabled in BIOS setup, commands that try to write to the BIOS Flash Memory chip
+        will fail. In order to deactivate the BIOS write protection until next boot use: ‘CGUTLCMD BFLASH /BP:[password]’
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                                     26/63
+3.5     BIOS Module Modification Module
+
+3.5.1   General Description
+        The congatec system BIOS offers support for several OEM defined add-on BIOS modules. Each congatec BIOS includes a flash storage area,
+        called the Multi Purpose Flash Area (MPFA), where these add-on modules, along with predefined congatec standard modules, can be stored.
+        Modules located in this area consist of a MPFA header for organization purposes and the actual module data defined and provided by the
+        OEM or predefined by congatec.
+
+        The standard system BIOS includes routines to handle different MPFA module types. The BIOS identifies the respective module by evaluating
+        the module type field in the MPFA header of the module and executes the appropriate function for this module type during POST. All modules
+        use at least the module type, module ID and module revision fields of the MPFA module header. If different modules of a certain type are to
+        be added to the BIOS, these modules must have different module IDs in order to be differentiated. The module revision field is for information
+        purposes only, in order to keep track of module versions. Depending on the module type, additional information put into the module header
+        might be required to handle the respective module. If this is the case, it will be noted in the following module descriptions.
+
+        The congatec System Utility provides functions to create, add, replace, save and delete the BIOS add-on modules, extract module data and
+        generate a report of all currently included modules. Adding or deleting BIOS modules obviously means that the standard congatec BIOS is
+        modified (either a BIOS file if working in ‘BIOS File’ mode, or the BIOS stored in the onboard Flash Memory chip if working in ‘Board’ mode). In
+        order to distinguish an OEM modified BIOS from the standard congatec BIOS version that it is based on, the utility also allows you to assign an
+        OEM BIOS version to the modified BIOS. This OEM version will be displayed during POST and in the setup menu in addition to the standard
+        BIOS version.
+        Note
+
+        All functions of the BIOS Module Modification Module are supported when the congatec System Utility is in ‘Board’ and ‘BIOS-File’ mode.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                       27/63
+3.5.2     BIOS Module Types
+
+3.5.2.1   Current Setup Settings Module (old: CMOS Backup Map)
+
+          This module contains a copy of the current BIOS setup settings. It is generated automatically by the BIOS when leaving the setup using the
+          ‘Save and Exit’ option and written to the BIOS flash chip. The BIOS setup settings stored in this module represent and define the currently
+          active BIOS setup configuration. By reading the automatically generated BIOS setup settings module from a certain board and deploying it to
+          other boards of the same kind using this utility, OEMs can easily clone setup settings. Only BIOS setup settings modules created for the same
+          board and BIOS version can be added, everything else will be rejected by the utility.
+
+          Currently, only one BIOS setup settings module is supported. The module ID parameter is reserved for future usage and must always be set
+          to zero or 0xFF for now.
+          Note
+
+          This module type was called ‘CMOS Backup Map’ in the past (congatec System Utility versions prior to 1.5.7).
+
+
+3.5.2.2   Default Setup Settings Module (old: CMOS Default Map)
+
+          This module can be used to override the build time defined BIOS setup default values of a congatec BIOS. If a valid setup default settings
+          module is found by the respective BIOS module handler, the values stored within this module will be used as setup default values instead of
+          the build time defined standard setup default values, whenever the setup defaults are loaded in the BIOS setup menu.
+
+          The easiest way to create an OEM specific default setup settings module is to configure a certain congatec board to the settings required as
+          default values and exit the setup menu using the ‘Save and Exit’ option. The BIOS will automatically create a current setup settings module
+          using the configured values. In order to generate a default setup settings module, the generated current setup settings module must be
+          loaded as an input data file to generate a default setup settings module. The default setup settings module in turn can be added to all target
+          boards and will be used as OEM specific setup default value map. In order to go back to the original build time defined setup default values,
+          the OEM default setup settings module simply must be deleted.
+
+          Only default setup settings modules created for the same board and BIOS version can be added, everything else will be rejected by the utility. A
+          standard congatec BIOS only supports one active default setup settings module. The module ID parameter for this module must always be set to zero.
+
+          Refer to the congatec application note AN8_Create_OEM_Default_Map for detailed information about how to create and add an OEM default
+          setup settings module.
+          Note
+
+          This module type was called ‘CMOS Default Map’ in the past (congatec System Utility versions prior to 1.5.7).
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                         28/63
+3.5.2.3   Fixed Setup Settings Module (old: Fixed CMOS Settings Map)
+
+          Reserved for future usage.
+
+
+3.5.2.4   OEM Code / Data Module (obsolete / deprecated for UEFI based systems)
+
+          OEM BIOS modules can be used to add OEM defined data or code blocks to the standard system BIOS. By setting the load time, execution
+          time and load address values within the MPFA header, OEMs can define when the respective module should be loaded to RAM and executed
+          during BIOS POST. OEM BIOS code modules may be used to perform custom specific hardware initialization, pre-boot software checks, user
+          authentication or even skip parts of the standard BIOS boot process and create own boot loaders.
+
+          Any number of OEM BIOS modules can be added to the system BIOS as long as there is enough space left in the MPFA. However, if more than
+          one OEM BIOS module should be used, each module must be given a unique module ID in the MPFA header. In case an OEM BIOS module
+          is added with the module ID of an already existing OEM BIOS module, the existing module will be replaced by the new one without special
+          notification.
+
+          In addition to module type, module ID and module revision that must be configured for any BIOS add-on module in the MPFA header, several
+          other MPFA fields must be set for OEM BIOS modules as well:
+
+          1. Load and Execution Time
+
+          Load and execution time fields define at which point during BIOS POST the OEM module should be copied to RAM and executed. The
+          following load and start time hooks are supported:
+
+          NONE                   Do not load/execute the OEM module.
+                                 Choosing one of the load times listed below and using NONE as an execution time, can be used to load an OEM data block to the upper
+                                 memory area and keep it there to be used by an OS application.
+          BEFORE_CMOS_TEST       Load/execute before CMOS test.
+                                 On AMIBIOS based products, this is one of the first hooks of the main BIOS (i.e. bootblock execution has just been finished). Only basic chipset
+                                 and memory initialization has been performed at this point in time. PCI and Super I/O devices are not yet configured and none of the standard
+                                 BIOS runtime interfaces are available. OEM code executed at this point should only be developed in close cooperation with congatec.
+          BEFORE_VIDEO_INIT      Load/execute before video BIOS initialization.
+                                 Hardware resources have been assigned to video and other output devices. Final video and output device configuration will follow immediately
+                                 after this point.
+          AFTER_VIDEO_INIT       Load/execute after video BIOS initialization.
+                                 Video and other output devices are fully initialized and configured. At this point the video BIOS INT10h interface becomes available.
+          BEFORE_OPROM_SCAN      Load/execute before option ROM scan.
+                                 Hardware resources have been assigned to all PCI devices. All Super I/O devices are initialized.
+
+
+
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                           29/63
+AFTER_OPROM_SCAN         Load/execute after option ROM scan.
+                         At this point all PCI and Super I/O devices are fully initialized and configured. Mass storage devices have been detected and configured. All BIOS
+                         runtime services are available. All option ROMs have been initialized.
+BEFORE_SETUP             Load/execute on setup screen start.
+                         OEM code using this hook will be executed when the setup screen is started.
+SETUP_EXTENSION          Load/execute as setup screen extension.
+                         In case an OEM module is defined with this load and execution point, an additional setup node ‘OEM Setup Utility’ will be displayed in the setup
+                         screen. When selected, the respective OEM code is executed, e.g. to configure special hardware.
+BEFORE_BOOT              Load/execute at end of BIOS POST.
+                         Every BIOS initialization task has been performed at this point and every BIOS runtime interface
+                         is available. The only thing that remains to be done is to search the detected boot devices for an OS loader and start the OS. Recommended
+                         execution point for an OEM defined OS loader.
+
+The above load and execution time hooks are given in the order they are executed during BIOS POST. Do not set the load time later than the
+execution time, such a configuration will be rejected by the congatec System Utility.
+
+2. Load Address
+
+The load address field defines the physical memory address the OEM module should be copied to. Setting a fixed load address is possible but
+might be difficult to handle as the OEM may not know which memory ranges are not already used by parts of the BIOS.
+
+Therefore, it is recommended to use the the following special address selectors instead of ‘real’, fixed addresses.
+
+00000000h   Load module at any free upper memory block address (640k...1MB).
+FFFFFFFEh   Load module at any free conventional memory address (0k...640k).
+FFFFFFFFh   Load module at any free extended memory address (above 1MB).
+
+Note
+
+The standard BIOS may clear conventional RAM prior to OS boot. Moreover, operating systems may also clear the conventional RAM as well
+as the extended memory area during startup. Therefore, OEM code loaded to these areas may not be available after the OS starts.
+
+3. Entry Offset
+
+The entry offset field specifies the location within the OEM code block relative to the start of the block. The BIOS OEM code handler jumps
+to this location within the OEM module to start execution. Only the offset to the start of the OEM defined data block must be specified; the
+additional offset due to the MPFA header generated by the congatec System Utility will be calculated by the BIOS OEM code handler.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                             30/63
+Note
+
+The BIOS OEM code handler is a very simple and limited execution engine. It only copies the OEM code block to the given load address in
+RAM at the specified time during POST and performs a far call to the defined entry offset. Any sort of standard executable header will not
+be evaluated. Throughout the BIOS POST, the so called big real mode is used. This means that only real mode code execution is natively
+supported. Flat mode memory data accesses are possible using the ES and DS segment/selector registers set to zero. Any sort of protected
+mode code can only be executed if the OEM code block performs the required initialization in the code part starting at the specified entry
+offset. The OEM code can return to the standard BIOS POST flow by performing a far return. However, this can only be successful if the
+memory model is unchanged, the stack is cleaned up and all registers are restored to original values.
+
+Simple real mode COM style executables or real mode option ROM like code blocks are best suited to be included as OEM code modules.
+
+Caution
+
+
+The congatec System Utility cannot perform any sort of validity check on OEM BIOS code modules. If a corrupt OEM code module is added
+and executed during BIOS POST, the system may not boot anymore. Therefore, it should be considered as mandatory to prepare a backup
+copy of the original system BIOS on an external Flash Memory chip when testing OEM code modules.
+
+Contact the congatec technical support before adding your own code to the BIOS. Especially the selection of the appropriate load and
+execution times should always be performed in cooperation with congatec.
+
+Legacy OEM code / data module support on UEFI based systems:
+
+Although still supported, the usage of legacy OEM code / data modules for UEFI / Aptio4 and AptioV based congatec products is deprecated.
+Only a subset of 16-bit code can be executed by or as part of the CSM module. This code is started and executed at the end of the UEFI
+POST. Therefore, early BIOS OEM code hooks are not implemented. In case the CSM module is not present or not started, legacy OEM code
+modules cannot be used at all and are simply ignored. OEM code data modules can still be added to the MPFA area and used in this context.
+However, they cannot be loaded to any other memory location.
+
+Supported Load and Execution Time values for UEFI based systems with CSM enabled:
+
+BEFORE_OPROM_SCAN
+AFTER_OPROM_SCAN
+BEFORE_SETUP             (code executed on start of setup menu or F11 fast boot selection)
+BEFORE_BOOT
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                 31/63
+          ‘Magic’ load addresses 00000000h and FFFFFFFEh for placement somewhere in UMB or somewhere in conventional memory below 1MB are
+          supported. High address placement is NOT supported. Fixed address placement is supported but as usual not guaranteed to work and very
+          likely to make the board unbootable!
+
+          The BEFORE_BOOT Load/Execution time selector does NOT support UMB placed code. Only conventional code placement and execution is
+          supported for these Load/Execution times.
+
+          UEFI based systems (with CSM enabled) support real PCI/PCIe option ROM attachment for external PCI/PCIe devices. This is an enhancement
+          compared to the BIOS OEM code support. A correctly configured PCI/PCIe option ROM OEM code module will be loaded and configured as
+          if attached to the PCI/PCIe device. For example, all registers will be initialized as required according to PCI/PCIe option ROM specifications
+          and PCI 3.0 option ROMs can be added as well.
+
+          For an PCI/PCIe option ROM attachment module, simply specify Load Time and Execution Time as NONE, the Entry Offset field as 00000000h
+          and enter the PCI Vendor and Device ID into the Load Address field (e.g. 80861502h for some Intel ethernet controller).
+
+          In general the usage of native UEFI code (DXE drivers, UEFI boot loaders, …) placed in the OEM UEFI FW Volume Module is highly recommend
+          for OEM code insertion on a UEFI based system. congatec provides a complete development system as well as sample DXE drivers, bootloaders
+          and UEFI applications as reference.
+
+
+3.5.2.5   EPI Panel Data Module
+
+          As described in the Panel Configuration Module section earlier, all congatec boards support the EDID™ 1.3 based EPI (Embedded Panel
+          Interface) specification for configuration of local flat panels. The congatec system BIOS includes a table of predefined and validated EPI data
+          sets for standard panels. These panel data sets, as well as placeholders for OEM defined panel data sets, are included in the EPI BIOS module,
+          which is one of the predefined modules stored in the MPFA area. This module is required for fixed panel type selection via the BIOS setup
+          menu. It is listed here for completeness only and should never be modified or deleted using the BIOS Module Modification Module of the
+          congatec System Utility.
+
+          Refer to the congatec application note AN12_Modify_EPI_File for further information.
+
+
+3.5.2.6   BIOS Boot Logo Module
+
+          The congatec system BIOS includes support to display OEM defined BIOS boot logos during POST. The congatec System Utility allows you to
+          create the respective OEM logo modules and add them to the system BIOS. A standard congatec BIOS only supports one active OEM logo
+          module. The module ID parameter for this module must always be set to zero. congatec’s embedded BIOS may support JPEG, GIF and BMP
+          images as input for OEM boot logos. BMP images with 16 colors, 256 colors and 24-bit colors are supported, as well as monochrome images
+          and 32-bit color images with compression type 0. GIF logos must use 24-bit colors and can even be animated (if supported by the respective
+          system BIOS).
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                      32/63
+          It is recommended to use a JPEG image with the same resolution as the native resolution of the used display device, especially when working
+          with LVDS flat panels. Here, YUV122 and YUV111 color component sampling is supported and the X-density/Y-density should be 1:1. However,
+          not all JPEG formats and markers are supported.
+
+          In general, the following should be considered when a JPEG image is used as a boot logo:
+          • Extended sequential DCT is not supported.
+          • Define restart interval (DRI) is not supported.
+          • Progressive encoding is not supported.
+          • Lossless sequential encoding is not supported.
+          • Differential sequential DCT is not supported.
+          • Differential progressive DCT is not supported.
+          • The X-density/Y-density should be 1:1.
+          JPEG files created with digital cameras and some professional image processing tools often use a lot of these unsupported features and in
+          particularly add the IPTC or EXIF information block. Therefore, a JPEG image must always be checked before being added to the BIOS. JPEG
+          images that cannot be displayed by the BIOS might be rejected by the utility. When in doubt, or in case your JPEG image is not working, please
+          contact your local congatec support.
+
+          Even though an OEM logo module can be added to the BIOS by the utility, it will not be activated automatically. Refer to the congatec
+          application note AN11_Create_And_Add_Bootlogo for information about how to activate boot logo display and for further information about
+          OEM boot logo creation in general.
+          Note
+
+          The boot display video mode will be selected automatically, depending on the image resolution. The video BIOS or UEFI GOP driver, as well
+          as the display device, should support the appropriate resolution otherwise the result is unpredictable.
+
+
+3.5.2.7   POST Logo Left Module
+
+          Like the full screen BIOS boot the small, left border aligned standard POST logo can also be replaced with an OEM logo packed into a POST
+          logo left module.
+
+          Refer to the congatec application note AN11_Create_And_Add_Bootlogo for further information.
+
+
+
+
+          Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                     33/63
+3.5.2.8    POST Logo Right Module
+
+           Like the full screen BIOS boot a small, right border aligned standard POST logo can also be replaced with an OEM logo packed into a POST
+           logo right module. The POST logo right module is usually not supported by congatec default BIOS versions but may be included in customized
+           BIOS variants. Refer to the congatec application note AN11_Create_And_Add_Bootlogo for further information.
+
+
+3.5.2.9    OEM Setup BIOS Module (Core8 BIOS only; obsolete otherwise)
+
+           This module can be used to override the build time defined setup menu of a congatec BIOS. If a valid OEM setup module is found by the
+           respective BIOS module handler, the setup menu layout stored within this module will be used instead of the build time defined standard setup
+           menu. An OEM setup module can be created using the BIOS Setup Configuration module of the congatec System Utility.
+
+           The OEM setup module in turn can be added to all target boards and will be used as OEM specific setup menu. In order to go back to the
+           original build time defined setup menu, the OEM setup module must be deleted.
+
+           Only OEM setup modules created for the same board and BIOS version can be added, everything else will be rejected by the utility.
+
+           A standard congatec BIOS only supports one active OEM setup module. The module ID parameter for this module must always be set to zero.
+           Support for more than one OEM setup module in the same BIOS is possible but requires a special module selection OEM code BIOS module.
+
+           Please refer to the description of the BIOS Setup Configuration module in this document and to the congatec application note AN10_BIOS_
+           Setup_Configuration for detailed information about how to create and add an OEM setup module.
+
+
+3.5.2.10   OEM Video Mode Module
+
+           Recent congatec system BIOS versions for all congatec products based on Intel chipset include support to add additional OEM defined video
+           modes to the standard video modes already offered by the video BIOS and UEFI GOP driver. The generic VESA frame buffer graphics drivers,
+           the Intel graphics drivers for Windows operating systems and the Intel Linux graphics drivers, will also add these OEM video modes to their
+           lists of supported video modes and resolutions. This feature is required in order to make the best use of a display offering a special resolution
+           that by default is not supported by the video BIOS or previously mentioned graphics drivers.
+
+           In order to create an OEM video mode module, a valid EDID™ 1.3 or EPI data set (e.g. created using the EPI Data Set Generator) must be
+           loaded as an input data file. Up to four OEM video mode modules (and thus up to four OEM video modes) can be added to the BIOS and are
+           identified by the ‘Module ID’ parameter.
+
+
+
+
+           Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                        34/63
+           The OEM video modes will be assigned the following video mode numbers:
+
+           1. Module ID = 0
+              8 bpp = VGA mode 60h / VESA mode 160h
+             16 bpp = VGA mode 61h / VESA mode 161h
+             32 bpp = VGA mode 62h / VESA mode 162h
+
+           2. Module ID = 1
+              8 bpp = VGA mode 62h / VESA mode 163h
+             16 bpp = VGA mode 64h / VESA mode 164h
+             32 bpp = VGA mode 65h / VESA mode 165h
+
+           3. Module ID = 2
+              8 bpp = VGA mode 66h / VESA mode 166h
+             16 bpp = VGA mode 67h / VESA mode 167h
+             32 bpp = VGA mode 68h / VESA mode 168h
+
+           4. Module ID = 3
+              8 bpp = VGA mode 69h / VESA mode 169h
+             16 bpp = VGA mode 6Ah / VESA mode 16Ah
+             32 bpp = VGA mode 6Bh / VESA mode 16Bh
+
+           Note
+
+           For special resolution local flat panels, no additional OEM video mode module needs to be added in order to get support for the respective
+           special video mode and resolution. The BIOS code will automatically add a corresponding OEM video mode for the panel deriving the
+           required data directly from the EPI data set used for physical panel adaption.
+
+           These automatically added OEM video modes will be assigned the following video mode numbers:
+              8 bpp = VGA mode 6Fh / VESA mode 16Fh
+             16 bpp = VGA mode 70h / VESA mode 170h
+             32 bpp = VGA mode 71h / VESA mode 171h
+
+
+3.5.2.11   OEM HDA Verb Table Module
+
+           This module can be used to add OEM specific initialization tables for High Definition Audio Codecs to congatec system BIOS versions offering
+           support for OEM HDA configuration. Detailed description of this feature and the required input data for this sort of module is beyond the
+           scope of this document. Contact congatec technical support for more information about customized HDA codec initialization.
+
+
+
+
+           Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                   35/63
+3.5.2.12   OEM SLP 1.0 Module / OEM SLIC Table Module / OA 3.0 Module
+
+           OEM activation technology allows system integrators to activate licensed copies of a Windows Operating System (OS). Therefore, end users
+           of the embedded system do not have to activate the OS. When OEM Activation 2.1 or OEM Activation 3.0 is properly installed and set up,
+           activating the Windows OS (Windows Product Activation) is no longer necessary.
+           •• OA3.0 is supported by Windows 8 and Windows 10 and may be customized using an OEM OA 3.0 Module.
+           •• OA2.1 is supported by Windows Vista, Windows 7 and Windows Server 2008. It can be customized using an OEM SLIC Table Module.
+           •• OA1.0, also known as SLP, is available for Windows XP and Windows Server 2003. Can be customized using an OEM SLP 1.0 Module.
+           Please refer to the congatec application note AN21_Add_OEM_ACPI_SLIC_Table for further information on how to implement OEM activation
+           1.0, 2.1 and 3.0 on congatec embedded PC modules and SBCs using the congatec System Utility.
+
+
+3.5.2.13   Standard VBIOS Module
+
+           Reserved for congatec internal usage.
+
+
+3.5.2.14   OEM VBIOS Module
+
+           Reserved for congatec internal usage.
+
+
+3.5.2.15   UEFI FW Volume Module
+
+           In general, the usage of native UEFI code (DXE drivers, UEFI boot loaders, …) placed in the OEM UEFI FW Volume Module is highly recommend
+           for OEM code insertion on a UEFI based system. congatec provides a complete development system as well as sample DXE drivers, bootloaders
+           and UEFI applications as reference.
+
+           Please contact your local congatec support for further information.
+
+
+3.5.2.16   OEM Setup Menu Control Module
+
+           By adding this module, the user is able to apply a customized setup menu layout created using the congatec Setup Menu Layout Editor. The
+           module allows to show, hide or gray-out a given setup node and change its title and help text.
+
+           It is not possible to change the default settings or change the options of a particular setup node. In case you want to do this, please refer to
+           the congatec AN8_Create_OEM_Default_Map to learn how to change the default settings of a congatec embedded BIOS.
+
+           Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                       36/63
+           The BIOS Setup Configuration Module chapter in this document as well as the congatec application note AN35_BIOS_Setup_Configuration
+           describe in detail how OEM Setup Menu Control Modules can be created using the Windows GUI version of the congatec System Utility. This
+           function is not supported by the command line version of the utility (CGUTLCMD).
+
+           OEM Setup Menu Control Modules require a congatec embedded BIOS based on AMI’s AptioV UEFI firmware implementation. Only BIOS
+           releases after June 2016 might have the support built-in. One can check if the BIOS supports OEM setup modification by looking at the Save
+           & Exit setup submenu. There must be an option for saving the current Setup Layout file by the item Generate Menu Layout File.
+
+
+3.5.2.17   OEM SMBIOS Data Module
+
+           In its original state, the BIOS contains several hard coded DMI tables. In detail, these DMI tables are no simple tables with key-value pairs for
+           each entry. They are compound data structures containing binary, numerical and text string members. The SMBIOS specification explains the
+           details of each type of structure. The Linux tool dmidecode can show the contents of these tables in an interpreted way or raw data structures.
+           On Windows, the tool RWEverything can do the same. How a particular operating system reads and utilizes the tables is beyond the scope of
+           this document.
+
+           The BIOSes of the latest and future congatec products have a feature that allows customers to change the content of these tables. It is possible
+           to overwrite some or all data of these tables. The modification data is contained in a software module which can be created with the congatec
+           System Utility from a structured text file. An example text with all currently changeable elements is shown in the appendix of congatec
+           application note AN34_OEM_SMBIOS. Please note that not all BIOSes support all elements or allow to modify all of them.
+
+           Currently, it is only possible to implement the changes to the tables by one single software module. When applying a new module, the previous
+           changes will be deleted entirely. Therefore, if the modified data shall contain only static data, then the software module can also be included in
+           a pre-programmed BIOS. If the modified data shall contain some static information, like manufacturer and type and some dynamic information
+           like serial number, it is necessary to create for each manufactured unit its own data set composed of the static and the dynamic parts and flash
+           it directly to the unit.
+
+           Please refer to the congatec application note AN34_OEM_SMBIOS for further information.
+
+
+
+
+           Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                         37/63
+3.5.3   Windows GUI Version
+
+
+
+
+        Available functions:
+
+        [Add Module]                 Add a congatec BIOS module to the operating target.
+        [Delete Module]              Delete the module selected in the ‘Current congatec BIOS Modules’ window.
+        [Save Module To File]        Save the BIOS module selected in the ‘Current BIOS Modules’ window. This will save the whole module, i.e. the actual module data
+                                     as well as the module’s MPFA header.
+        [Save Module Data To File]   Save the data of the module (without MPFA module header) selected in the ‘Current BIOS Modules’ window to a file.
+        [Save Module Overview]       Generates a list of all currently included BIOS MPFA modules and saves it to a file.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                           38/63
+[Create Module]          The first click on this button will initiate the module creation process by asking the user to select a file containing the data that
+                         should be included in the module. After loading the module data file, the desired module type must be selected in the module type
+                         parameter field. Make sure that the module ID field is set according to the module description above and set the desired module
+                         revision. If the selected module type is ‘OEM Code/Data’, the additional parameter fields load time, execution time, load address
+                         and entry offset also must be configured and therefore become selectable. When all parameters are configured, click CREATE again
+                         to generate and save the created module to a file. This module file in turn can be added using the Add Module function.
+[Deactivate BIOS Write   This function is only available and required in ‘Board’ mode and only if the ‘BIOS Update And Write Protection’ feature is available
+Protection]              and activated in the current BIOS. In this case write and erase accesses to the target’s Flash Memory chip and therefore all BIOS
+                         modifications in ‘Board’ mode are only possible after temporarily deactivating the protection. This can be done by passing the correct
+                         deactivation password using the dialog started with this button.
+
+All actions of this function module are first performed in a temporary buffer and can be undone anytime by clicking the ‘Cancel’ button. The
+selected operating target is modified only after clicking the ‘Apply’ button. The top left section of the window provides an overview of the
+currently contained modules in the MPFA and informs you about the space left in the storage area. Selecting one of the displayed module
+entries updates the module parameter field with the parameters of this module. The output window below the module parameter field displays
+additional information, error and operation progress messages.
+
+At the top of the window, the original congatec BIOS version and the OEM BIOS version of the current operating target are displayed. The
+congatec version field is included for reference purposes only and cannot be modified. The OEM BIOS version field can and should be used
+to assign an up to eight character add-on OEM BIOS version string to the modified BIOS. As long as no OEM version is assigned, this field
+will be blank. To assign an OEM version to the BIOS, simply enter the desired string in the field and press the ‘Apply’ button. The respective
+OEM version string will be displayed together with the standard BIOS version in the BIOS setup screen and on the BIOS boot screen. If a BIOS
+is modified by adding or deleting a BIOS module but no dedicated OEM version is assigned, the add-on version information would still be
+displayed in the setup screen or on the BIOS boot screen. However, in this case the OEM version would be set to ‘UNKNOWN’. To avoid this,
+it is highly recommended to always set a defined OEM version string when modifying the BIOS and use that same OEM version string to name
+the OEM BIOS version file.
+Note
+
+A default setup settings module can only be generated out of a valid current setup settings module file as an input file. The default setup
+settings module cannot be generated using the data of the current setup settings module only. This ensures that a default setup settings
+module can only be generated out of data for the same BIOS version. The current setup settings module still includes information about
+the BIOS that the current setup settings have been derived from. The pure module data would not contain this information anymore. Thus,
+the respective information couldn’t be added to the default module. A default setup settings module with invalid or non existing BIOS
+information however would be rejected by the Add Module function.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                             39/63
+Example: Create and add a BIOS boot logo module.
+
+1. Initiate the module creation process by clicking the ‘Create Module’ button and select a valid JPEG data file.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                               40/63
+2. Select the ‘BIOS Boot Logo’ module type, ensure that module ID is set to zero, and enter a module revision if desired. Afterwards, click
+‘Create Module’ button again to generate and save the module.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                  41/63
+3. Click ‘Add Module’ and select the recently created boot logo module file. The logo module should now be displayed in the ‘Current
+congatec BIOS Modules’ window. Select it and verify that the module parameters are correct.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                           42/63
+4. Set a defined OEM version in the OEM BIOS Version field and click the ‘Apply’ button to update the operating target.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                     43/63
+3.5.4   Command Line Versions
+        Function module selector:
+           MODULE
+
+        Syntax:
+           CGUTLCMD MODULE /OT:[target]  /[command]  /OF:<output file> /IF:<input file> [parms]
+
+        Syntax description:
+
+        /OT:        Specify the operating target.
+        BOARD       All actions result in direct hardware accesses to the respective congatec board. All other strings are interpreted as name of the BIOS file to be modified.
+        parms       Command parameters, if required (see below).
+        /IF:        Specify the input data file (depends on command).
+        /OF:        Specify the output data file (depends on command).
+
+        Commands:
+
+        /SAVE                Find specified module and save it to the output data file.
+        /DSAVE               Find specified module and save its data block.
+        /CMP                 Find specified BIOS module and compare it with the module input file.
+        /DCMP                Find specified BIOS module and compare module data with the data part of the module input file.
+        /DEL                 Find specified module and delete it.
+        /ADD                 Add a new BIOS module specified with the input file parameter to the operating target.
+        /LIST                Generate a list of all congatec BIOS modules found on the operating target and display it.
+        /SLIST               Generate a list of all congatec BIOS modules found on the operating target and save it to the output data file.
+        /CREATE              Create a new congatec BIOS module using input file data and store the result in the specified output file.
+        /INFO                Display the OEM BIOS version (if assigned) and information about the free space left in the module storage area.
+        /OEM:xxxxxxxx        Assign an OEM BIOS version (max. eight characters). This OEM BIOS version will be displayed in addition to the original congatec BIOS version in
+                             BIOS setup and during POST.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                                     44/63
+congatec BIOS module parameters:
+
+/T:    BIOS module type (BYTE).
+/ID:   BIOS module ID (WORD). Default: 0
+/R:    BIOS module revision (BYTE). Default: 0
+/LA:   BIOS module physical load address (DWORD, usercode only). Default: 0
+       Special addresses:
+       00000000: Load module at any free upper memory block address.
+       FFFFFFFE: Load module at any free conventional memory address.
+       FFFFFFFF: Load module at any free extended memory address.
+/LT:   BIOS module load time (BYTE, user code only).Default: 0
+/ET:   BIOS module execution time (BYTE, user code only).Default: 0
+/O:    BIOS module entry offset (DWORD, user code only).Default: 0
+
+congatec BIOS module types:
+
+1h     CMOS Backup Map Module
+2h     CMOS Default Map Module
+3h     OEM Code/Data Module
+5h     EPI Panel Data Module
+6h     BIOS Boot Logo Module
+8h     OEM Setup Module (Core8 BIOS only!)
+9h     Fixed CMOS Map Module
+Bh     OEM Video Mode Module
+Ch     OEM HDA Verb Table Module
+Dh     OEM SLIC Table Module
+Eh     OEM SLP 1.0 Module
+Fh     Standard VBIOS Module
+10h    OEM VBIOS Module
+11h    POST Logo Left Module
+12h    POST Logo Right Module
+13h    UEFI FW Volume Module
+14h    OA 3.0 Module
+15h    OEM Setup Menu Control Module
+16h    OEM SMBIOS Data Module
+E0h    Pad Module
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                         45/63
+congatec execution/load time selectors:
+
+0       NONE                                      Do not load/execute the OEM module.
+2       BEFORE_CMOS_TEST                          Load/execute before CMOS test.
+3       BEFORE_VIDEO_INIT                         Load/execute before video BIOS initialization.
+4       AFTER_VIDEO_INIT                          Load/execute after video BIOS initialization.
+5       BEFORE_OPROM_SCAN                         Load/execute before option ROM scan.
+6       AFTER_OPROM_SCAN                          Load/execute after option ROM scan.
+7       BEFORE_SETUP                              Load/execute on setup screen start.
+8       SETUP_EXTENSION                           Load/execute as setup screen extension.
+9       BEFORE_BOOT                               Load/execute at end of BIOS POST.
+
+All numeric parameters are interpreted as hexadecimals.
+Note
+
+The /DEL, /SAVE and /DSAVE commands require that a module type is specified. If there are more modules of this type, the first module found
+will be chosen. For a unique identification, the module ID parameter has to be passed as well.
+
+Anytime a BIOS module is added to or deleted from a standard congatec BIOS, it will result in the BIOS displaying an add-on OEM version
+information string to the BIOS boot screen and in the BIOS setup menu. If no defined OEM version is assigned using the /OEM: command,
+the OEM version is set to ‘UNKNOWN’. To avoid this, it is highly recommended to always set a defined OEM version string when modifying
+the BIOS and use that same OEM version string to name the OEM BIOS version file.
+
+Examples:
+
+1. Delete a BIOS boot logo module in ‘Board’ mode.
+    CGUTLCMD MODULE /OT:BOARD /DEL /T:6
+
+2. Save a current setup settings module to a file in ‘Board’ mode.
+    CGUTLCMD MODULE /OT:BOARD /SAVE /OF:BACKUP.MOD /T:1
+
+3. Create a default setup settings module out of the current setup settings module.
+    CGUTLCMD MODULE /OT:BOARD /CREATE /IF:BACKUP.MOD /OF:DEFAULT.MOD /T:2 /ID:0 /R:1
+
+4. Add the default setup settings module to a BIOS file in ‘BIOS File’ mode.
+    CGUTLCMD MODULE /OT:BV97R111.BIN /ADD /IF:DEFAULT.MOD
+
+5. Delete OEM module with module ID 2.
+    CGUTLCMD MODULE /OT:BOARD /DEL /T:3 /ID:2
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                  46/63
+        6. Assign a defined OEM version to the modified BIOS.
+          CGUTLCMD MODULE /OT:BOARD /OEM:OEMVR001
+
+          or in BIOS file mode:
+          CGUTLCMD MODULE /OT:BV97R111.BIN /OEM:OEMVR001
+
+
+
+3.6     Board and BIOS Information Module
+
+3.6.1   General Description
+        This module offers an easy way to gather relevant information about a certain congatec board and BIOS. The information is meant to be
+        used by customers during their own setup or manufacturing process to identify a congatec board or BIOS, or to be passed to congatec when
+        contacting the support team.
+
+        The following information can be derived from a congatec board:
+        •• System BIOS Version
+        •• OEM BIOS Version
+        •• Board Controller Firmware Version
+        •• Board Name
+        •• Board Sub Name
+        •• Product Revision
+        •• Part Number
+        •• EAN Code
+        •• Serial Number
+        •• Manufacturing Date
+        •• Last Repair Date
+        •• Boot Counter
+        •• Running Time
+        •• CGOS API Version
+        •• CGOS Driver Version
+        •• BIOS Update And Write Protection State
+        The information module can also be used in ‘BIOS File’ mode, e.g. to analyze a congatec BIOS file. However, only the system and OEM BIOS
+        version can be derived from this BIOS file.
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                               47/63
+3.6.2   Windows GUI Version
+
+
+
+
+        When started, the Windows GUI version of the Board And BIOS Information module automatically gathers and displays all available board
+        information. This information can also be saved to a text file.
+
+
+3.6.3   Command Line Versions
+        Function module selector:
+          CGINFO
+
+        Syntax:
+          CGUTLCMD CGINFO /OT:[target]  /[command]  [parm] [options]
+
+        Syntax description:
+
+        /OT:       Specify the operating target.
+        BOARD:     All actions result in direct hardware accesses to the respective congatec board. All other strings are interpreted as name of the BIOS file to be analyzed.
+        parm       Command parameters, if required (e.g. input or output file name).
+        options    Information selection option(s). One or more options to select the information that should be returned by the DUMP or SAVE command (see below).
+
+        Commands:
+
+        /DUMP      Display selected information on screen.
+        /SAVE      Save selected information to file.
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                                                    48/63
+/BFCHK    Check whether the operating target system and OEM BIOS versions match the versions of the specified BIOS file.
+/FWCHK    Check whether operating target board controller firmware version matches the version of the specified firmware file.
+
+Information selection options:
+
+/SILENT   Information is displayed or saved without description text (e.g.: ‘X945R111’ instead of ‘System BIOS Version: X945R111’).
+/BIOS     Return system and OEM BIOS version.
+/BCFW     Return board controller firmware version.
+/CGOS     Return CGOS interface and driver version.
+/BCNT     Return boot counter.
+/RTIM     Return running time.
+/MANU     Return CPU-board manufacturing data.
+/BUP      Return state of the ‘BIOS Update And Write Protection’#
+
+If no selection options are passed, the complete information list will be displayed or saved.
+
+Examples:
+
+1. Display BIOS versions and boot counter with description text.
+  CGUTLCMD CGINFO /OT:BOARD /DUMP /BIOS /BCNT
+
+   Possible output:
+  System BIOS Version: BV97R111
+  OEM BIOS Version:			
+  Boot Counter:        571
+
+2. Display board manufacturing information with description text.
+  CGUTLCMD CGINFO /OT:BOARD /DUMP /MANU
+
+   Possible output:
+  Board Name:                      BV97
+  Board Sub Name:                  TU97
+  Product Revision:                D.1 (0x4431)
+  Part Number:                     045106
+  EAN Code:                        04250186144067
+  Manufacturing Date:              2015.05.15
+  Last Repair Date:                0000.00.00
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                 49/63
+3.7     BIOS Setup Configuration Module
+
+3.7.1   General Description
+        The BIOS Setup Configuration option enables customers to modify the standard, build time defined BIOS setup menu of a congatec BIOS. This
+        is achieved by launching the congatec Menu Layout File Editor, which in turn allows to create customized OEM Setup Menu Control Modules.
+        These modules, once added to the target BIOS, allow the user to show, hide or gray-out a given setup node and change its title and help text.
+
+        OEM setup modification requires a congatec embedded BIOS based on AMI’s AptioV UEFI firmware implementation. Only BIOS releases after
+        mid of 2016 might have the support built-in. One can check if the BIOS supports OEM setup modification by looking at the Save & Exit setup
+        submenu. There must be an option for saving the current Setup Layout file using the item Generate Menu Layout File. See picture below.
+
+        It is not possible to change the default settings or change the options of a particular setup node. In case you want to do this, please refer to
+        the congatec AN8_Create_OEM_Default_Map to learn how to change the default settings of a congatec embedded BIOS.
+
+        The congatec application note AN35_BIOS_Setup_Configuration describes in detail how to use the Windows GUI version of the congatec
+        System Utility and the congatec Menu Layout File Editor tool (CgMlfEditor) to create and apply OEM Setup Menu Control Modules for setup
+        menu modification.
+
+        The sections below provide a brief overview.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                       50/63
+3.7.2   Creating a Menu Layout File (MLF)
+        In order to edit your setup menu layout, a menu layout file containing your current BIOS layout has to be generated. It will be stored on the first
+        writable file system found, e.g. a plugged in USB drive. The filename consists of the current BIOS versionand has the ending “.mlf”.
+
+        1. Select “Generate Menu Layout File” in the “Save & Exit” tab of your BIOS setup screen.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                          51/63
+2. A confirmation window appears, indicating that the file was successfully generated.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                    52/63
+3. In case of an error (e.g. if you have no appropriate storage medium attached), a corresponding error message will be displayed.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                53/63
+3.7.3   Using congatec Menu Layout File Editor
+
+
+
+
+        Menu layout files can be opened or saved by using the ‘Open/Save MLF file...’ buttons. After a .mlf file is opened, the file name and the
+        compatible BIOS version are shown in the window title. Any changes applied by the user will be indicated by adding green background color to
+        the corresponding item. After saving a .mlf file, you will be asked whether to open the new file and update the tree view as well as the ‘original’
+        fields to reflect the changes or to keep the previous view.
+
+        Item tree
+
+        This section contains the setup menu and configuration items of the opened .mlf file sorted in a tree view layout.
+
+
+
+
+        Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                          54/63
+Item Settings
+
+Changes for each selected item in the item tree can be applied using the available ‘override’ fields while the current settings will be displayed
+in the ‘original’ fields for reference. The default selection or text for each ‘override’ field can be restored to the ‘original’ contents using the “R”
+button beneath the according fields.
+
+Example
+
+In order to demonstrate the functionality of the congatec Menu Layout File Editor, it is assumed that the user wants to hide the settings for
+‘Serial Port 0’ from Advanced / Module Serial Ports.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                              55/63
+1. Expand the item tree view using the node arrows left of each item. Collapsed node arrows are filled white, expanded node arrows are
+   filled black. The content is indented hierarchically, showing the setup menu tabs at highest level. Navigate to ‘Advanced’ / ‘Module Serial
+   Ports’ and choose ‘Serial Port 0’ entry by clicking on it. Change the visibility in the ‘Override condition’ drop down menu to ‘Suppressed’.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                       56/63
+2. The item background color is changed to green, indicating that changes were made.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                  57/63
+3. Save the customized menu layout to a new file (e.g. “my_custom_menu.mlf”).
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                           58/63
+4. Close the congatec Menu Layout File Editor and open the BIOS Module Modification Module. Select ‘Create Module’ and choose your
+   .mlf file as input file.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                            59/63
+5. Select “OEM Setup Menu Control” as Module Type.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							   60/63
+6. Click ‘Create Module’ again and save your module (e.g. “my_custom_menu.mod”).
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                              61/63
+7. Choose ‘Add Module’ and select the module file you just created. The new module appears in ‘Current BIOS Modules’. Click on ‘Apply‘.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                                                                62/63
+8. After reboot, enter the setup menu. The entry for ‘Serial Port 0’ should be suppressed.
+
+
+
+
+Copyright © 2017 congatec AG 							CGUTILm15 							                                        63/63
+

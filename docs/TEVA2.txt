@@ -1,0 +1,2537 @@
+conga-TEVAL/COMe 3.0
+Detailed description of the congatec COM Express™ Type 6 revision 3.0 evaluation carrier board
+
+
+
+
+User’s Guide
+
+Revision 1.6
+Revision History
+      Revision   Date (yyyy-mm-dd)   Author   Changes
+      1.0        2018-08-16          AEM      •   Official release
+      1.1        2019-09-23          AEM      •   Updated the title page image
+                                              •   Added section 1.3 “Order Number”
+                                              •   Corrected the storage temperature in section 4.3 “Environmental Specifications”
+                                              •   Changed conga-TEVAL2 to conga-TEVAL/COMe 3.0
+                                              •   Corrected LED D68 color description in table 9 “Power LEDs Status”
+                                              •   Changed the warning icons in sections 4.9.1 “Disk Drive Power Connector” and 4.15 “LPC/eSPI” to caution icon
+      1.2        2020-07-03          AEM      •   Corrected the note about unused voltage output in section 4.3.1 “ATX Power Connector”
+                                              •   Corrected table references in section 4.5.5 “M.2”
+                                              •   Updated jumper illustrations
+                                              •   Deleted section 7 “Industry Specifications”
+      1.3        2021-03-30          AEM      •   Updated the product picture in the title page
+                                              •   Added note about support for I2C and SMB POST code decoding to section 5.4 “Debug Display”
+                                              •   Changed debug display image in section 5.4 “Debug Display” to 14 Segment Display
+                                              •   Rearranged the X38 pin position in table 24 “X38 - LVDS Pinout Description”
+      1.4        2021-07-30          AEM      •   Added Software License Information
+                                              •   Changed congatec AG to congatec GmbH
+      1.5        2023-03-02          AEM      •   Updated the RoHS statement
+                                              •   Updated table 39 “X49-HDA Adapter Pinout Description”
+      1.6        2025-03-11          RVI      •   Added a WEEE Compliance Decleration to the preface section
+                                              •   Added a note to section 3.2 “Mechanical Dimensions”
+                                              •   Updated section 3.3 “Environmental Specifications”
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                          2/56
+Preface
+         This user’s guide provides information about the components, features and connectors available on the congatec COM Express™ Type 6,
+         revision 3.0 evaluation carrier board.
+
+
+Software Licenses
+         Notice Regarding Open Source Software
+
+         The congatec products contain Open Source software that has been released by programmers under specific licensing requirements such as
+         the “General Public License“ (GPL) Version 2 or 3, the “Lesser General Public License“ (LGPL), the “ApacheLicense“ or similar licenses.
+
+         You can find the specific details at https://www.congatec.com/en/licenses/. Search for the revision of the BIOS/UEFI or Board Controller Software
+         (as shown in the POST screen or BIOS setup) to get the complete product related license information. To the extent that any accompanying
+         material such as instruction manuals, handbooks etc. contain copyright notices, conditions of use or licensing requirements that contradict any
+         applicable Open Source license, these conditions are inapplicable.
+
+         The use and distribution of any Open Source software contained in the product is exclusively governed by the respective Open Source
+         license. The Open Source software is provided by its programmers without ANY WARRANTY, whether implied or expressed, of any fitness for
+         a particular purpose, and the programmers DECLINE ALL LIABILITY for damages, direct or indirect, that result from the use of this software.
+
+         OEM/ CGUTL BIOS
+
+         BIOS/UEFI modified by customer via the congatec System Utility (CGUTL) is subject to the same license as the BIOS/UEFI it is based on. You
+         can find the specific details at https://www.congatec.com/en/licenses/.
+
+
+Disclaimer
+         The information contained within this user’s guide, including but not limited to any product specification, is subject to change without notice.
+
+         congatec GmbH provides no warranty with regard to this user’s guide or any other information contained herein and hereby expressly disclaims
+         any implied warranties of merchantability or fitness for any particular purpose with regard to any of the foregoing. congatec GmbH assumes
+         no liability for any damages incurred directly or indirectly from any technical or typographical errors or omissions contained herein or for
+         discrepancies between the product and the user’s guide. In no event shall congatec GmbH be liable for any incidental, consequential, special,
+         or exemplary damages, whether based on tort, contract or otherwise, arising out of or in connection with this user’s guide or any other
+         information contained herein or the use thereof.
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                       3/56
+Intended Audience
+          This user’s guide is intended for technically qualified personnel. It is not intended for general audiences.
+
+
+Lead-Free Designs (RoHS)
+          All congatec GmbH designs are completely RoHS compliant.
+
+
+Electrostatic Sensitive Device
+          All congatec GmbH products are electrostatic sensitive devices. They are enclosed in static shielding bags, and shipped enclosed in secondary
+          packaging (protective packaging). The secondary packaging does not provide electrostatic protection.
+
+          Do not remove the device from the static shielding bag or handle it, except at an electrostatic-free workstation. Also, do not ship or store
+          electronic devices near strong electrostatic, electromagnetic, magnetic, or radioactive fields unless the device is contained within its original
+          packaging. Be aware that failure to comply with these guidelines will void the congatec GmbH Limited Warranty.
+
+
+WEEE Directive
+          To comply with Directive 2012/19/EU on Waste Electrical and Electronic Equipment (WEEE), ensure that this product is disposed of correctly
+          at the end of its lifecycle. Customers are required to take electrical and electronic equipment to designated collection facilities separate from
+          unsorted municipal waste, following applicable regional laws.
+
+          Proper disposal through designated collection points allows for the recycling, recovery, and reuse of valuable materials, supporting a more
+          efficient use of resources and reducing environmental impact.
+
+          Note
+          Standalone congatec components, such as modules, carrier boards, and cooling solutions are designed to function only within other products.
+          WEEE registration for the complete product must be completed by the entity placing the final product on the market.
+
+
+Trademarks
+          Product names, logos, brands, and other trademarks featured or referred to within this user’s guide, or the congatec website, are the property
+          of their respective trademark holders. These trademark holders are not affiliated with congatec GmbH, our products, or our website.
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                        4/56
+Symbols
+          The following symbols are used in this user’s guide:
+
+          Warning
+
+
+          Warnings indicate conditions that, if not observed, can cause personal injury.
+
+          Caution
+
+
+          Cautions warn the user about how to prevent damage to hardware or loss of data.
+          Note
+
+          Notes call attention to important information that should be observed.
+          Connector Type
+
+          Describes the connector that must be used with the congatec COM Express™ evaluation carrier board, not the connector found on the
+          congatec COM Express™ evaluation carrier board.
+
+            Link to connector layout diagram
+
+
+          This link icon is located in the top left corner of each page. It provides a direct link to the connector layout diagram on page 8 of this document.
+
+
+Certification                                                                                         ISO 9001
+
+
+
+
+                                                                                                 C                           N
+                                                                                                     ER
+                                                                                                          T I F I C AT I O       TM
+
+
+
+
+          congatec GmbH is certified to DIN EN ISO 9001 standard.
+
+
+Copyright Notice
+          Copyright © 2018, congatec GmbH. All rights reserved. All text, pictures and graphics are protected by copyrights. No copying is permitted
+          without written permission from congatec GmbH.
+
+          congatec GmbH has made every attempt to ensure that the information in this document is accurate yet the information contained within is
+          supplied “as-is”.
+          Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                          5/56
+Warranty
+           congatec GmbH makes no representation, warranty or guaranty, express or implied regarding the products except its standard form of limited
+           warranty (“Limited Warranty”) per the terms and conditions of the congatec entity, which the product is delivered from. These terms and
+           conditions can be downloaded from www.congatec.com. congatec GmbH may in its sole discretion modify its Limited Warranty at any time
+           and from time to time.
+
+           The products may include software. Use of the software is subject to the terms and conditions set out in the respective owner’s license
+           agreements, which are available at www.congatec.com and/or upon request.
+
+           Beginning on the date of shipment to its direct customer and continuing for the published warranty period, congatec GmbH represents that
+           the products are new and warrants that each product failing to function properly under normal use, due to a defect in materials or workmanship
+           or due to non conformance to the agreed upon specifications, will be repaired or exchanged, at congatec’s option and expense.
+
+           Customer will obtain a Return Material Authorization (“RMA”) number from congatec GmbH prior to returning the non conforming product
+           freight prepaid. congatec GmbH will pay for transporting the repaired or exchanged product to the customer.
+
+           Repaired, replaced or exchanged product will be warranted for the repair warranty period in effect as of the date the repaired, exchanged
+           or replaced product is shipped by congatec, or the remainder of the original warranty, whichever is longer. This Limited Warranty extends to
+           congatec’s direct customer only and is not assignable or transferable.
+
+           Except as set forth in writing in the Limited Warranty, congatec makes no performance representations, warranties, or guarantees, either
+           express or implied, oral or written, with respect to the products, including without limitation any implied warranty (a) of merchantability, (b) of
+           fitness for a particular purpose, or (c) arising from course of performance, course of dealing, or usage of trade.
+
+           congatec GmbH shall in no event be liable to the end user for collateral or consequential damages of any kind. congatec shall not otherwise
+           be liable for loss, damage or expense directly or indirectly arising from the use of the product or from any other cause. The sole and exclusive
+           remedy against congatec, whether a claim sound in contract, warranty, tort or any other legal theory, shall be repair or replacement of the
+           product only.
+
+
+Technical Support
+           congatec GmbH technicians and engineers are committed to providing the best possible technical support for our customers so that our
+           products can be easily used and implemented. We request that you first visit our website at www.congatec.com for the latest documentation,
+           utilities and drivers, which have been made available to assist you. If you still require assistance after visiting our website then contact our
+           technical support department by email at support@congatec.com
+
+
+
+
+           Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                         6/56
+Terminology
+
+         Term      Description
+         PCIe      Peripheral Component Interface Express
+         SDIO      Secure Digital Input Output
+         USB       Universal Serial Bus
+         SATA      Serial AT Attachment
+         HDA       High Definition Audio
+         I²C Bus   Inter-Integrated Circuit Bus
+         SM Bus    System Management Bus
+         GbE       Gigabit Ethernet
+         LVDS      Low Voltage Differential Signaling
+         HBR3      High Bit Rate 3
+         DDC       Display Data Channel
+         GPIO      General Purpose Input/Output
+         eDP       Embedded DisplayPort
+         LVDS      Low Voltage Differential Signaling
+         N.C       Not connected
+         N.A       Not available
+         T.B.D     To be determined
+
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							   7/56
+Contents
+1       Introduction.............................................................................. 11        4.7.3.1   eDP........................................................................................... 31
+                                                                                                             4.7.3.2   LVDS ......................................................................................... 32
+1.1     COM Express™ Concept.......................................................... 11
+                                                                                                             4.7.3.3   LVDS Panel and Backlight Power Supply.................................. 33
+1.2     conga-TEVAL/COMe 3.0 ......................................................... 11
+                                                                                                             4.7.3.4   Flat Panel and Backlight Voltage Selection.............................. 33
+1.3     Order Number.......................................................................... 12
+                                                                                                             4.7.3.5   Flat Panel and Backlight Power Supply Connection................. 34
+2       Connector Layout..................................................................... 13             4.7.3.6   Flat Panel Configuration Data................................................... 35
+                                                                                                             4.8       Universal Serial Bus (USB)......................................................... 35
+3       Specifications............................................................................ 14        4.8.1     Dual Stacked USB 3.1 Type-A .................................................. 36
+3.1     Feature List............................................................................... 14       4.8.2     USB Type-B (Client Mode)........................................................ 37
+3.2     Mechanical Dimensions............................................................ 15                 4.8.3     Dual Stacked USB 2.0 Type-A................................................... 37
+3.3     Environmental Specifications.................................................... 15                  4.9       SATA/SATADOM....................................................................... 38
+                                                                                                             4.9.1     Disk Drive Power Connector..................................................... 38
+4       Connectors and Features.......................................................... 16
+                                                                                                             4.9.2     SATA Power.............................................................................. 39
+4.1     COM Express A - B Connector................................................. 16                      4.10      Gigabit Ethernet (GbE)............................................................. 39
+4.2     COM Express C - D Connector................................................. 18                      4.11      Audio Interfaces........................................................................ 40
+4.3     Power Supply Connector.......................................................... 19                  4.11.1    MIC-In....................................................................................... 41
+4.3.1   ATX Power Connector.............................................................. 20                 4.11.2    Line-Out.................................................................................... 41
+4.3.2   DC Banana Jack........................................................................ 21            4.11.3    Optical S/PDIF-Out................................................................... 41
+4.3.3   Status LEDs D68-D72, D84-D86............................................... 22                       4.11.4    HDA Adapter/Debug Header................................................... 42
+4.3.4   PWR_OK Signal......................................................................... 22            4.12      SM Bus...................................................................................... 42
+4.3.5   Power-Up Control..................................................................... 23             4.13      I2C Bus....................................................................................... 43
+4.3.6   Power Consumption Header.................................................... 23                      4.14      SPI Bus...................................................................................... 43
+4.3.7   Module Type Detection............................................................ 23                 4.15      LPC/eSPI................................................................................... 44
+4.4     CMOS Battery Holder .............................................................. 24                4.16      LPC/TPM Header...................................................................... 45
+4.5     PCIe Connectors....................................................................... 25            4.17      Serial Ports (COM Ports)........................................................... 46
+4.5.1   PEG x16 Slot............................................................................. 26         4.17.1    COM Port 0 Header.................................................................. 46
+4.5.2   PCIe x4 Slot.............................................................................. 26        4.17.2    COM Port 1 Header.................................................................. 47
+4.5.3   PCIe x1 Slot.............................................................................. 27        4.17.3    Module Serial Port 0................................................................. 47
+4.5.4   Mini PCIe Socket....................................................................... 27           4.17.4    Module Serial Port 1/CAN Bus................................................. 48
+4.5.5   M.2............................................................................................ 28   4.18      System Fan Header................................................................... 48
+4.6     SD Card Slot............................................................................. 29         4.19      CPU Fan Header....................................................................... 50
+4.7     Display Interfaces...................................................................... 30          4.20      Smart Battery Management Header......................................... 50
+4.7.1   VGA.......................................................................................... 30     4.21      Debug Pin Header.................................................................... 51
+4.7.2   DP++........................................................................................ 30      4.22      Internal Use Only...................................................................... 51
+4.7.3   LVDS/eDP.................................................................................. 30        4.23      Feature Connector.................................................................... 52
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                                                                                8/56
+5       Additional Features................................................................... 53
+5.1     Buttons...................................................................................... 53
+5.1.1   Power........................................................................................ 53
+5.1.2   Reset......................................................................................... 53
+5.1.3   LID............................................................................................. 53
+5.1.4   Sleep......................................................................................... 54
+5.2     Beeper...................................................................................... 54
+5.3     Ground Test Points.................................................................... 54
+5.4     Debug Display.......................................................................... 55
+6       Mechanical Dimensions............................................................ 56
+
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                               9/56
+List of Tables
+Table 1    Order Description..................................................................... 12            Table 35   X33 - Ethernet SDP .................................................................. 40
+Table 2    Feature Summary...................................................................... 14             Table 36   MIC-In (X47) Pinout Description.............................................. 41
+Table 3    Module Type 6 Connector Pinout—Rows A and B................... 16                                    Table 37   Line-Out (X47) Pinout Description............................................ 41
+Table 4    Module Type 6 Connector Pinout—Rows C and D................... 18                                    Table 38   SW9.2 - HDA Codec Configuration.......................................... 42
+Table 5    X63 - ATX Power....................................................................... 20            Table 39   X49 - HDA Adapter Pinout Description.................................... 42
+Table 6    SW21.1 - ATX PSU Control Description.................................... 20                          Table 40   SW14 - BIOS Boot Device Selection......................................... 43
+Table 7    JP11 - ATX 5V Standby Connection......................................... 21                         Table 41   SW10.1 - Super I/O Control...................................................... 44
+Table 8    X41/X42 - DC Banana Jack....................................................... 21                   Table 42   SW10.2 - LPC/eSPI Mode Control............................................ 44
+Table 9    SW21.2 - 12 V Voltage Regulator Control (Only via DC Banana                                          Table 43   SW11 - Super IO Configuration................................................ 45
+           Jack).......................................................................................... 21   Table 44   X51 - LPC/TPM Pinout Description........................................... 45
+Table 10   Power LEDs Status.................................................................... 22             Table 45   X53 - COM 0 Pinout Description.............................................. 46
+Table 11   JP9 - Module PWR_OK Selection............................................. 22                        Table 46   SW12 - COM Port 0 Transceiver Configuration........................ 46
+Table 12   X3/X4 - Power Consumption Measurement............................. 23                                Table 47   SW13 - COM Port 0 Slew Rate/Termination............................. 47
+Table 13   Module Type Detection Pinout Description.............................. 23                            Table 48   X52 - COM 1 Pinout Description.............................................. 47
+Table 14   JP8 - RTC Battery Connection ................................................. 24                    Table 49   SW2.2 - SER1/CAN Selection................................................... 48
+Table 15   SW1 - PCIe x4 Slot Configuration............................................. 26                     Table 50   JP7 - CAN Bus Termination/Filter ............................................ 48
+Table 16   PCIe x1 Lane Routing............................................................... 27               Table 51   X55 - SYS Fan Pinout ............................................................... 49
+Table 17   D6-D8 - mini PCIe LEDs Description........................................ 27                        Table 52   JP5 - Fan Voltage Selection...................................................... 49
+Table 18   SW2.1 - PCIe Lane 5 Configuration.......................................... 28                       Table 53   JP6 - Fan Speed Control........................................................... 49
+Table 19   SW3 - M.2 Configuration.......................................................... 28                 Table 54   X60 - CPU Fan........................................................................... 50
+Table 20   SW4 - M.2/mini PCIe Configuration......................................... 28                        Table 55   JP10 - CPU Fan Voltage Selection............................................ 50
+Table 21   SW 5.2 - GPIO/SDIO Connection............................................. 29                        Table 56   X61 - SBM Pinout...................................................................... 50
+Table 22   SW8.1 - eDP/LVDS Selection.................................................... 30                    Table 57   X57 - Debug Pin Header........................................................... 51
+Table 23   X39 - eDP Pinout Description................................................... 31                   Table 58   X56 - Feature Connector Pinout Description........................... 52
+Table 24   X38 - LVDS Pinout Description.................................................. 32                   Table 59   SW9.1 - Beeper Control............................................................ 54
+Table 25   X40 - LVDS Power Pinout Description....................................... 33                        Table 60   SW22 - POST Code Decoder................................................... 55
+Table 26   JP3 - Flat Panel Voltage Selection............................................ 33                    Table 61   SW22 - POST Code LPC/I2C Address Decoder....................... 55
+Table 27   JP4 - Backlight Voltage Selection............................................. 33
+Table 28   SW8.2 - Backlight Enable Signal Configuration........................ 34
+Table 29   SW5.1 - USB Port 0 Configuration............................................ 36
+Table 30   JP1 - SATA/SATADOM Configuration ...................................... 38
+Table 31   X26 - External SATA Activity LED.............................................. 38
+Table 32   X24 - SATA Power Pinout Description...................................... 39
+Table 33   GbE (X32) Status LEDs.............................................................. 39
+Table 34   JP2 - Ethernet LEDs Power Configuration................................ 39
+
+
+            Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                                                                           10/56
+1     Introduction
+1.1   COM Express™ Concept
+      COM Express™ is an open industry standard defined specifically for COMs (computer on modules). Its creation makes it possible to smoothly
+      transition from legacy interfaces to the newest technologies available today.
+
+      A Computer On Module integrates all the core components and standard I/O interfaces of a common PC onto an application specific carrier
+      board. The key advantage of the COM in the embedded computer industries is that all the highly integrated, high speed components such as
+      CPU, chipsets and memory are combined on a small module form factor for easy adaptation into different applications across multiple market
+      segments.
+
+      COM Express™ modules have standardized form factors and specified pinouts on the two system connectors that remain the same regardless
+      of the vendor. The COM Express™ module reflects the functional requirements for a wide range of embedded applications. These functions
+      include, but are not limited to, PCI Express, PCI, Graphics, High Definition Audio, parallel ATA, serial ATA, Gigabit Ethernet and USB ports.
+      Two ruggedized, shielded connectors provide the carrier board interface and carry all the I/O signals to and from the COM Express™ module.
+
+      Carrier board designers can use as little or as many of the I/O interfaces as deemed necessary. The carrier board can therefore provide all
+      the interface connectors required to attach the system to the application specific peripherals. This versatility allows the designer to create a
+      dense and optimized package, which results in a more reliable product while simplifying system integration. Most importantly, COM Express™
+      modules are scalable, which means once an application has been created there is the ability to diversify the product range through the use
+      of different performance class or form factor size modules. Simply unplug one module and replace it with another; no redesign is necessary.
+
+
+1.2   conga-TEVAL/COMe 3.0
+      The conga-TEVAL/COMe 3.0 carrier board is designed based on the Type 6 pinout definition and it complies with COM Express Specification
+      3.0. The conga-TEVAL/COMe 3.0 provides most of the functional requirements for any embedded PC application. These functions include, but
+      are not limited to a rich complement of contemporary high bandwidth serial interfaces such as PCI Express, Serial ATA, USB 2.0, and Gigabit
+      Ethernet. To ensure stable data throughput, the carrier board is equipped with two high performance connectors in accordance with the COM
+      Express specification.
+
+      By combining the scalability of COM Express modules, the conga-TEVAL/COMe 3.0 carrier board provides manufacturers and developers
+      with a platform to jump-start the development of systems and applications based on COM Express specification. This helps to reduce product
+      design cycle and encourages rapid innovation in system design, to meet the ever-changing needs of the market.
+
+      The various features and capabilities offered by the conga-TEVAL/COMe 3.0 makes it ideal for the integration of Compact and Basic form
+      factor CPU modules.
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                      11/56
+1.3   Order Number
+      Table 1   Order Description
+
+      Part Number      Product Name                          Description
+      065810           conga-TEVAL2 (conga-TEVAL/COMe 3.0)   Evaluation carrier board for COM Express Type 6 rev 3.0 modules
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                   12/56
+2   Connector Layout
+    The connector layout
+    picture     below     shows
+    each connector and its
+    name designator. Select
+    the Adobe ‘Zoom-In-
+    Tool’ and zoom in on a
+    given component to see
+    its    designator.    Hover
+    over the component and
+    the ‘Zoom-In-Tool’ will
+    change indicating there
+    is a link. Click on the link
+    to navigate to the area in
+    the document where the
+    component is described.
+    Use the mouse icon in the
+    top left hand corner of the
+    destination page to return
+    to the connector layout
+    picture.
+
+
+
+
+    Copyright © 2018 congatec GmbH 							TEVA2m16 							   13/56
+3     Specifications
+3.1   Feature List
+      Table 2    Feature Summary
+
+      Form Factor             Based on COM Express standard pinout Type 6, rev. 3.0
+      Supported Modules       COM Express™ Type 6 compact and basic form factor
+      Power                   1 x standard 24-pin ATX connector
+                              1 x DC power input (4 mm banana connectors)
+                              1 x CR2032 CMOS/RTC battery
+      Back Panel I/O          1 x Gigabit Ethernet RJ45 port                               3 x DP++ ports
+      Connectors              1 x Microphone jack                                          4 x USB 3.1 host ports
+                              1 x Line-OUT jack                                            2 x USB 2.0 host ports
+                              1 x Optical S/PDIF-Out port
+      Onboard I/O             1 x USB client port                                          4 x SATA connectors (one connector supports SATADOM)
+      Connectors              1 x PEG x16 slot                                             1 x SATA power connector
+                              1 x PCIe x4 slot                                             1 x Disk drive 4-pin connector
+                              5 x PCIe x1 slot                                             1 x HDA adapter/debug header
+                              1 x VGA port                                                 1 x I2C EEPROM socket
+                              1 x M.2 Key B socket                                         1 x SPI flash socket
+                              1 x mini PCIe socket                                         1 x LPC/TPM header
+                              2 x micro-SIM card socket                                    2 x COM port headers
+                              1 x SD card socket (full-size)                               1 x CAN connector
+                              1 x LVDS connector                                           2 x Fan headers
+                              1 x eDP connector                                            1 x SBM header
+                              1 x Panel and Backlight header                               1 x Feature connector
+                              1 x EPI EEPROM Socket
+      Optional Onboard        1 x Power consumption header
+      Interfaces
+      Other Features          1 x Beeper
+                              4 x Buttons (power, reset, sleep, lid)
+                              4 x Ground test points
+                              Four 14-segment displays for post code information
+                              Multi-channel low power HD audio codec (Cirrus CS4207)
+                              Super I/O (Nuvoton NCT6112D)
+
+      Note
+      The module must also support the features for them to function. Refer to the module’s user’s guide for information about supported features.
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                      14/56
+3.2   Mechanical Dimensions
+      • 294.0 mm x 244.0 mm
+      • Height approximately 43.0 mm (top side)
+      Note
+
+      The 3D models of congatec products are available at www.congatec.com/login. These models indicate the overall length, height and width
+      of each product. If you need login access, contact your local sales representative.
+
+
+3.3   Environmental Specifications
+      Temperature		          Operation: -40°C to 85°C     Storage: -40°C to +85°C
+
+      Relative Humidity      Operation: 10% to 90%        Storage: 5% to 95%
+
+      Caution
+
+      The above operating temperatures must be strictly adhered to at all times. When using a congatec heat spreader, the maximum operating
+      temperature refers to any measurable spot on the heat spreader’s surface.
+
+      Humidity specifications are for non-condensing conditions.
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                            15/56
+4     Connectors and Features
+4.1   COM Express A - B Connector
+      Table 3    Module Type 6 Connector Pinout—Rows A and B
+
+      Pin   Row A              Pin   Row B                     Pin   Row A                    Pin   Row B
+      A1    GND (FIXED)        B1    GND (FIXED)               A56   PCIE_TX4-                B56   PCIE_RX4-
+      A2    GBE0_MDI3-         B2    GBE0_ACT#                 A57   GND                      B57   GPO2
+      A3    GBE0_MDI3+         B3    LPC_FRAME#/ESPI_CS0#      A58   PCIE_TX3+                B58   PCIE_RX3+
+      A4    GBE0_LINK100#      B4    LPC_AD0/ESPI_IO_0         A59   PCIE_TX3-                B59   PCIE_RX3-
+      A5    GBE0_LINK1000#     B5    LPC_AD1/ESPI_IO_1         A60   GND (FIXED)              B60   GND (FIXED)
+      A6    GBE0_MDI2-         B6    LPC_AD2/ESPI_IO_2         A61   PCIE_TX2+                B61   PCIE_RX2+
+      A7    GBE0_MDI2+         B7    LPC_AD3/ESPI_IO_3         A62   PCIE_TX2-                B62   PCIE_RX2-
+      A8    GBE0_LINK#         B8    LPC_DRQ0#/ESPI_ALERT0#    A63   GPI1                     B63   GPO3
+      A9    GBE0_MDI1-         B9    LPC_DRQ1#/ESPI_ALERT1#    A64   PCIE_TX1+                B64   PCIE_RX1+
+      A10   GBE0_MDI1+         B10   LPC_CLK/ESPI_CK           A65   PCIE_TX1-                B65   PCIE_RX1-
+      A11   GND (FIXED)        B11   GND (FIXED)               A66   GND                      B66   WAKE0#
+      A12   GBE0_MDI0-         B12   PWRBTN#                   A67   GPI2                     B67   WAKE1#
+      A13   GBE0_MDI0+         B13   SMB_CK                    A68   PCIE_TX0+                B68   PCIE_RX0+
+      A14   GBE0_CTREF         B14   SMB_DAT                   A69   PCIE_TX0-                B69   PCIE_RX0-
+      A15   SUS_S3#            B15   SMB_ALERT#                A70   GND (FIXED)              B70   GND (FIXED)
+      A16   SATA0_TX+          B16   SATA1_TX+                 A71   eDP_TX2+/LVDS_A0+        B71   LVDS_B0+
+      A17   SATA0_TX-          B17   SATA1_TX-                 A72   eDP_TX2-/LVDS_A0-        B72   LVDS_B0-
+      A18   SUS_S4#            B18   SUS_STAT#/ESPI_RESET#     A73   eDP_TX1+/LVDS_A1+        B73   LVDS_B1+
+      A19   SATA0_RX+          B19   SATA1_RX+                 A74   eDP_TX1-/LVDS_A1-        B74   LVDS_B1-
+      A20   SATA0_RX-          B20   SATA1_RX-                 A75   eDP_TX0+/LVDS_A2+        B75   LVDS_B2+
+      A21   GND (FIXED)        B21   GND (FIXED)               A76   eDP_TX0-/LVDS_A2-        B76   LVDS_B2-
+      A22   SATA2_TX+          B22   SATA3_TX+                 A77   eDP_VDD_EN/LVDS_VDD_EN   B77   LVDS_B3+
+      A23   SATA2_TX-          B23   SATA3_TX-                 A78   LVDS_A3+                 B78   LVDS_B3-
+      A24   SUS_S5#            B24   PWR_OK                    A79   LVDS_A3-                 B79   eDP_BKLT_EN/LVDS_BKLT_EN
+      A25   SATA2_RX+          B25   SATA3_RX+                 A80   GND (FIXED)              B80   GND (FIXED)
+      A26   SATA2_RX-          B26   SATA3_RX-                 A81   eDP_TX3+/LVDS_A_CK+      B81   LVDS_B_CK+
+      A27   BATLOW#            B27   WDT                       A82   eDP_TX3-/LVDS_A_CK-      B82   LVDS_B_CK-
+      A28   (S)ATA_ACT#        B28   HDA_SDIN2                 A83   eDP_AUX+/LVDS_I2C_CK     B83   eDP/LVDS_BKLT_CTRL
+      A29   HDA_SYNC           B29   HDA_SDIN1                 A84   eDP_AUX-/LVDS_I2C_DAT    B84   VCC_5V_SBY
+      A30   HDA_RST#           B30   HDA_SDIN0                 A85   GPI3                     B85   VCC_5V_SBY
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                   16/56
+Pin   Row A                  Pin   Row B             Pin    Row A           Pin    Row B
+A31   GND (FIXED)            B31   GND (FIXED)       A86    RSVD            B86    VCC_5V_SBY
+A32   HDA_BITCLK             B32   SPKR              A87    eDP_HPD         B87    VCC_5V_SBY
+A33   HDA_SDOUT              B33   I2C_CK            A88    PCIE_CLK_REF+   B88    BIOS_DIS1#
+A34   BIOS_DIS0#/ESPI_SAFS   B34   I2C_DAT           A89    PCIE_CLK_REF-   B89    VGA_RED
+A35   THRMTRIP#              B35   THRM#             A90    GND (FIXED)     B90    GND (FIXED)
+A36   USB6-                  B36   USB7-             A91    SPI_POWER       B91    VGA_GRN
+A37   USB6+                  B37   USB7+             A92    SPI_MISO        B92    VGA_BLU
+A38   USB_6_7_OC#            B38   USB_4_5_OC#       A93    GPO0            B93    VGA_HSYNC
+A39   USB4-                  B39   USB5-             A94    SPI_CLK         B94    VGA_VSYNC
+A40   USB4+                  B40   USB5+             A95    SPI_MOSI        B95    VGA_I2C_CK
+A41   GND (FIXED)            B41   GND (FIXED)       A96    TPM_PP          B96    VGA_I2C_DAT
+A42   USB2-                  B42   USB3-             A97    TYPE10#         B97    SPI_CS#
+A43   USB2+                  B43   USB3+             A98    SER0_TX         B98    RSVD
+A44   USB_2_3_OC#            B44   USB_0_1_OC#       A99    SER0_RX         B99    RSVD
+A45   USB0-                  B45   USB1-             A100   GND (FIXED)     B100   GND (FIXED)
+A46   USB0+                  B46   USB1+             A101   SER1_TX         B101   FAN_PWMOUT
+A47   VCC_RTC                B47   ESPI_EN#          A102   SER1_RX         B102   FAN_TACHIN
+A48   RSVD                   B48   USB0_HOST_PRSNT   A103   LID#            B103   SLEEP#
+A49   GBE0_SDP               B49   SYS_RESET#        A104   VCC_12V         B104   VCC_12V
+A50   LPC_SERIRQ/ESPI_CS1#   B50   CB_RESET#         A105   VCC_12V         B105   VCC_12V
+A51   GND (FIXED)            B51   GND (FIXED)       A106   VCC_12V         B106   VCC_12V
+A52   PCIE_TX5+              B52   PCIE_RX5+         A107   VCC_12V         B107   VCC_12V
+A53   PCIE_TX5-              B53   PCIE_RX5-         A108   VCC_12V         B108   VCC_12V
+A54   GPI0                   B54   GPO1              A109   VCC_12V         B109   VCC_12V
+A55   PCIE_TX4+              B55   PCIE_RX4+         A110   GND (FIXED)     B110   GND (FIXED)
+
+
+
+
+Copyright © 2018 congatec GmbH 							TEVA2m16 							                                           17/56
+4.2   COM Express C - D Connector
+      Table 4   Module Type 6 Connector Pinout—Rows C and D
+
+      Pin   Row C                Pin   Row D                Pin   Row C            Pin   Row D
+      C1    GND (FIXED)          D1    GND (FIXED)          C56   PEG_RX1-         D56   PEG_TX1-
+      C2    GND                  D2    GND                  C57   TYPE1#           D57   TYPE2#
+      C3    USB_SSRX0-           D3    USB_SSTX0-           C58   PEG_RX2+         D58   PEG_TX2+
+      C4    USB_SSRX0+           D4    USB_SSTX0+           C59   PEG_RX2-         D59   PEG_TX2-
+      C5    GND                  D5    GND                  C60   GND (FIXED)      D60   GND (FIXED)
+      C6    USB_SSRX1-           D6    USB_SSTX1-           C61   PEG_RX3+         D61   PEG_TX3+
+      C7    USB_SSRX1+           D7    USB_SSTX1+           C62   PEG_RX3-         D62   PEG_TX3-
+      C8    GND                  D8    GND                  C63   RSVD             D63   RSVD
+      C9    USB_SSRX2-           D9    USB_SSTX2-           C64   RSVD             D64   RSVD
+      C10   USB_SSRX2+           D10   USB_SSTX2+           C65   PEG_RX4+         D65   PEG_TX4+
+      C11   GND (FIXED)          D11   GND (FIXED)          C66   PEG_RX4-         D66   PEG_TX4-
+      C12   USB_SSRX3-           D12   USB_SSTX3-           C67   RAPID_SHUTDOWN   D67   GND
+      C13   USB_SSRX3+           D13   USB_SSTX3+           C68   PEG_RX5+         D68   PEG_TX5+
+      C14   GND                  D14   GND                  C69   PEG_RX5-         D69   PEG_TX5-
+      C15   DDI1_PAIR6+          D15   DDI1_CTRLCLK_AUX+    C70   GND (FIXED)      D70   GND (FIXED)
+      C16   DDI1_PAIR6-          D16   DDI1_CTRLDATA_AUX-   C71   PEG_RX6+         D71   PEG_TX6+
+      C17   RSVD                 D17   RSVD                 C72   PEG_RX6-         D72   PEG_TX6-
+      C18   RSVD                 D18   RSVD                 C73   GND              D73   GND
+      C19   PCIE_RX6+            D19   PCIE_TX6+            C74   PEG_RX7+         D74   PEG_TX7+
+      C20   PCIE_RX6-            D20   PCIE_TX6-            C75   PEG_RX7-         D75   PEG_TX7-
+      C21   GND (FIXED)          D21   GND (FIXED)          C76   GND              D76   GND
+      C22   PCIE_RX7+            D22   PCIE_TX7+            C77   RSVD             D77   RSVD
+      C23   PCIE_RX7-            D23   PCIE_TX7-            C78   PEG_RX8+         D78   PEG_TX8+
+      C24   DDI1_HPD             D24   RSVD                 C79   PEG_RX8-         D79   PEG_TX8-
+      C25   DDI1_PAIR4+          D25   RSVD                 C80   GND (FIXED)      D80   GND (FIXED)
+      C26   DDI1_PAIR4-          D26   DDI1_PAIR0+          C81   PEG_RX9+         D81   PEG_TX9+
+      C27   RSVD                 D27   DDI1_PAIR0-          C82   PEG_RX9-         D82   PEG_TX9-
+      C28   RSVD                 D28   RSVD                 C83   RSVD             D83   RSVD
+      C29   DDI1_PAIR5+          D29   DDI1_PAIR1+          C84   GND              D84   GND
+      C30   DDI1_PAIR5-          D30   DDI1_PAIR1-          C85   PEG_RX10+        D85   PEG_TX10+
+      C31   GND (FIXED)          D31   GND (FIXED)          C86   PEG_RX10-        D86   PEG_TX10-
+      C32   DDI2_CTRLCLK_AUX+    D32   DDI1_PAIR2+          C87   GND              D87   GND
+      C33   DDI2_CTRLDATA_AUX-   D33   DDI1_PAIR2-          C88   PEG_RX11+        D88   PEG_TX11+
+      C34   DDI2_DDC_AUX_SEL     D34   DDI1_DDC_AUX_SEL     C89   PEG_RX11-        D89   PEG_TX11-
+      C35   RSVD                 D35   RSVD                 C90   GND (FIXED)      D90   GND (FIXED)
+      C36   DDI3_CTRLCLK_AUX+    D36   DDI1_PAIR3+          C91   PEG_RX12+        D91   PEG_TX12+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                           18/56
+      Pin    Row C                  Pin     Row D             Pin    Row C           Pin    Row D
+      C37    DDI3_CTRLDATA_AUX-     D37     DDI1_PAIR3-       C92    PEG_RX12-       D92    PEG_TX12-
+      C38    DDI3_DDC_AUX_SEL       D38     RSVD              C93    GND             D93    GND
+      C39    DDI3_PAIR0+            D39     DDI2_PAIR0+       C94    PEG_RX13+       D94    PEG_TX13+
+      C40    DDI3_PAIR0-            D40     DDI2_PAIR0-       C95    PEG_RX13-       D95    PEG_TX13-
+      C41    GND (FIXED)            D41     GND (FIXED)       C96    GND             D96    GND
+      C42    DDI3_PAIR1+            D42     DDI2_PAIR1+       C97    RVSD            D97    RSVD
+      C43    DDI3_PAIR1-            D43     DDI2_PAIR1-       C98    PEG_RX14+       D98    PEG_TX14+
+      C44    DDI3_HPD               D44     DDI2_HPD          C99    PEG_RX14-       D99    PEG_TX14-
+      C45    RSVD                   D45     RSVD              C100   GND (FIXED)     D100   GND (FIXED)
+      C46    DDI3_PAIR2+            D46     DDI2_PAIR2+       C101   PEG_RX15+       D101   PEG_TX15+
+      C47    DDI3_PAIR2-            D47     DDI2_PAIR2-       C102   PEG_RX15-       D102   PEG_TX15-
+      C48    RSVD                   D48     RSVD              C103   GND             D103   GND
+      C49    DDI3_PAIR3+            D49     DDI2_PAIR3+       C104   VCC_12V         D104   VCC_12V
+      C50    DDI3_PAIR3-            D50     DDI2_PAIR3-       C105   VCC_12V         D105   VCC_12V
+      C51    GND (FIXED)            D51     GND (FIXED)       C106   VCC_12V         D106   VCC_12V
+      C52    PEG_RX0+               D52     PEG_TX0+          C107   VCC_12V         D107   VCC_12V
+      C53    PEG_RX0-               D53     PEG_TX0-          C108   VCC_12V         D108   VCC_12V
+      C54    TYPE0#                 D54     PEG_LANE_RV#      C109   VCC_12V         D109   VCC_12V
+      C55    PEG_RX1+               D55     PEG_TX1+          C110   GND (FIXED)     D110   GND (FIXED)
+
+
+
+4.3   Power Supply Connector
+      The conga-TEVAL/COMe 3.0 provides the following connectors for power supply:
+      • standard 24-pin ATX connector (X63)
+      • 12 V DC banana jack (X41 and X42)
+      Note
+
+      1. In ATX mode, the +3.3 V, +5 V and +12 V are derived from the ATX power supply. If you supply 12 V DC power via the DC banana jack,
+         the onboard DC/DC regulators will generate the 3.3 V, 5 V and 12 V.
+
+      2. Do not supply power to both the DC banana jack and the ATX connector at the same time.
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                           19/56
+4.3.1   ATX Power Connector
+        The conga-TEVAL/COMe 3.0 provides a standard 24-pin connector X63 for ATX power supply. With an ATX power supply, the COM Express™
+        module starts after you press the power-on button SW16 (ATX mode). To configure the power supply to operate in AT mode, set DIP SW21.1
+        to ON. In this mode, the module starts after the power switch on the power supply is turned on.
+
+        Use jumper JP11 to disconnect the 5 V standby voltage from the whole system.
+
+        Table 5        X63 - ATX Power
+
+        Pin Signal         Description                   Pin Signal    Description
+        1      +3.3V       Power supply +3.3 VDC         13   +3.3V    Power supply +3.3 VDC
+        2      +3.3V       Power supply +3.3 VDC         14   -12V     Power supply -12 VDC
+        3      GND         Power ground                  15   GND      Power ground                                       X63
+        4      +5V         Power supply +5 VDC           16   PS_ON# Power Supply On (active low). Short this
+                                                                     pin to GND to switch power supply ON;
+                                                                     disconnect from GND to switch OFF.
+        5      GND         Power ground                  17   GND      Power ground
+        6      +5V         Power supply +5 VDC           18   GND      Power ground
+        7      GND         Power ground                  19   GND      Power ground
+        8      PWR_OK      Power Ok                      20   N.C
+        9      5V_SB       Standby power supply +5 VDC   21   +5V      Power supply +5 VDC
+        10     +12V        Power supply +12 VDC          22   +5V      Power supply +5 VDC
+        11     +12V        Power supply +12 VDC          23   +5V      Power supply +5 VDC
+        12     +3.3V       Power supply +3.3 VDC         24   GND      Power ground
+
+        Note
+
+        1. The -12 V power output of the ATX power supply is not used.
+
+        2. The carrier board supports only 24-pin ATX power supply.
+
+        Table 6        SW21.1 - ATX PSU Control Description
+                                                                                                                      SW21          SW16
+        Setting        Configuration
+                                                                                                                          2
+
+
+
+
+                                                                                                                     0N
+        OFF            ATX mode (default)
+                                                                                                                          1
+        ON             AT mode
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                            20/56
+        Table 7    JP11 - ATX 5V Standby Connection
+
+        Pin       Description                                                                                                      JP11
+        1-2       5V standby connected (default)                                                                                  1   2    3
+
+        2-3       5V standby disconnected
+
+        Connector Type
+
+        X63: Standard 24-pin ATX connector
+
+
+4.3.2   DC Banana Jack
+        The conga-TEVAL/COMe 3.0 provides banana jacks X41 and X42 for DC power supply. This power supply supplies power to both the module
+        and the voltage regulators on the carrier board. Although the carrier board is designed for input voltage range of 6 -21 V, the input voltage
+        range is defined by the module (usually 12 V).
+
+        Caution
+                                                                                                                                      X41          X42
+
+        Do not exceed the voltage rating of the COM Express module. Doing so, will damage the module.
+
+        Table 8    X41/X42 - DC Banana Jack
+
+        Connector     Description
+        X41           Input voltage for module and carrier board (usually +12 V)
+        X42           Ground
+
+
+
+
+        Table 9    SW21.2 - 12 V Voltage Regulator Control (Only via DC Banana Jack)
+                                                                                                                                          SW21
+        Setting    Description
+        OFF        Enable (default)                                                                                                            2
+
+
+
+
+                                                                                                                                      0N
+        ON         Disable                                                                                                                     1
+
+        Connector Type
+
+        X41, X42: 4 mm diameter plug
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                      21/56
+4.3.3   Status LEDs D68-D72, D84-D86
+        The status LEDs indicate the different power states of the conga-TEVAL/COMe 3.0. You can connect an external power LED to pin header X58.
+
+        Table 10     Power LEDs Status
+                                                                                                                                   X58   D84 D85 D86
+        LED    Status Description
+                                                                                                                                    1
+        All    Off      No power applied.
+        All    On       ATX power supply is fully switched on, with stable 3.3 V, 5 V and 12 V.
+                                                                                                                                    2
+        D84    On       The green LED indicates the status of SUS_S3#
+                                                                                                                                         D70 D71 D72
+        D85    On       The green LED indicates the status of SUS_S4#
+        D86    On       The green LED indicates the status of SUS_S5#
+        D70    On       The green LED indicates that 12 V main power is present
+        D71    On       The green LED indicates that 5 V main power is present
+                                                                                                                                           D68 D69
+        D72    On       The green LED indicates that the onboard 3.3 V main power is present
+        D68    On       The yellow LED indicates that the onboard 3.3 V standby power is present
+        D69    On       The yellow LED indicates that 5V standby power is applied to the conga-TEVAL/COMe 3.0. If only D69
+                        lights, it indicates that the ATX power supply is mechanically switched on and only 5 V standby power is
+                        applied to the conga-TEVAL/COMe 3.0.
+
+
+
+4.3.4   PWR_OK Signal
+        The PWR_OK signal is a high-active input from the main power supply to the module and it indicates whether the power is good. Use jumper
+        JP9 to configure the PWR_OK signal.
+
+        Table 11     JP9 - Module PWR_OK Selection
+                                                                                                                                                 JP9
+        Pin           Description
+        1-2           Add 3.3V pull-up with 1 kΩ to PWR_OK signal (for debug purposes)
+
+
+
+
+                                                                                                                                                  4
+                                                                                                                                             2
+
+
+
+
+                                                                                                                                                       6
+        3-4           Connect PWR_OK signal from ATX power supply (default)
+        5-6           Connect PWR_OK signal from onboard DC/DC regulator (only via DC banana jack)
+
+
+
+
+                                                                                                                                             1
+
+
+                                                                                                                                                  3
+
+
+                                                                                                                                                       5
+        Connector Type
+
+        JP9: 2.54 mm, 2-pin jumper
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                             22/56
+4.3.5   Power-Up Control
+        The module’s SUS_S3# signal controls the ATX power supply control signal (PS_ON#). When the system goes to Suspend to RAM (S3) or
+        Soft Off (S5), the module’s chipset asserts the ‘SUS_S3#’ signal. Through the use of an inverter, the low active ‘PS_ON#’ signal goes high and
+        switches off the ATX power supply.
+
+        When the system is in a power-down system state, any system wake-up event invokes the chipset of the module to deassert the ‘SUS_S3#’
+        signal. With the deassertion, the system transitions to Full-On state (S0).
+
+
+4.3.6   Power Consumption Header
+        The conga-TEVAL/COMe 3.0 offers optional pin headers X3 and X4 for measuring the power consumption of the COM Express module
+
+        Table 12   X3/X4 - Power Consumption Measurement
+                                                                                                                          X3 (Optional)   X4 (Optional)
+        X3         Signal                   X4       Signal
+        1          VCC12V                   1        VCC5V_SBY                                                                               1    2
+
+
+
+
+                                                                                                                               1
+        2          VCC12V_COME              2        VCC5V_SBY_COME
+
+        Connector Type
+
+
+
+
+                                                                                                                               2
+        X3,X4: 2.54mm, 1 x 2-pin header
+
+
+4.3.7   Module Type Detection
+        The signals TYPE0#, TYPE1#, TYPE2# and TYPE10# indicate the pinout type of the module connected to the carrier board. These pins are either
+        open (N.C), strapped to ground (GND) or connected to 12 V by the module as shown in the table below.
+
+        Table 13   Module Type Detection Pinout Description
+
+                         TYPE0#           TYPE1#           TYPE2#           TYPE10#   Comment
+        Module Type 1    X (don't care)   X (don't care)   X (don't care)   12V/NC    COM Express Specification 1.0/2.0
+        Module Type 10   X (don't care)   X (don't care)   X (don't care)   47k PD    COM Express Specification 2.0
+        Module Type 2    NC               NC               NC               12V/NC    COM Express Specification 1.0/2.0
+        Module Type 3    NC               NC               GND              12V/NC    COM Express Specification 1.0/2.0
+        Module Type 4    NC               GND              NC               12V/NC    COM Express Specification 1.0/2.0
+        Module Type 5    NC               GND              GND              12V/NC    COM Express Specification 1.0/2.0
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                        23/56
+      Module Type 6    GND             NC        NC         NC            COM Express Specification 2.0/3.0
+      Module Type 7    GND             N.C       GND        N.C           COM Express Specification 3.0
+
+      Note
+
+      If the conga-TEVAL/COMe 3.0 detects an incompatible module pinout, an onboard logic prevents the board from powering up the whole
+      system by controlling the ‘PS_ON#’ signal of the ATX power supply.
+
+
+4.4   CMOS Battery Holder
+      The conga-TEVAL/COMe 3.0 provides holder M30 for attaching a CR2032 CMOS battery. The battery supplies power to the RTC and CMOS
+      memory. To disconnect the RTC battery, set jumper JP8 to position 2-3.
+                                                                                                              JP8            M30
+      Table 14   JP8 - RTC Battery Connection
+                                                                                                              1   2   3
+
+
+      Pin        Description
+      1-2        Connect RTC battery (default)
+      2-3        Disconnect the RTC battery
+
+
+      Warning
+
+
+      Danger of explosion if battery is incorrectly replaced. Replace only with the same or equivalent type recommended by the manufacturer.
+      Dispose of used batteries according to the manufacturer’s instructions.
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                            24/56
+4.5          PCIe Connectors
+             The conga-TEVAL/COMe 3.0 provides:
+             • one PEG x16 slot connector X6 (PEG lanes 0–15)
+             • one x4 PCIe slot connector X9 (PCIe lanes 0–3)
+             • five x1 PCIe slot connectors X7,X8,X10,X14 and X19 (PCIe lanes 1–3, 5 and 7)
+             • one M.2 key B socket connector X12 (PCIe lanes 4 and 5)
+             • one mPCIe socket connector X16 (PCIe lane 6)
+             The PCIe lanes are routed as shown below:
+
+
+                                                                                                             M.2 Slot 4 (X12)   SIM Card Slot (X13)
+                                            x4 lanes - Slot 0 (X9)
+      PCIe Lane 0                                                          PCIe Lane 4
+      PCIe Lane 1
+      PCIe Lane 2                                                          PCIe Lane 5
+
+
+
+
+                                                                                         Mux (via DIP SW 2
+      PCIe Lane 3
+
+
+
+                                            x1 Slot 1 (X10)                                                  x1 Slot 5 (X14)
+                       Mux (via DIP SW 1)
+
+
+
+
+      PCIe Lane 1                                                          PCIe Lane 5
+
+
+
+
+                                            x1 Slot 2 (X7)                                                   Mini PCIe (X16)    SIM Card Slot (X15)
+      PCIe Lane 2                                                          PCIe Lane 6
+
+
+
+
+                                            x1 Slot 3 (X8)                                                   x1 Slot 6 (X19)
+
+      PCIe Lane 3                                                          PCIe Lane 7
+
+
+
+
+             Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                         25/56
+4.5.1   PEG x16 Slot
+                                                                                                                                   X6
+        The conga-TEVAL/COMe 3.0 provides a PEG port on a standard PCIe x16 slot connector (X6).
+        Connector Type
+
+        X6: PCIe x16 card
+
+
+4.5.2   PCIe x4 Slot
+        The conga-TEVAL/COMe 3.0 provides a standard PCIe x4 slot connector X9 (Slot 0). This slot, which is routed to the module’s PCIe lanes 0–3,
+        shares:
+        • PCIe lane 1 with connector X10 (Slot 1)
+        • PCIe lane 2 with connector X7 (Slot 2)
+        • PCIe lane 3 with connector X8 (Slot 3)
+        PCIe Slot 0 supports one PCIe lane (x1 link) by default. For x2 or x4 link, set DIP SW1 as described in the table below:
+
+        Table 15   SW1 - PCIe x4 Slot Configuration
+
+        SW1        SW2           Description                                                                       X9                    SW1
+        OFF        OFF           x1 PCIe link (default)                                                                                      2
+
+
+
+
+                                                                                                                                        0N
+        OFF        ON            x2 PCIe link                                                                                                1
+        ON         ON            x4 PCIe link
+
+        Note
+
+        You must also configure the PCIe link on the module.
+        Connector Type
+
+        X9: PCIe card
+
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                   26/56
+4.5.3   PCIe x1 Slot
+        The conga-TEVAL/COMe 3.0 provides five standard PCIe x1 slots. The table below shows how the signals are routed to the connectors:
+
+        Table 16    PCIe x1 Lane Routing
+
+        Slot Number            PCIe Lane            Connector
+                                                                                                                   X7, X8, X10, X14, X19
+        Slot 1                 PCIe 1               X10
+        Slot 2                 PCIe 2               X7
+        Slot 3                 PCIe 3               X8
+        Slot 5                 PCIe 5               X14
+        Slot 7                 PCIe 7               X19
+
+        Connector Type
+
+        X7-X10; X14; X19: PCIe x1 card
+
+
+4.5.4   Mini PCIe Socket
+        The conga-TEVAL/COMe 3.0 provides a standard mini PCIe socket connector X16. This socket is routed to the module’s PCIe lane 6 and USB
+        port 5. The LEDs D6–D8 indicate activity of the card attached to the socket.
+
+        The UIM interface of the mini PCIe socket is connected to a micro-SIM card slot (X15).
+                                                                                                            X16             D6   D7    D8
+        Table 17    D6-D8 - mini PCIe LEDs Description
+
+        LED      Description
+        D6       Wireless Wide Area Network
+        D7       Wireless Local Area Network                                                                               X15
+        D8       Wireless Personal Area Network
+
+        Connector Type
+
+        X16: mPCIe card
+
+        X15: Micro SIM card
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                               27/56
+4.5.5   M.2
+        The conga-TEVAL/COMe 3.0 provides a standard M.2 Key B slot connector X12. The slot is routed to the module’s PCIe lanes 4 and 5, and USB
+        port 4. It supports WWAN and Intel Optane memory devices. LED D3 lights when there is activity on the M.2 port.
+
+        The M.2 connector shares PCIe lane 5 with PCIe Slot 5 (X1). To use the M.2 connector, you must set DIP SW2.1 to ON. For additional M.2
+        configurations, see tables 19 “SW3 - M.2 Configuration” and 20 “SW4 - M.2/mini PCIe Configuration” below.
+
+        The UIM interface of the M.2 socket is connected to a micro-SIM card slot (X13).
+
+        Table 18   SW2.1 - PCIe Lane 5 Configuration
+                                                                                                                   SW2                  X13
+        Setting    Description
+                                                                                                                       2
+
+
+
+
+                                                                                                                  0N
+        OFF        Routes PCIe lane 5 to connector X1 - PCIe slot 5 (default)
+                                                                                                                       1
+        ON         Routes PCIe lane 5 to M.2 connector
+
+
+
+
+        Table 19   SW3 - M.2 Configuration
+
+        Switch     Configuration Description                                                                           SW3         D3
+
+
+
+
+                                                                                                                       O
+                                                                                                                       N
+        SW3.1      OFF                Disconnect M.2 SMB_ALERT# (default)
+
+
+
+
+                                                                                                                       1
+                                                                                                                       2
+                                                                                                                       3
+                                                                                                                       4
+                   ON                 Connect M.2 SMB_ALERT#
+        SW3.2      OFF                Disconnect WOWWAN# (default)
+                   ON                 Connect WOWWAN#
+        SW3.3      OFF                Connect M.2 SMB_DAT/CLK (default)                                                 X12
+                   ON                 Disconnect M.2 SMB_DAT/CLK
+        SW3.4      OFF                Deactive M.2 full card power-off control
+                   ON                 Activate M.2 full card power-off control
+
+
+
+
+        Table 20   SW4 - M.2/mini PCIe Configuration
+
+        Switch     Configuration Description                                                                                 SW4
+
+
+
+
+                                                                                                                           O
+                                                                                                                           N
+        SW4.1      OFF                Enable mPCIe wireless (default)
+
+
+
+
+                                                                                                                             1
+                                                                                                                             2
+                                                                                                                             3
+                                                                                                                             4
+                   ON                 Disable mPCIe wireless
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                28/56
+      SW4.2      OFF               Deactivate M.2 reset control (default)
+                 ON                Activate M.2 reset control
+      SW4.3      OFF               Deactivate M.2 WDIS2# control - wireless 2 (default)
+                 ON                Activate M.2 WDIS2# control
+      SW4.4      OFF               Deactivate M.2 WDIS1# control - wireless 1 (default)
+                 ON                Activate M.2 WDIS1# control
+
+      Connector Type
+
+      X12: M.2 Key B card size 3042, 2242, 2260, 2280
+
+      X13: Micro SIM card
+
+
+4.6   SD Card Slot
+      The conga-TEVAL/COMe 3.0 features a full-size SD card slot connector X28. The slot is routed to the module’s SDIO interface, which is
+      multiplexed with GPIO. The conga-TEVAL/COMe 3.0 demultiplexes the shared signals, and routes the demultiplexed signals to either the SD
+      card slot (SDIO mode) or the feature connector (GPIO mode).
+
+      Use DIP SW5.2 to select SDIO or GPIO mode.
+                                                                                                             SW5          X28
+      Table 21   SW 5.2 - GPIO/SDIO Connection
+                                                                                                                2
+
+
+
+
+                                                                                                           0N
+                                                                                                                1
+      Setting          Description
+      OFF              GPIO mode (default)
+      ON               SDIO mode
+
+      Connector Type
+
+      X28: SD Card
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                             29/56
+4.7     Display Interfaces
+        The conga-TEVAL/COMe 3.0 provides the following display interfaces:
+
+
+4.7.1   VGA
+        The conga-TEVAL/COMe 3.0 provides a VGA interface on standard 15-pin DSUB connector X45.                               X45
+        Connector Type                                                                                                     5         1
+
+
+
+
+        X45: 15-pin, high density DSUB male                                                                               15         11
+
+
+
+
+4.7.2   DP++
+        The conga-TEVAL/COMe 3.0 provides three DP++ interfaces on connectors X35, X36 and X37. The DP++ ports on connector X35 (port 0) and
+        connector X37 (port 3) are routed through a DisplayPort re-driver to support HBR3 data rate (up to 8.1 Gbps).
+
+        You can connect a DP++ to HDMI dongle to the DP++ connectors if your module supports it.                       X35, X36, X37
+        Connector Type
+
+        X35, X36, X37: Standard DP cable
+
+4.7.3   LVDS/eDP
+        The conga-TEVAL/COMe 3.0 connects the module’s LVDS/eDP interface to:
+        • eDP panel on connector X39
+        • LVDS panel on connector X38
+        Use DIP SW8.1 to select the option for eDP or LVDS panel.
+
+        Table 22   SW8.1 - eDP/LVDS Selection
+                                                                                                                                SW8
+        Setting    Configuration                                                                                                          2
+
+
+
+
+                                                                                                                               0N
+        ON         eDP selection                                                                                                          1
+        OFF        LVDS selection (default)
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                30/56
+4.7.3.1   eDP
+
+          For eDP functionality on connector X39, set DIP SW8.1 to ON.
+
+          Table 23     X39 - eDP Pinout Description
+
+          Pin   Signal                      Pin       Signal                      SW8
+          1     N.C.                        21        PANEL_PWR            X39        2
+
+
+
+
+                                                                                 0N
+          2     GND                         22        N.C.                            1
+          3     eDP_TX3-                    23        GND
+          4     eDP_TX3+                    24        GND
+          5     GND                         25        GND
+          6     eDP_TX2-                    26        GND
+          7     eDP_TX2+                    27        eDP_HPD
+          8     GND                         28        GND
+          9     eDP_TX1-                    29        GND
+          10    eDP_TX1+                    30        GND
+          11    GND                         31        GND
+          12    eDP_TX0-                    32        eDP_LVDS_BKLT_EN
+          13    eDP_TX0+                    33        eDP_LVDS_BKLT_CTRL
+          14    GND                         34        N.C.
+          15    eDP]_AUX+                   35        N.C.
+          16    eDP_AUX-                    36        N.C
+          17    GND                         37        BKLT_PWR
+          18    PANEL_PWR                   38        BKLT_PWR
+          19    PANEL_PWR                   39        BKLT_PWR
+          20    PANEL_PWR                   40        N.C.
+
+          Connector Type
+
+          X39: 0.5 mm , 40 Pos. ACES series 50204 connector
+
+
+
+
+          Copyright © 2018 congatec GmbH 							TEVA2m16 							                          31/56
+4.7.3.2   LVDS
+
+          For LVDS functionality on connector X38, set DIP SW8.1 to OFF.
+
+          Table 24     X38 - LVDS Pinout Description
+
+          Pin Signal                     Pin Signal
+          1      LVDS_DDC_DAT            2    LVDS LVDS_DDC_CLK 0_D3+
+          3      N.C                     4    N.C
+          5      GND                     6    LVDS0_D0-
+          7      LVDS0_D0+               8    LCD0_VDD_EN                  X38    SW8
+          9      LVDS0_D1-               10   LVDS0_D1+                               2
+
+
+
+
+                                                                                 0N
+          11     LCD0_BKLTEN             12   LVDS0_D2+                               1
+          13     LVDS0_D2-               14   NC
+          15     LVDS0_CLK-              16   LVDS0_CLK+
+          17     NC                      18   LVDS0_D3+
+          19     LVDS0_D3-               20   GND
+          21     LVDS1_D0-               22   LVDS1_D0+
+          23     GND                     24   LVDS1_D1-
+          25     LVDS1_D1+               26   GND
+          27     LVDS1_D2-               28   LVDS1_D2+
+          29     GND                     30   LVDS1_CLK+
+          31     LVDS1_CLK               32   NC
+          33     LVDS1_D3+               34   LVDS1_D3-
+
+          Connector Type
+
+          X38: 2 mm, 2 x 17-pin socket
+
+
+
+
+          Copyright © 2018 congatec GmbH 							TEVA2m16 							                          32/56
+4.7.3.3   LVDS Panel and Backlight Power Supply
+
+          The power supply for LVDS panels and backlight inverter is available on connector X40.
+
+          Table 25    X40 - LVDS Power Pinout Description
+
+          Pin   Signal                           Pin Signal
+          1     VDD_LCD (2.0 A fuse)             2    VDD_BKLT (1.5 A fuse)                                                              X40
+          3     +5V (2.0 A fuse)                 4    +12V (1.5 A fuse)                                                      2   4        6       8       10
+          5     LCD_VDD_EN                       6    LCD_BKLT_EN                                                            1   3        5       7       9
+          7     N.C                              8    LCD_BKLT_PWM
+          9     GND                              10   GND
+
+          Connector Type
+
+          X40: 2.54 mm, 2 x 5-pin female connector
+
+4.7.3.4   Flat Panel and Backlight Voltage Selection
+
+          The conga-TEVAL/COMe 3.0 supports different voltages for the panel and backlight. Follow the descriptions in the tables below to set the
+          panel and backlight voltages, and the polarity of the backlight enable signal.
+
+          Table 26    JP3 - Flat Panel Voltage Selection
+
+          Pin   Configuration                                                                                                            JP3
+          1-2   5 V panel power (default)                                                                                            1        2       3
+
+          2-3   3.3 V panel power
+
+
+
+
+          Table 27    JP4 - Backlight Voltage Selection
+
+          Pin   Configuration                                                                                                            JP4
+          1-2   12 V backlight Power (default)
+                                                                                                                                     1        2       3
+          2-3   5 V backlight Power
+
+
+
+
+          Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                               33/56
+          Table 28   SW8.2 - Backlight Enable Signal Configuration
+                                                                                                                           SW8
+          Setting    Configuration                                                                                             2
+
+
+
+
+                                                                                                                          0N
+          ON         Inverted BKLT_EN signal                                                                                   1
+          OFF        Non-inverted BKLT_EN signal (default)
+
+          Connector Type
+
+          JP3, JP4: 2.54 mm grid jumper
+
+4.7.3.5   Flat Panel and Backlight Power Supply Connection
+
+                                                                                                          X40
+                                                                                               2.0A
+                                  +12V                                                                [4] +12V
+                                                                                               1.5A
+                                   +5V                                                                [3] +5V
+
+                                 +3.3V
+                                                             JP4 1 2 3             JP3 1 2 3
+
+
+
+                                                                         LVDS_VDD_EN
+
+
+
+
+                                                                                               1.5A
+                                    LFP_BKLT_EN_SEL
+                                                       ON
+                                                                                                      [1] VDD_LCD
+
+                                                      1 2
+                                                                                                      [5] LCD0_VDD_EN
+                                                                                               2.0A
+                                                      SW8                                             [2] VDD_BKLT
+                                                                                                      [6] LCD0_BKLT_EN
+                                 LVDS_BKLT_CTRL
+                                                                                                      [8] LCD0_BKLT_PWM
+
+
+
+
+                                                                                                      [9] GND
+                                                                                                      [10] GND
+
+
+          Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                   34/56
+4.7.3.6   Flat Panel Configuration Data
+
+          The flat panel configuration data (EPI extended EDID™ 1.3 file) for most common displays is included in the congatec COM Express™ CPU
+          module’s system BIOS.
+
+          On the conga-TEVAL/COMe 3.0, you can store a customized EPI extended EDID™ 1.3 file in a serial EEPROM located on DIL SOIC8 socket
+          U35. The following EEPROMs are supported at address A0h:
+                                                                                                                            U35
+          • 24C02
+          • 24C04
+          • 24C16
+          Connector Type
+
+          U35: EEPROM in 8-pin DIL package
+
+
+4.8       Universal Serial Bus (USB)
+          The conga-TEVAL/COMe 3.0 provides the following USB connectors:
+          • two dual-stacked USB 3.1 Type-A
+             – USB ports 0 and 1 on connector X29
+             – USB ports 2 and 3 on connector X30
+          • USB Type B (connector X31)
+          • two USB 2.0 Type A ports (connector X32)
+          The COM Express USB signals are routed to the connectors as shown on the next page:
+
+
+
+
+          Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                           35/56
+                                                                 Port 0 (USB 3.1)
+                                                                                           X29 - Dual Stacked
+                                                                Port 1 (USB 3.1)                 USB Type A
+
+                                                                 Port 2 (USB 3.1)
+                                                                                           X30 - Dual Stacked
+                                                                Port 3 (USB 3.1)                 USB Type A
+
+                              COM Express Connector
+                                                                 Port 0 (USB 2.0 Client)
+                                                                                           X31 - USB Type B
+
+
+                                                                 Port 6 (USB 2.0)
+                                                                                           X32 - LAN with Dual
+                                                                Port 7 (USB 2.0)                 USB Type A
+
+
+                                                                 Port 5 (USB 2.0)
+                                                                                           X16 - mini PCIe
+
+                                                                Port 4 (USB 2.0)
+                                                                                           X12 - M.2
+
+
+4.8.1   Dual Stacked USB 3.1 Type-A
+        The conga-TEVAL/COMe 3.0 provides four USB 3.1 ports via two dual-stacked USB Type-A connectors (X29 and X30). Each port provides up to
+        one ampere. The lower slot of connector X29 shares the module’s USB port 0 signals with the USB client port (connector X31).
+
+        Use DIP SW5.1 to route the shared signals to either connector X29 (host port) or connector X31 (client port).
+
+        Table 29   SW5.1 - USB Port 0 Configuration                                                                        X29             X30    SW5
+                                                                                                                                                       2
+        Setting    Configuration
+
+
+
+
+                                                                                                                                                 0N
+                                                                                                                                 USB 3.0
+                                                                                                                 USB 3.0
+                                                                                                                                                       1
+        OFF        USB port 0 to connector X29—host mode (default)
+        ON         USB port 0 to connector X31—client mode                                                       USB 3.0         USB 3.0
+
+
+
+        Note
+
+        Lower slot of connector X29 will not function if you set SW1 to ON (client mode).
+        Connector Type
+
+        X29, X30: USB Type A plug
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                        36/56
+4.8.2   USB Type-B (Client Mode)
+        The conga-TEVAL/COMe 3.0 provides a USB 2.0 Type B connector X31 for USB client mode. Its USB signals are shared with USB port 0 (lower
+        slot of USB connector X29). Use DIP SW5.1 to route the shared signals to connector X31 (client port). For DIP SW5.1 configuration, see table 29
+        “SW 5.1 - USB Port 0 Configuration”.
+                                                             X31                      SW5
+                                                                                          2
+
+
+
+
+                                                                                     0N
+                                                                                          1
+
+
+
+
+        Note
+
+        Connector X31 will not function if:
+
+        1. the module does not support USB client mode
+
+        2. you set SW1 to OFF (host mode).
+        Connector Type
+
+        X31: USB Type B plug
+
+
+4.8.3   Dual Stacked USB 2.0 Type-A
+        The conga-TEVAL/COMe 3.0 provides two USB 2.0 ports via connector X32—a modular RJ45 connector stacked with dual USB 2.0 ports. Each
+        USB port provides up to 500 mA.
+                                                                         X32
+
+
+                                                                         8765432 1
+
+
+
+                                                            USB Port 7
+                                                            USB Port 6
+
+        Connector Type
+
+        X32: USB Type A plug
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                     37/56
+4.9     SATA/SATADOM
+        The conga-TEVAL/COMe 3.0 provides four standard SATA connectors (X20 - X23). SATADOM devices are supported on only connector X20
+        (SATA0). To enable SATADOM on X20, set jumper JP1 to position 2-3. The 5 V power rail on SATA0 pin 7 (SATADOM mode) is protected by
+        0.5A fuse.
+
+        The SATA activity LED (D9) lights when an activity occurs on any of the SATA interfaces. The pin header X26 provides an option to connect
+        external SATA activity LED.
+
+        Table 30   JP1 - SATA/SATADOM Configuration
+
+        Pin   Configuration                                                                                                           JP1                     D9
+        1-2   SATA - pulls SATA0 pin 7 to ground (default)                                                                        1    2     3
+
+        2-3   SATADOM - pulls SATA0 pin 7 to 5V
+
+
+
+
+        Table 31   X26 - External SATA Activity LED
+                                                                         X26
+                                                                                                    X20                X21                   X22                  X23
+        Pin        Signal
+                                                                           1
+        1          Anode                                                                       7 6 5 4 3 2 1      7 6 5 4 3 2 1             7 6 5 4 3 2 1         7 6 5 4 3 2 1
+
+
+
+        2          Cathode                                                                  SATA0                                      SATA2
+                                                                           2                                   SATA1                                          SATA3
+
+        Connector Type
+
+        X26: 2.54 mm, 1 x 2-pin socket
+
+
+4.9.1   Disk Drive Power Connector
+                                                                                                                                                            X25
+        The conga-TEVAL/COMe 3.0 provides connector X25, a 4-pin connector for powering disk drives.
+
+        Caution
+
+
+        Do not connect more than one peripheral device to connector X25. The peripherals may damage if you do so.
+        Connector Type
+
+        X25: 4-pin power connector
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                                           38/56
+4.9.2   SATA Power
+        The conga-TEVAL/COMe 3.0 provides a standard 15-pin SATA power connector (X24) for hard drives. This connector supplies 3.3 V, 5 V and
+        12 V.
+
+        Table 32         X24 - SATA Power Pinout Description
+
+        Pin      Signal         Pin Signal           Pin Signal
+        1        3.3 V          6     GND            11    GND                                                           X24
+        2        3.3 V          7     5V             12    GND
+        3        3.3 V          8     5V             13    12 V                                                          15 14 13 12 11 10 9 8 7 6 5 4 3 2 1
+
+
+        4        GND            9     5V             14    12 V
+        5        GND            10    GND            15    12 V
+
+        Connector Type
+
+        X24: 15-pin standard SATA power connector
+
+
+4.10    Gigabit Ethernet (GbE)
+        The conga-TEVAL/COMe 3.0 provides a gigabit Ethernet port on a standard RJ45 connector (X32). Use jumper JP2 to set the power rail for the
+        status LEDs on connector X32.
+
+        Table 33         GbE (X32) Status LEDs
+                                                                                                                                           X32
+        Color                  Description
+        Yellow                 Link activity
+        Orange                 100 Mb link
+                                                                                                                                           8765432 1
+
+
+
+                                                                                                                        USB Port 7
+        Green                  1000 Mbit link
+                                                                                                                        USB Port 6
+
+
+
+
+        Table 34         JP2 - Ethernet LEDs Power Configuration
+
+        Pin      Configuration                                                                                                             JP2
+        1-2      Status LEDs are powered by standby voltage (default)                                                                  1     2         3
+
+        2-3      Status LEDs are powered by runtime voltage
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                                 39/56
+       Table 35    X33 - Ethernet SDP
+                                                                                                                                      X33
+       Pin    Configuration
+                                                                                                                                  1         2
+       1      SDP signal
+       2      Ground
+
+       Connector Type
+
+       X16: 2.54 mm grid jumper
+       X32: RJ45 cable plug
+       X33: 2-pin picoBlade 1.25 mm pitch receptacle
+
+
+4.11   Audio Interfaces
+       The conga-TEVAL/COMe 3.0 features:
+
+       1. a multi-channel low power HD audio codec (Cirrus CS4207). The codec supports:
+           – MIC-In signals on connector X47 (lower jack)
+           – Line-Out signals on connector X47 (upper jack)
+           – Optical S/PDIF output signal on connector X48
+       2. an HDA adapter/debug header on connector X49
+       Note
+
+       1. To disable the onboard codec, set DIP SW 9.2 to ON. See section 4.11.4 “HDA Adapter/Debug Header” for DIP SW 9.2 configuration.
+
+       2. The Windows driver for the codec can be found on the congatec website at www.congatec.com in the ‘Products’ section under ‘Accessories.
+
+
+
+
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                   40/56
+4.11.1   MIC-In
+         Table 36    MIC-In (X47) Pinout Description                                        X47    Jack (MIC-IN)
+
+                                                                                                  Tip
+         Pin Jack        Signal       Description                                                 Ring
+         1    Tip        MIC_L        Microphone - left channel                  LINE-OUT
+                                                                                                  Sleeve
+         2    Ring       MIC_R        Microphone - right channel
+         3    Sleeve     A_GND        Analog ground                                MIC-IN
+
+
+
+
+         Connector Type
+
+         X47 Lower Jack: 3-pin, 3.5 mm single audio jack
+
+
+4.11.2   Line-Out
+         Table 37    Line-Out (X47) Pinout Description                                      X47     Jack (Line-IN)
+
+                                                                                                   Tip
+         Pin Jack        Signal       Description
+                                                                                                   Ring
+         1    Tip        LINE_L       Line-OUT - left channel
+                                                                                 LINE-OUT          Sleeve
+         2    Ring       LINE_R       Line-OUT - right channel
+         3    Sleeve     A_GND        Analog ground                                MIC-IN
+
+
+
+         Connector Type
+
+         X47 Upper Jack: 3-pin, 3.5 mm single audio jack
+
+
+4.11.3   Optical S/PDIF-Out
+                                                                                                          X48
+         The conga-TEVAL/COMe 3.0 provides S/PDIF-OUT signal on connector X48.
+         Connector Type
+
+         X48: TOSLINK Optical cable
+
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                 41/56
+4.11.4   HDA Adapter/Debug Header
+         The HDA adapter X49 makes it possible to connect other HDA solutions to the conga-TEVAL/COMe 3.0. Use DIP SW9.2 to disable the onboard
+         HDA codec.
+
+         Table 38     SW9.2 - HDA Codec Configuration
+                                                                                                                                                   SW9
+         Setting      Configuration
+                                                                                                                                                        2
+         OFF          Enable audio codec (default)
+
+
+
+
+                                                                                                                                                  0N
+                                                                                                                                                        1
+         ON           Disable audio codec
+
+
+
+
+         Table 39     X49 - HDA Adapter Pinout Description
+
+         Pin Signal            Description                                Pin Signal          Description
+         1     +12V            12 V DC power supply with 750 mA fuse      2    +3.3V          3.3 V DC power suppy with 750 mA fuse
+         3     HDA_SYNC        48kHz fixed-rate, sample-synchronization   4    HDA_RST#       Reset output to CODEC, active low                        X49
+                               signal to the CODEC(s)
+         5     HDA_SDIN        Serial TDM data inputs from CODEC          6    HDA_BITCLK     Up to 24 MHz serial data clock generated by the
+
+
+
+
+                                                                                                                                                       10
+
+                                                                                                                                                            9
+                                                                                              chipset.
+
+
+
+
+                                                                                                                                                       8
+
+                                                                                                                                                            7
+         7     HDA_SDOUT       Serial TDM data output to the CODEC        8    CODECSET       Onboard codec disable input. Pull high to disable
+
+
+
+
+                                                                                                                                                       6
+
+                                                                                                                                                            5
+                                                                               (Input 3.3V)   onboard audio codec
+
+
+
+
+                                                                                                                                                       4
+
+                                                                                                                                                            3
+         9     GND             Power Ground                               10   GND            Power Ground
+
+
+
+
+                                                                                                                                                       2
+
+                                                                                                                                                            1
+         Connector Type
+
+         X49: 2x 5-pin, 2.54 mm grid female
+
+
+4.12     SM Bus
+         The SM Bus signals are available on the feature connector X56 described in section 4.23 “Feature Connector”. The SM Bus on the module is
+         powered by the standby power rail. To avoid current leakage, the conga-TEVAL/COMe 3.0 features a FET switch that isolates the SMB devices
+         that are powered by the main power rail.
+
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                                 42/56
+4.13   I2C Bus
+       The I²C signals are available in different locations on the conga-TEVAL/COMe 3.0, including on the feature connector X56 described in section
+       4.23. The conga-TEVAL/COMe 3.0 includes socket U50 for attaching an I²C EEPROM for test purposes during the system development.
+
+       The 8-pin DIL socket supports various 2-wire 3.3 V serial EEPROMS such as 24C04, 24C08 and 24C16. Use the I²C control commands implemented
+       in the congatec CGOS API driver to access the EEPROMs. For more information, refer to the CGOS manual and the user’s guide of the COM
+       Express module.
+                                                                                                                                         U50
+       Connector Type
+
+       U50: EEPROM in 8-pin DIL package
+
+
+4.14   SPI Bus
+       The conga-TEVAL/COMe 3.0 provides an 8-pin SOIC8 socket (U48) for an SPI flash. Use DIP SW14 to select the flash device to boot from.
+
+       Table 40   SW14 - BIOS Boot Device Selection
+                                                                                                              U48                    SW14
+       SW1        SW2         Configuration
+                                                                                                                                          2
+       OFF        OFF         Boot from on-module firmware (default)
+
+
+
+
+                                                                                                                                    0N
+                                                                                                                                          1
+       OFF        ON          Boot from carrier board SPI Flash
+       ON         OFF         Not supported
+       ON         ON          Boot from on-module firmware, but load management data from carrier SPI
+
+       Connector Type
+
+       U48: SPI flash in 8-pin 200 mil SOIC8 package
+
+
+
+
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                   43/56
+4.15   LPC/eSPI
+       On the conga-TEVAL/COMe 3.0, the module’s LPC/eSPI interface is routed to:
+       • LPC/TPM header (connector X51)
+       • LPC/eSPI Super I/O controller
+       The Super I/O controller provides the following interfaces:
+       • Serial ports (connector X52 and X53)
+       • 3-pin System fan (jumper JP6)
+       Use DIP SW10.1 to enable or disable the Super I/O functionality and DIP SW10.2 to choose the communication mode (LPC or eSPI).
+
+       Table 41   SW10.1 - Super I/O Control
+
+       Setting     Description
+       ON          Enable Super I/O (default)                                                                                    SW10
+       OFF         Disable Super I/O                                                                                                2
+
+
+
+
+                                                                                                                               0N
+                                                                                                                                    1
+
+
+       Table 42   SW10.2 - LPC/eSPI Mode Control
+
+       Setting    Description
+       ON         Select eSPI mode
+       OFF        Select LPC mode (default)
+
+       Note
+
+       1. These interfaces will not function if the COM Express module does not support them.
+
+       2. DIP SW10.2 controls the eSPI_ENA# signal which the conga-TEVAL/COMe 3.0 uses to set the operating mode of the LPC/eSPI bus.
+
+       3. The eSPI mode is currently not supported by default.
+
+       Caution
+
+
+       Do not set DIP SW10.2 to ON if your module does not support eSPI mode.
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                           44/56
+       Table 43    SW11 - Super IO Configuration
+
+       Switch      Configuration Description
+       SW11.1      OFF             Configuration IO address 2Eh (default)
+                   ON              Configuration IO address 4Eh                                                                  SW11
+
+
+
+
+                                                                                                                                  O
+                                                                                                                                  N
+       SW11.2      OFF             Super IO key selection 87h (default)
+
+
+
+
+                                                                                                                                     1
+                                                                                                                                     2
+                                                                                                                                     3
+                                                                                                                                     4
+                   ON              Super IO key selection 88h
+       SW11.3      OFF             Disables Super IO Port 80 control (default)
+                   ON              Enables Super IO Port 80 control
+       SW11.4      OFF             Selects eSPI_CS0# for Super IO in eSPI mode (default)
+                   ON              Selects eSPI_CS1# for Super IO in eSPI mode
+
+
+
+4.16   LPC/TPM Header
+       The LPC/eSPI interface from the module is also routed to connector X51. Connector X51—a 14-pin header—optionally supports TPM modules
+       that are compliant with the LPC specification (BOM option).
+
+       Use DIP SW10.2 to select LPC or eSPI mode. For description of the DIP SW10.2 settings, see table 42 “SW10.2 -LPC/eSPI Mode Control”.
+
+       Table 44    X51 - LPC/TPM Pinout Description
+
+       Pin   Signals                      Pin    Signals                                                          X51            SW10
+                                                                                                                  1     2
+       1     GND                          2      LPC_FRAME#/ESPI_CS0#                                             3     4
+                                                                                                                                      2
+
+
+
+
+                                                                                                                                0N
+       3     LPC_CLK/ESPI_CLK             4      LPC_AD3/ESPI_IO3                                               Key     6
+                                                                                                                                      1
+                                                                                                                  7     8
+
+       5     KEY                          6      LPC_AD2/ESPI_IO2                                                 9     10
+                                                                                                                 11     12
+       7     PLT_RST#                     8      LPC_AD1/ESPI_IO1                                                13     14
+
+       9     VCC3V3                       10     LPC_AD0/ESPI_IO0
+       11    SUS_STAT#/ESPI_RST#          12     LPC_SERIRQ/ESPI_CS1#
+       13    VCC3V3_SBY                   14     LPC_DRQ0#/ESPI_ALERT0#
+
+       Connector Type
+
+       X51: 2.54 mm, 2 x 7-pin socket
+
+
+
+
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                 45/56
+4.17     Serial Ports (COM Ports)
+         The conga-TEVAL/COMe 3.0 supports up to four serial ports:
+         • COM port 0 on connector X53
+         • COM port 1 on connector X52
+         • Module serial port 0 (SER0) on feature connector X56
+         • Module serial port 1 (SER1) on feature connector X56
+
+
+4.17.1   COM Port 0 Header
+         The conga-TEVAL/COMe 3.0 provides COM port 0 on connector X53 via the onboard Super I/O. The port supports RS 232, RS 422 and RS 485
+         I/O voltage levels. Use DIP SW12 and SW13 to configure the functionality of COM Port 0 transceiver.
+
+         Table 45      X53 - COM 0 Pinout Description
+
+         Pin    Signals       Pin   Signals                                                                                X53
+         1      DCD#          2     DSR
+
+
+
+
+                                                                                                                           1
+
+                                                                                                                               2
+                                                                                                                           3
+
+                                                                                                                               4
+         3      RXD           4     RTS#
+
+
+
+
+                                                                                                                           5
+
+                                                                                                                               6
+         5      TXD           6     CTS#
+
+
+
+
+                                                                                                                           7
+
+                                                                                                                               8
+         7      DTR#          8     RI#
+
+
+
+
+                                                                                                                               10
+                                                                                                                           9
+         9      GND           10    +5V (750mA fuse)
+
+
+
+
+         Table 46      SW12 - COM Port 0 Transceiver Configuration
+                                                                                                                        SW12
+         SW 1          SW 2         Configuration
+                                                                                                                               2
+         OFF           OFF          Loopback
+
+
+
+
+                                                                                                                      0N
+                                                                                                                               1
+         ON            OFF          RS-232
+         OFF           ON           RS-485 half duplex
+         ON            ON           RS-485/RS-422 full duplex
+
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                          46/56
+         Table 47     SW13 - COM Port 0 Slew Rate/Termination
+
+         Switch      Configuration Description
+                                                                                                                           SW13
+         SW13.1      OFF             1 Mbps Slew rate
+                     ON              250 kbps Slew rate (for EMI)                                                                 2
+
+
+
+
+                                                                                                                         0N
+         SW13.2      OFF             Disable RS-485/422 termination                                                               1
+
+                     ON              Enable RS-485/422 termination
+
+         Connector Type
+
+         X53: 2 x 5-pin, 2.54mm grid female
+
+
+4.17.2   COM Port 1 Header
+         The conga-TEVAL/COMe 3.0 provides COM port 1 on connector X52 via the onboard Super I/O. The port supports only RS 232 I/O voltage
+         levels.
+
+         Table 48     X52 - COM 1 Pinout Description
+                                                                                                                              X52
+         Pin   Signals         Pin   Signals
+
+
+
+
+                                                                                                                              1
+
+                                                                                                                                  2
+         1     DCD#            2     DSR
+
+
+
+
+                                                                                                                              3
+
+                                                                                                                                  4
+         3     RXD             4     RTS#
+
+
+
+
+                                                                                                                              5
+
+                                                                                                                                  6
+         5     TXD             6     CTS#
+
+
+
+
+                                                                                                                              7
+
+                                                                                                                                  8
+         7     DTR#            8     RI#
+
+
+
+
+                                                                                                                                  10
+                                                                                                                              9
+         9     GND             10    +5V (750 mA fuse)
+
+         Connector Type
+
+         X52: 2 x 5-pin, 2.54 mm grid female
+
+
+4.17.3   Module Serial Port 0
+         The module’s serial port 0 (SER0) is connected to pins 41 and 43 of the feature connector on the conga-TEVAL/COMe 3.0. For the feature
+         connector pinout description, see section 4.23 “Feature Connector”.
+
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                            47/56
+4.17.4   Module Serial Port 1/CAN Bus
+         The module’s serial port 1 (SER1)/CAN bus is routed to one of the following connectors:
+         • pins 42 and 44 of the feature connector X56
+         • CAN bus connector X59, via a CAN transceiver
+         Use DIP SW2.2 to route the module’s serial port 1 to the feature connector or to the CAN connector. Use jumper JP7 to enable the 120 ohm
+         CAN bus termination or the CAN bus filter or both.
+
+         Table 49     SW2.2 - SER1/CAN Selection
+                                                                                                                                 X59
+         Setting       Description
+         OFF           Module’s SER1 to feature connector X56 (default)
+         ON            Module’s SER1 to CAN connector X59
+
+
+
+
+         Table 50     JP7 - CAN Bus Termination/Filter
+                                                                                                                                 JP7
+         Pin       Description                                                                                               1         2
+
+         1-2       Enable 120 ohm CAN bus termination
+                                                                                                                             3         4
+         2-3       Enable CAN bus filter
+
+         Note
+
+         Pins 42 and 44 of the feature connector alternatively supports CAN_TX and CAN_RX signals.
+
+
+4.18     System Fan Header
+         The conga-TEVAL/COMe 3.0 provides a 3-pin fan connector X55 via the Super I/O controller. Use jumper:
+         • JP5 to set the fan’s supply voltage level
+         • JP6 to select the fan’s control source
+
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                              48/56
+Table 51       X55 - SYS Fan Pinout
+                                                                                             X55
+Pin Signal
+                                                                                                     1
+1      GND
+                                                                                                     2
+2      +VDD (12V/5V)
+                                                                                                     3
+3      Sense
+
+
+
+
+Table 52       JP5 - Fan Voltage Selection
+
+Pin      Description
+                                                                                         JP5
+1-2      12 V supply voltage for auxiliary fan (default)
+2-3      5 V supply voltage for auxiliary fan                                            1       2       3
+
+
+
+
+Table 53       JP6 - Fan Speed Control
+
+Pin      Description                                                                         JP6
+1-2      Fan speed control via Super I/O located on the conga-TEVAL/COMe 3.0 (default)
+                                                                                             1       2       3
+2-3      Fan speed control via the COM Express module
+Open     Full fan speed if the pins are left open
+
+Connector Type
+
+X55: Standard 2.54 mm, 3-pin fan housing
+
+JP5, JP6: 2.54 mm grid jumper
+
+
+
+
+Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                           49/56
+4.19   CPU Fan Header
+       The conga-TEVAL/COMe 3.0 provides a 4-pin fan connector X60. Set the fan’s supply voltage level with jumper JP10.
+
+       Table 54      X60 - CPU Fan
+                                                                                                                                 X60
+       Pin Signal
+                                                                                                                                     1
+       1     GND
+                                                                                                                                     2
+       2     +VDD (12V/5V)
+                                                                                                                                     3
+       3     Sense                                                                                                                   4
+       4     Control
+
+
+
+
+       Table 55      JP10 - CPU Fan Voltage Selection
+
+       Pin     Configuration
+                                                                                                                            JP10
+       1-2     12 V supply voltage (default)
+                                                                                                                            1    2   3
+       2-3     5 V supply voltage
+
+       Connector Type
+
+       X60: Standard 2.54 mm, 4-pin fan housing
+
+       JP10: 2.54 mm grid jumper
+
+
+4.20   Smart Battery Management Header
+       The conga-TEVAL/COMe 3.0 provides connector X61 for attaching smart battery module kits.
+
+       Table 56      X61 - SBM Pinout                                                                                      X61
+       Pin         Signal
+       1           SUS_S5#
+       2           SUS_S3#
+       3           SUS_STAT#
+       4           I2C_DAT
+
+
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                            50/56
+       5          I2C_CLK
+       6          BATLOW#
+       7          PWRBTN#
+       8          SYS_RST#
+       9          PWR_OK
+       10         GND
+
+       Connector Type
+
+       X61: 10-pin, 1.25 mm pitch picoBlade receptacle
+
+
+4.21   Debug Pin Header
+       The conga-TEVAL/COMe 3.0 provides pin header X57 for measuring or debugging PCIE_WAKE# and CB_RESET# signals.
+
+       Table 57   X57 - Debug Pin Header
+                                                                                                                           X57
+       Pin    Signal
+       1      CB_RESET#                                                                                                1         2
+
+       2      RAPID_SHUTDOWN                                                                                                     4
+                                                                                                                       3
+       3      PCIE_WAKE
+       4      GND
+
+       Connector Type
+
+       X57: 4-pin header
+
+
+4.22   Internal Use Only
+       The pin header X62 and DIP SW20 are for congatec internal use only.
+
+
+
+
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                        51/56
+4.23   Feature Connector
+       Table 58    X56 - Feature Connector Pinout Description
+
+       Pin Signal          Description                                 Pin   Signal         Description
+       1    +5V            5V supply with 750 mA fuse                  2     5V_SB          5V standby supply with 750 mA fuse                                       X56
+       3    SATA_LED_A SATA activity led (anode)                       4     SATA_LED       SATA activity led (cathode)
+
+
+
+
+                                                                                                                                                                          43
+                                                                                                                                                                     44
+       5    I2C_DAT        General purpose I²C port data I/O line.     6     SMB_CK         System Management Bus bidirectional clock line.
+
+
+
+
+                                                                                                                                                                     42
+
+                                                                                                                                                                          41
+       7    I2C_CK         General purpose I²C port clock output.      8     SMB_DAT        System Management Bus bidirectional data line.
+
+
+
+
+                                                                                                                                                                     40
+
+                                                                                                                                                                          39
+       9    Internal use                                               10    GPO0           General Purpose Output 0
+
+
+
+
+                                                                                                                                                                     38
+
+                                                                                                                                                                          37
+       11   Internal use                                               12    GPO1           General Purpose Output 1
+
+
+
+
+                                                                                                                                                                     36
+
+                                                                                                                                                                          35
+       13   PS_ON#         Power supply on (active low).               14    GPO2           General Purpose Output 2
+
+
+
+
+                                                                                                                                                                     34
+
+                                                                                                                                                                          33
+       15   SUS_S3#        Suspend to RAM state. Active low output.    16    GPO3           General Purpose Output 3
+
+
+
+
+                                                                                                                                                                     32
+
+                                                                                                                                                                          31
+       17   GND            Power ground                                18    GND            Power Ground
+
+
+
+
+                                                                                                                                                                     30
+
+                                                                                                                                                                          29
+       19   THRMTRIP#      Active low output indicating that the CPU   20    SMB_ALERT#     System Management Bus Alert . It can be used to wake the system or
+
+
+
+
+                                                                                                                                                                     28
+
+                                                                                                                                                                          27
+                           has entered thermal shutdown.                                    generate an SMI# (System Management Interrupt)
+
+
+
+
+                                                                                                                                                                     26
+
+                                                                                                                                                                          25
+       21   GPI1           General Purpose Input 1                     22    SUS_S4#        Suspend to Disk state. Active low output.
+
+
+
+
+                                                                                                                                                                     24
+
+                                                                                                                                                                          23
+       23   SUS_STAT#      Indicates imminent suspend operation;       24    GPI0           General Purpose Input 0
+
+
+
+
+                                                                                                                                                                     22
+
+                                                                                                                                                                          21
+                           used to notify LPC devices.
+
+
+
+
+                                                                                                                                                                     20
+
+                                                                                                                                                                          19
+       25   GPI2           General Purpose Input 2                     26    SUS_S5#        Indicates systems is in soft off state.
+
+
+
+
+                                                                                                                                                                     18
+
+                                                                                                                                                                          17
+       27   WDT            Watchdog Trigger                            28    THRM#          Input from off-module temp sensor indicating an over-temp situation.
+
+
+
+
+                                                                                                                                                                     16
+
+                                                                                                                                                                          15
+       29   GPI3           General Purpose Input 3                     30    LID#           Module input signal, generation a LID close or open event
+
+
+
+
+                                                                                                                                                                     14
+
+                                                                                                                                                                          13
+       31   BATLOW#        Indicates that external battery is low.     32    WAKE1#         General purpose wake up signal. May be used to implement wake-up
+
+
+
+
+                                                                                                                                                                     12
+
+                                                                                                                                                                          11
+                                                                                            on PS2 keyboard or mouse activity.
+
+
+
+
+                                                                                                                                                                     10
+
+                                                                                                                                                                          9
+       33   TPM_PP         TPM Physical presence pin                   34    PEG_LANE_RV#   PCI Express Graphics lane reversal input strap.
+
+
+
+
+                                                                                                                                                                     8
+
+                                                                                                                                                                          7
+       35   SLEEP#         Sleep signal, to bring system to a          36    SYS_RESET#     Reset Button Input. Active low input. System is held in hardware reset
+
+
+
+
+                                                                                                                                                                          5
+                           predefined sleep state                                           while this input is low
+
+
+
+
+                                                                                                                                                                     6
+                                                                                                                                                                     4
+
+                                                                                                                                                                          3
+       37   GND            Power ground                                38    GND            Power ground
+
+
+
+
+                                                                                                                                                                     2
+
+                                                                                                                                                                          1
+       39   PWRBTN#        Power button to bring system out of S5      40    PWR_OK         Power OK from main power supply. A high value indicates that the
+                           (soft off), active on rising edge.                               power is good.
+       41   SER0_TX        COM module’s serial port 0 transmit line    42    SER1_TX        COM module’s serial port 1 transmit line
+       43   SER0_RX        COM module’s serial port 0 receive line     44    SER1_RX        COM module’s serial port 1 receive line
+
+       Connector Type
+
+       X56: 44-pin, 2 row 2.54 mm grid female
+
+
+       Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                                        52/56
+5       Additional Features
+5.1     Buttons
+        The conga-TEVAL/COMe 3.0 features the power, reset, LID and sleep buttons.
+
+
+5.1.1   Power
+        When you press the power button SW16, it triggers the module’s PWRBTN# signal. The triggered event usually initiates a transition from one
+        power state to another (for example, from S5 to S0). However, the system’s behavior depends on the ACPI settings of the Operating System.
+                                                                               SW16
+
+
+
+
+5.1.2   Reset
+        When you press the reset button SW16, it triggers the module’s SYS_RESET# signal. The triggered event usually invokes a system warm reset.
+        This behavior however depends on the configuration of the module.
+                                                                              SW17
+
+
+
+
+5.1.3   LID
+        When you press the lid button SW18, it triggers the module’s LID# signal. The system’s behavior depends on the ACPI settings of the Operating
+        System.
+
+
+                                                                               SW18
+
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                   53/56
+5.1.4   Sleep
+        When you press the sleep button SW19, it triggers the module’s SLEEP# signal. The system’s behavior depends on the ACPI settings of the
+        Operating System.
+                                                                   SW19
+
+
+
+
+5.2     Beeper
+        The beeper M25 provides audible error code (beep code) information during POST. The beeper is connected to pin B32 (SPKR signal) on the
+        COM Express™ module.
+
+        Use DIP SW9.1 to enable or disable the beeper.
+
+        Table 59   SW9.1 - Beeper Control                                                                           SW9          M25
+                                                                                                                       2
+
+
+
+
+                                                                                                                  0N
+        Setting          Description                                                                                   1
+        ON               Enable beeper (default)
+        OFF              Disable beeper
+
+
+
+5.3     Ground Test Points
+        The conga-TEVAL/COMe 3.0 provides 4 test points (M1-M4). These test points are connected to ground and they make it easier to connect
+        oscilloscope probes or multimeter lines or both to ground during measurements.
+
+
+                                                                     M1-M4
+
+
+
+
+        Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                             54/56
+5.4   Debug Display
+      The conga-TEVAL/COMe 3.0 provides four 14-segment displays (D53-D56) for post code or debug information. Use the tables below to
+      configure the post code decoding process.
+
+      A list of the BIOS POST codes and associated POST test and initialization routines for congatec COM Express™ modules is available at
+      www.congatec.com.
+
+      Table 60   SW22 - POST Code Decoder
+
+      SW 1       SW 2      Configuration                                                                      D53   D54    D55   D56
+      OFF        OFF       Off
+      ON         OFF       LPC
+      OFF        ON        I2C
+      ON         ON        SMB
+
+      Note
+
+      The current carrier board controller firmware supports only LPC POST code decoding. I2C and SMB POST code decoding are currently not
+      supported.
+
+
+
+      Table 61   SW22 - POST Code LPC/I2C Address Decoder
+                                                                                                                          SW22
+      SW 3       SW 4      Configuration
+
+
+
+
+                                                                                                                          O
+                                                                                                                          N
+      OFF        OFF       80-84h (0xE0)
+
+
+
+
+                                                                                                                          1
+                                                                                                                          2
+                                                                                                                          3
+                                                                                                                          4
+      ON         OFF       80-84 (0xE2)
+      OFF        ON        RSDV (0xE4)
+      ON         ON        RSVD (0xE6)
+
+
+
+
+      Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                           55/56
+6        Mechanical Dimensions
+                                                                                                                                    293.37
+                                                                                                                                    288.29
+                                                                                                           209.55
+                                                                                                  163.83
+                                                                                             153.68
+                                                                                     66.68
+                                                                              6.35
+
+
+
+
+    243.84
+          237.49
+
+
+
+
+                                                                                                                    D110
+
+
+
+
+                                                                                                                           C110
+
+
+
+
+                                                                                                                                         A110
+                                                                                                                                  B110
+               189.3
+
+
+
+                       165.1
+
+                               159.3
+                                       151.3
+                                               148.3
+
+
+
+
+                                                                                                                    D1
+
+
+
+
+                                                                                                                           C1
+
+
+
+
+                                                                                                                                         A1
+                                                                                                                                  B1
+                                                       72.3
+
+
+
+
+                                                              33.02
+
+                                                                      10.16
+
+
+
+         Copyright © 2018 congatec GmbH 							TEVA2m16 							                                                                                 56/56
+

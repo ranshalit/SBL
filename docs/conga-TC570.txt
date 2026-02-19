@@ -1,0 +1,218 @@
+conga-TC570
+                                                                        11th Generation Intel® Core™ SOC processor
+                                                                        Intel® Iris® Xe Graphics with up to 96 EU
+                                                                        Industrial Extended Temperature options
+                                                                        AI / DL Instruction Sets including VNNI
+                                                                        PCI Express Gen 4
+
+
+
+
+Form Factor                 COM Express® Compact (95 x 95 mm) | Type 6 connector pinout
+
+CPU                         Processor                     Cores / Threads   Base freq. / max. Turbo freq.       TDP             Graphics
+                            Core™ i7-1185G7E              4C / 8T           1.80 GHz / 4.40 GHz                 12 - 28W        96 EU
+                            Core™ i5-1145G7E              4C / 8T           1.50 GHz / 4.40 GHz                 12 - 28W        80 EU
+                            Core™ i3-1115G4E              2C / 4T           2.20 GHz / 3.90 GHz                 12 - 28W        48 EU
+                            Celeron 6305E                 2C / 2T           1.80 GHz / --                       15W             48 EU
+                            Core™ i7-1185GRE              4C / 8T           1.80 GHz / 4.40 GHz                 12 - 28W        96 EU
+                            Core™ i5-1145GRE              4C / 8T           1.50 GHz / 4.10 GHz                 12 - 28W        80 EU
+                            Core™ i3-1115GRE              2C / 4T           2.20 GHz / 3.90 GHz                 12 - 28W        48 EU
+DRAM                        Up to 2 SODIMM sockets for DDR4 memory modules up to 32 GByte each (64 GByte total) with 3200 MT/s | IBECC
+Graphics                    Integrated Intel® Iris® Xe Graphics Gen 12 with up to 96 EU (Execution Units) | Supporting up to 4 independent display
+                            units (4x 4k/2x 8K) | Enhanced media (AV1/12b) with up to 2 Vdbox | Next Gen IPU6 with DPHY2.1 | DP 1.4
+Display                     3x DP/DP++ | 1x eDP
+Ethernet                    1x 2.5 GbE with TSN support via Intel® i226 Ethernet controller series
+I/O Interfaces              8x PCIe Gen3 | PEG support x4 (PCIe Gen4)
+                            4x USB 3.1 Gen 2 | 8x USB 2.0
+                            2x SATA III (6Gb/s) | SPI | 2x UART | 8x GPIO
+Audio                       HDA interface
+congatec Board controller   Multi-stage Watchdog | non-volatile User Data Storage | Manufacturing and Board Information | Board Statistics
+                            I²C bus (fast mode, 400 kHz, multi-master) | Power Loss Control | Hardware Health Monitoring | POST Code
+                            redirection
+Embedded BIOS Feature       AMI Aptio® UEFI firmware | 32 Mbyte serial SPI with congatec Embedded BIOS feature | OEM Logo | OEM CMOS
+                            Defaults | LCD Control | Display Auto Detection | Backlight Control | Flash Update
+Security                    Trusted Platform Module (TPM 2.0)
+Power Management            ACPI 5.0 with battery support
+Operating Systems           Microsoft® Windows 10 | Microsoft® Windows 10 IoT Enterprise | Microsoft® Windows IoT 10 Core | Linux | Android |
+                            Yocto
+Hypervisor                  RTS Real-time Hypervisor
+
+Temperature Range           Commercial:     Operating Temperature: 0 to +60°C           Storage Temperature: -20 to +80°C
+                            Industrial:     Operating Temperature: -40 to +85°C         Storage Temperature: -40 to +85°C
+Humidity                    Operating:          10% to 85% r. H. non cond.
+                            Storage:            5% to 85% r. H. non cond.
+Size                        95 x 95 mm² (3.74” x 3.74”)
+
+
+
+
+                                                                                                                           www.congatec.com
+conga-TC570 |
+
+
+                                                 Dual Channel
+     Intel 11th Gen                              DDR4 3200 MT/s                         COM Express
+                                                                                          2x 220 pin
+      Core-i SOC                                  2 x SO-DIMM
+                                                                                       Connector Type 6
+
+                                                                                      USB 2.0 Port 0-7
+
+                                                                                      USB 3.1 Port 0-2
+
+                                  MUX                                                 USB 3.1 Port 3
+
+                                                                                      PCIe Port 7
+                                        x4 PCIe Gen 4
+                                                                                      PCIe PEG Port 0-3
+
+                                                                                      PCIe Port 0-4
+
+                                  MUX                                                 PCIe Port 5
+
+                                                                                      SATA Port 1
+
+                                  MUX                                                 PCIe Port 6
+
+                                                                                      SATA Port 0
+
+
+                                                       GBE                   2.5Gb
+                                                                                      Ethernet
+                                                    Intel i226                        SDP
+
+
+                                                                                      DDI 1-3
+
+                                                  eDP to LVDS
+                               MUX                                           MUX
+                                                    Bridge                            LVDS/eDP
+
+
+                                DP to VGA
+                        DDIA     CH7517                                               CRT
+                               Assembly Option
+                                                                       MIPI
+                        DDIB                                         Connector
+                                                                    Assembly Option
+
+                                                                                      HD Audio
+
+                      SM Bus                                                          SM Bus
+
+
+                      MGMNT                                                           GPIO
+                                  congatec                                            I2C
+                        PECI       Board                                              LID#/SLEEP#
+                                  Controller                                          FAN control
+                                  MEC1705                                             SER0
+                                                                                      SER1/CAN
+
+
+
+
+                                 eSPI to LPC
+                        eSPI                                                          LPC
+                                  ECE1200
+                         SPI                                                          SPI
+
+                                      TPM 2.0                    SPI Flash
+
+
+
+
+                                                                                                         www.congatec.com
+conga-TC570 |
+Article                  PN       Description
+
+
+conga-TC570/i7-1185G7E   050300   COM Express Type 6 Compact module based on Intel® Core™ i7-1185G7E 4-core processor with
+                                  1.8GHz up to 4.4GHz turbo boost, 12MB cache, Intel® Iris® Xe Graphics with 96EU and dual channel
+                                  DDR4 3200 MT/s memory interface (Intel Tiger Lake). Commercial temperature range.
+
+conga-TC570/i5-1145G7E   050301   COM Express Type 6 Compact module based on Intel® Core™ i5-1145G7E 4-core processor with
+                                  1.5GHz up to 4.1GHz turbo boost, 8MB cache, Intel® Iris® Xe Graphics with 80EU and dual channel
+                                  DDR4 3200 MT/s memory interface (Intel Tiger Lake). Commercial temperature range.
+
+conga-TC570/i3-1115G4E   050302   COM Express Type 6 Compact module based on Intel® Core™ i3-1115G4E 2-core processor with
+                                  2.2GHz up to 3.9GHz turbo boost, 6MB cache, Intel® UHD Graphics with 48EU and dual channel
+                                  DDR4 3200 MT/s memory interface (Intel Tiger Lake). Commercial temperature range.
+
+conga-TC570/6305E        050303   COM Express Type 6 Compact module based on Intel® Celeron® 6305E 2-core processor with 1.8GHz,
+                                  4MB cache, Intel® UHD Graphics with 48EU and dual channel DDR4 3200 MT/s memory interface
+                                  (Intel Tiger Lake). Commercial temperature range.
+
+conga-TC570/i7-1185GRE   050310   COM Express Type 6 Compact module based on Intel® Core™ i7-1185GRE 4-core processor with
+                                  1.8GHz up to 4.4GHz turbo boost, 12MB cache, Intel® Iris® Xe Graphics with 96EU and dual channel
+                                  DDR4 3200 MT/s memory interface (Intel Tiger Lake). Industrial temperature range.
+
+conga-TC570/i5-1145GRE   050311   COM Express Type 6 Compact module based on Intel® Core™ i5-1145GRE 4-core processor with
+                                  1.5GHz up to 4.1GHz turbo boost, 8MB cache, Intel® Iris® Xe Graphics with 80EU and dual channel
+                                  DDR4 3200 MT/s memory interface (Intel Tiger Lake). Industrial temperature range.
+
+conga-TC570/i3-1115GRE   050312   COM Express Type 6 Compact module based on Intel® Core™ i3-1115GRE 2-core processor with
+                                  2.2GHz up to 3.9GHz turbo boost, 6MB cache, Intel® UHD Graphics with 48EU and dual channel
+                                  DDR4 3200 MT/s memory interface (Intel Tiger Lake). Industrial temperature range.
+
+
+
+conga-TC570/CSA-HP-B     050350   Standard active cooling solution for high performance COM Express module conga-TC570 with
+                                  integrated heat pipes, 25.5 mm overall heat sink height and integrated 12V fan. All standoffs are
+                                  with 2.7 mm bore hole.
+
+conga-TC570/CSA-HP-T     050351   Standard active cooling solution for high performance COM Express module conga-TC570 with
+                                  integrated heat pipes, 25.5 mm overall heat sink height and integrated 12V fan. All standoffs are
+                                  M2.5 mm thread.
+
+conga-TC570/CSP-HP-B     050352   Standard passive cooling solution for high performance COM Express module conga-TC570 with
+                                  integrated heat pipes, 24.3 mm overall heat sink height. All standoffs are with 2.7 mm bore hole.
+
+conga-TC570/CSP-HP-T     050353   Standard passive cooling solution for high performance COM Express module conga-TC570 with
+                                  integrated heat pipes, 24.3 mm overall heat sink height. All standoffs are M2.5 mm thread.
+
+conga-TC570/HSP-HP-B     050354   Standard heatspreader for high performance COM Express module conga-TC570 with integrated
+                                  heat pipes, 11 mm overall heat sink height. All standoffs are with 2.7 mm bore hole.
+
+conga-TC570/HSP-HP-T     050355   Standard heatspreader for high performance COM Express module conga-TC570 with integrated
+                                  heat pipes, 11 mm overall heat sink height. All standoffs are M2.5 mm thread.
+
+
+
+conga-TEVAL/COMe 3.0     65810    Evaluation Carrier Board for COM Express Type 6 modules.
+
+
+
+
+                                                                                                                  www.congatec.com
+conga-TC570 |
+Article                            PN        Description
+
+
+DDR4-SODIMM-3200 (4GB)             068793    DDR4 SODIMM memory module with 3200 MT/s and 4GB RAM
+
+DDR4-SODIMM-3200 (8GB)             068794    DDR4 SODIMM memory module with 3200 MT/s and 8GB RAM
+
+DDR4-SODIMM-3200 (16GB)            068798    DDR4 SODIMM memory module with 3200 MT/s and 16GB RAM
+
+DDR4-SODIMM-3200 (32GB)            068835    DDR4 SODIMM memory module with 3200 MT/s and 32GB RAM
+
+DDR4-SODIMM-3200 (4GB) / i-temp    068825    Industrial DDR4 SODIMM memory module with 3200 MT/s and 4GB RAM
+
+DDR4-SODIMM-3200 (8GB) / i-temp    068826    Industrial DDR4 SODIMM memory module with 3200 MT/s and 8GB RAM
+
+DDR4-SODIMM-3200 (16GB) / i-temp   068827    Industrial DDR4 SODIMM memory module with 3200 MT/s and 16GB RAM
+
+DDR4-SODIMM-3200 (32GB) / i-temp   068837    Industrial DDR4 SODIMM memory module with 3200 MT/s and 32GB RAM
+
+
+
+
+© 2024 congatec GmbH.              All data is for information purposes only. Although all the information contained within this document is
+All rights reserved.               carefully checked, no guarantee of correctness is implied or expressed. Product names, logos, brands,
+                                   and other trademarks featured or referred are the property of their respective trademark holders. These
+                                   trademark holders are not affiliated with congatec GmbH. Revision 2.6 – November 21, 2024
+
+
+                                                                                                                             www.congatec.com
+
